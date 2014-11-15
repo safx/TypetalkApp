@@ -1,0 +1,46 @@
+PODS:
+  - Alamofire (1.1.4)
+  - ionicons (2.0.1)
+  - JSONHelper (1.4.1)
+  - LlamaKit (0.1.1)
+  - ReactiveCocoa (3.0.0-alpha.1):
+    - LlamaKit (= 0.1.1)
+    - ReactiveCocoa/UI (= 3.0.0-alpha.1)
+  - ReactiveCocoa/Core (3.0.0-alpha.1):
+    - LlamaKit (= 0.1.1)
+    - ReactiveCocoa/no-arc
+  - ReactiveCocoa/no-arc (3.0.0-alpha.1):
+    - LlamaKit (= 0.1.1)
+  - ReactiveCocoa/UI (3.0.0-alpha.1):
+    - LlamaKit (= 0.1.1)
+    - ReactiveCocoa/Core
+  - SlackTextViewController (1.4.1):
+    - SlackTextViewController/Additions (= 1.4.1)
+  - SlackTextViewController/Additions (1.4.1)
+  - Starscream (0.9.2)
+  - TypetalkKit (0.2.6):
+    - Alamofire (~> 1.1.4)
+    - JSONHelper (~> 1.4.1)
+    - Starscream (~> 0.9.2)
+  - yavfl (0.1.4)
+
+DEPENDENCIES:
+  - Alamofire
+  - ionicons
+  - ReactiveCocoa (= 3.0.0-alpha.1)
+  - SlackTextViewController
+  - TypetalkKit
+  - yavfl
+
+SPEC CHECKSUMS:
+  Alamofire: 524225da382071ee3e6d0badd0ee4b4dc36740de
+  ionicons: 8c24f4af67e3b333a721cdfe2d39219e542769f2
+  JSONHelper: 7fb94abfe745d5191019fcb7baa5f89a37dd8bb5
+  LlamaKit: 25f47a933b6580a6fc159d95adb2e2953c7012e9
+  ReactiveCocoa: 3b5e351bb3ab233d71f0329f36a7400af30d9783
+  SlackTextViewController: 2dcf79adbfc49447e90256ce863c1de412199942
+  Starscream: 0ab8afa93aa7b2e60686209fd98a0ebf849ed59c
+  TypetalkKit: a52eefa06ee215effcdc9a633ac602b7bb37d0db
+  yavfl: 18d567455b07631e29c48ee83557b423738e6e18
+
+COCOAPODS: 0.36.0.rc.1

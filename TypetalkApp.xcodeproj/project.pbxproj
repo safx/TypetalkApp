@@ -1,0 +1,1203 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		10FC99ECD5298A6536D261E5 /* Pods_TypetalkApp_OSX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72EAC77812D2AB39E33EEE73 /* Pods_TypetalkApp_OSX.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		46E5613D0A2ECFF262601BDB /* Pods_TypetalkApp_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE80CA377C3919F4FA5599BA /* Pods_TypetalkApp_iOS.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		4D7228E4ACD45ED4DC87E157 /* Pods_TypetalkAppTests_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E7309321BCF036C93EF1F07 /* Pods_TypetalkAppTests_iOS.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		8D2AB2C01A98E99D00E484B0 /* TopicCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D2AB2BE1A98E7AA00E484B0 /* TopicCell.swift */; };
+		8D2AB2C41A99BE7000E484B0 /* NSTableView+Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D2AB2C21A99BE5A00E484B0 /* NSTableView+Menu.swift */; };
+		8D2AB2C71A99E8F000E484B0 /* EditTopicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D2AB2C51A99E82C00E484B0 /* EditTopicViewController.swift */; };
+		8D4218A41AA42182009D2077 /* Post+Ops.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4218A31AA42182009D2077 /* Post+Ops.swift */; };
+		8D4218A51AA42182009D2077 /* Post+Ops.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4218A31AA42182009D2077 /* Post+Ops.swift */; };
+		8D4DE33C1A3B317200E0A0B7 /* AutoCompletionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4DE33B1A3B317200E0A0B7 /* AutoCompletionCell.swift */; };
+		8D6B6C981A8EEB7D00313732 /* CreateNewTopicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6B6C971A8EEB7D00313732 /* CreateNewTopicViewController.swift */; };
+		8D6E72C61A87BEB300A0D07C /* Alamofire+RacExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6E72C41A87B77E00A0D07C /* Alamofire+RacExtension.swift */; };
+		8D6E72C71A87BEDE00A0D07C /* Alamofire+RacExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6E72C41A87B77E00A0D07C /* Alamofire+RacExtension.swift */; };
+		8D6E72CA1A89060400A0D07C /* MainWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6E72C91A89060400A0D07C /* MainWindowController.swift */; };
+		8D6E72CD1A8B09E300A0D07C /* Emoji.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6E72CC1A8B09E300A0D07C /* Emoji.swift */; };
+		8D6E72CE1A8B09ED00A0D07C /* Emoji.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6E72CC1A8B09E300A0D07C /* Emoji.swift */; };
+		8D6E72D01A8B0A0100A0D07C /* String+Emoji.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6E72CF1A8B0A0100A0D07C /* String+Emoji.swift */; };
+		8D6E72D11A8B0A0100A0D07C /* String+Emoji.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6E72CF1A8B0A0100A0D07C /* String+Emoji.swift */; };
+		8D6E72D51A8B0D4A00A0D07C /* String+EmojiTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6E72D21A8B0D3F00A0D07C /* String+EmojiTests.swift */; };
+		8D6E72D61A8B0DB200A0D07C /* String+Emoji.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6E72CF1A8B0A0100A0D07C /* String+Emoji.swift */; };
+		8D6E72D71A8B0DDA00A0D07C /* Emoji.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6E72CC1A8B09E300A0D07C /* Emoji.swift */; };
+		8D7B67C71A18A4C500BDBFB7 /* NSDate+Format.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D7B67C61A18A4C500BDBFB7 /* NSDate+Format.swift */; };
+		8D7B67C91A18A4F300BDBFB7 /* NSDate+FormatTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D7B67C81A18A4F300BDBFB7 /* NSDate+FormatTests.swift */; };
+		8D7CBC761A905E6E00C39B5D /* CreateTopicViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D7CBC751A905E6E00C39B5D /* CreateTopicViewModel.swift */; };
+		8D7DB46D1A99F7DE0093C2D3 /* EditTopicViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D7DB46C1A99F7DE0093C2D3 /* EditTopicViewModel.swift */; };
+		8D7DB46F1A9A146E0093C2D3 /* TopicInfoDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D7DB46E1A9A146E0093C2D3 /* TopicInfoDataSource.swift */; };
+		8D7DB4701A9A146E0093C2D3 /* TopicInfoDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D7DB46E1A9A146E0093C2D3 /* TopicInfoDataSource.swift */; };
+		8D7DB4731A9B691A0093C2D3 /* NSComboBox+RacExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D7DB4711A9B69140093C2D3 /* NSComboBox+RacExtension.swift */; };
+		8D93F8E21AAB39EE00005808 /* CreateNewMessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D93F8E11AAB39EE00005808 /* CreateNewMessageViewController.swift */; };
+		8D93F8E41AAB448F00005808 /* CreateNewMessageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D93F8E31AAB448F00005808 /* CreateNewMessageViewModel.swift */; };
+		8D96860A1A0E40AE009E8A98 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9686091A0E40AE009E8A98 /* AppDelegate.swift */; };
+		8D96860C1A0E40AE009E8A98 /* TopicListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D96860B1A0E40AE009E8A98 /* TopicListViewController.swift */; };
+		8D96860E1A0E40AE009E8A98 /* MessageListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D96860D1A0E40AE009E8A98 /* MessageListViewController.swift */; };
+		8D9686111A0E40AE009E8A98 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8D96860F1A0E40AE009E8A98 /* Main.storyboard */; };
+		8D9686131A0E40AE009E8A98 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8D9686121A0E40AE009E8A98 /* Images.xcassets */; };
+		8D9686161A0E40AE009E8A98 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D9686141A0E40AE009E8A98 /* LaunchScreen.xib */; };
+		8D9686221A0E40AE009E8A98 /* TypetalkAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9686211A0E40AE009E8A98 /* TypetalkAppTests.swift */; };
+		8D96864C1A0E45A1009E8A98 /* Client+RacExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D96864B1A0E45A1009E8A98 /* Client+RacExtension.swift */; };
+		8DAC5C291A0F4B280066EC44 /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DAC5C281A0F4B280066EC44 /* MessageCell.swift */; };
+		8DC068E01A7E749A0039326F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC068DF1A7E749A0039326F /* AppDelegate.swift */; };
+		8DC068E41A7E749A0039326F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8DC068E31A7E749A0039326F /* Images.xcassets */; };
+		8DC068E71A7E749A0039326F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8DC068E51A7E749A0039326F /* Main.storyboard */; };
+		8DC068F31A7E749A0039326F /* TypetalkApp_OSXTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC068F21A7E749A0039326F /* TypetalkApp_OSXTests.swift */; };
+		8DCA5F121A875333000F6206 /* AttachmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DCA5F111A875333000F6206 /* AttachmentView.swift */; };
+		8DDA9B081A1703EF006A74D2 /* CreateTopicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DDA9B051A1703EF006A74D2 /* CreateTopicViewController.swift */; };
+		8DDA9B0A1A1703EF006A74D2 /* TextFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DDA9B071A1703EF006A74D2 /* TextFieldCell.swift */; };
+		8DE2BAD51A7E8CA80078B830 /* TopicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE2BAD21A7E8C370078B830 /* TopicViewController.swift */; };
+		8DE2BAD61A7E8CAC0078B830 /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE2BAD11A7E8C370078B830 /* MessageViewController.swift */; };
+		8DE2BAD71A7E8CAF0078B830 /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE2BACF1A7E8C2D0078B830 /* MessageCell.swift */; };
+		8DE2BADC1A7F993C0078B830 /* MessageListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE2BAD91A7F993C0078B830 /* MessageListViewModel.swift */; };
+		8DE2BADD1A7F993C0078B830 /* CreateTopicViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE2BADA1A7F993C0078B830 /* CreateTopicViewModel.swift */; };
+		8DE2BADE1A7F993C0078B830 /* TopicListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE2BADB1A7F993C0078B830 /* TopicListViewModel.swift */; };
+		8DE2BAE11A7F99AB0078B830 /* MessagesDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE2BADF1A7F99AB0078B830 /* MessagesDataSource.swift */; };
+		8DE2BAE21A7F99AB0078B830 /* TopicsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE2BAE01A7F99AB0078B830 /* TopicsDataSource.swift */; };
+		8DE2BAE31A7F99B00078B830 /* TopicsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE2BAE01A7F99AB0078B830 /* TopicsDataSource.swift */; };
+		8DE2BAE41A7F99B30078B830 /* MessagesDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE2BADF1A7F99AB0078B830 /* MessagesDataSource.swift */; };
+		8DE2BAE51A7F9A5B0078B830 /* Client+RacExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D96864B1A0E45A1009E8A98 /* Client+RacExtension.swift */; };
+		8DE2BAE61A7F9A5F0078B830 /* NSDate+Format.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D7B67C61A18A4C500BDBFB7 /* NSDate+Format.swift */; };
+		8DE2BAE71A7F9A600078B830 /* NSDate+Format.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D7B67C61A18A4C500BDBFB7 /* NSDate+Format.swift */; };
+		8DE2BAE81A7F9A630078B830 /* Client+RacExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D96864B1A0E45A1009E8A98 /* Client+RacExtension.swift */; };
+		8DE2BAEA1A7F9C950078B830 /* CompletionDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE2BAE91A7F9C950078B830 /* CompletionDataSource.swift */; };
+		8DE2BAEB1A7F9CBE0078B830 /* CompletionDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE2BAE91A7F9C950078B830 /* CompletionDataSource.swift */; };
+		8DE2BAEE1A7FB2060078B830 /* TopicListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE2BAED1A7FB2060078B830 /* TopicListViewModel.swift */; };
+		8DE2BAF01A7FB6010078B830 /* MessageListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE2BAEF1A7FB6010078B830 /* MessageListViewModel.swift */; };
+		8DE627941A95FBB1000EADC3 /* ObservableArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE627931A95FBB1000EADC3 /* ObservableArray.swift */; };
+		8DE627951A95FBB1000EADC3 /* ObservableArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE627931A95FBB1000EADC3 /* ObservableArray.swift */; };
+		8DE8254C1A811271007A2875 /* Attachment+ContentType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE8254B1A811271007A2875 /* Attachment+ContentType.swift */; };
+		8DE8254D1A8112B0007A2875 /* Attachment+ContentType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE8254B1A811271007A2875 /* Attachment+ContentType.swift */; };
+		8DE8254E1A8112B0007A2875 /* Attachment+ContentType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE8254B1A811271007A2875 /* Attachment+ContentType.swift */; };
+		8DE825501A826CF7007A2875 /* NSXLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE8254F1A826CF7007A2875 /* NSXLabel.swift */; };
+		8DE874111A0E7C3400D681DF /* TopicCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE874101A0E7C3400D681DF /* TopicCell.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		8D96861C1A0E40AE009E8A98 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8D9685FC1A0E40AE009E8A98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8D9686031A0E40AE009E8A98;
+			remoteInfo = TypetalkApp;
+		};
+		8DC068ED1A7E749A0039326F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8D9685FC1A0E40AE009E8A98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8DC068DA1A7E749A0039326F;
+			remoteInfo = "TypetalkApp-OSX";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		0DB20618472FF5DB3926BBBE /* Pods-TypetalkApp-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TypetalkApp-iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TypetalkApp-iOS/Pods-TypetalkApp-iOS.debug.xcconfig"; sourceTree = "<group>"; };
+		11B9897FC7D736AA65B1BCAB /* Pods_TypetalkApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TypetalkApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		34FF8320FA8EA2D261025B2F /* Pods-TypetalkAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TypetalkAppTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TypetalkAppTests/Pods-TypetalkAppTests.debug.xcconfig"; sourceTree = "<group>"; };
+		3E7309321BCF036C93EF1F07 /* Pods_TypetalkAppTests_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TypetalkAppTests_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		423F71B0352D06F256B2D0E3 /* Pods-TypetalkApp-OSX.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TypetalkApp-OSX.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TypetalkApp-OSX/Pods-TypetalkApp-OSX.debug.xcconfig"; sourceTree = "<group>"; };
+		453FA102A29D43E51C79DA33 /* Pods_TypetalkAppTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TypetalkAppTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4B9211E0AA3B32B22A537151 /* Pods-TypetalkApp-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TypetalkApp-iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-TypetalkApp-iOS/Pods-TypetalkApp-iOS.release.xcconfig"; sourceTree = "<group>"; };
+		4BE3C6807BF4F8425E51AF5E /* Pods-TypetalkApp-OSX.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TypetalkApp-OSX.release.xcconfig"; path = "Pods/Target Support Files/Pods-TypetalkApp-OSX/Pods-TypetalkApp-OSX.release.xcconfig"; sourceTree = "<group>"; };
+		61BA4C2B4421DA94CFB51423 /* Pods-TypetalkAppTests-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TypetalkAppTests-iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TypetalkAppTests-iOS/Pods-TypetalkAppTests-iOS.debug.xcconfig"; sourceTree = "<group>"; };
+		6DC14FE7E2149647EA71AC90 /* Pods-TypetalkAppTests-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TypetalkAppTests-iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-TypetalkAppTests-iOS/Pods-TypetalkAppTests-iOS.release.xcconfig"; sourceTree = "<group>"; };
+		72EAC77812D2AB39E33EEE73 /* Pods_TypetalkApp_OSX.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TypetalkApp_OSX.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8D2AB2BE1A98E7AA00E484B0 /* TopicCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicCell.swift; sourceTree = "<group>"; };
+		8D2AB2C21A99BE5A00E484B0 /* NSTableView+Menu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSTableView+Menu.swift"; sourceTree = "<group>"; };
+		8D2AB2C51A99E82C00E484B0 /* EditTopicViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditTopicViewController.swift; sourceTree = "<group>"; };
+		8D4218A31AA42182009D2077 /* Post+Ops.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Post+Ops.swift"; sourceTree = "<group>"; };
+		8D424F0C1A69574C0034C498 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
+		8D424F0D1A69574C0034C498 /* ReactiveCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReactiveCocoa.framework; path = Carthage/Build/iOS/ReactiveCocoa.framework; sourceTree = "<group>"; };
+		8D424F0E1A69574C0034C498 /* TypetalkKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TypetalkKit.framework; path = Carthage/Build/iOS/TypetalkKit.framework; sourceTree = "<group>"; };
+		8D4DE33B1A3B317200E0A0B7 /* AutoCompletionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutoCompletionCell.swift; sourceTree = "<group>"; };
+		8D6B6C971A8EEB7D00313732 /* CreateNewTopicViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateNewTopicViewController.swift; sourceTree = "<group>"; };
+		8D6E72C41A87B77E00A0D07C /* Alamofire+RacExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Alamofire+RacExtension.swift"; path = "TypetalkApp/Extensions/Alamofire+RacExtension.swift"; sourceTree = SOURCE_ROOT; };
+		8D6E72C91A89060400A0D07C /* MainWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainWindowController.swift; sourceTree = "<group>"; };
+		8D6E72CC1A8B09E300A0D07C /* Emoji.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Emoji.swift; sourceTree = "<group>"; };
+		8D6E72CF1A8B0A0100A0D07C /* String+Emoji.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Emoji.swift"; sourceTree = "<group>"; };
+		8D6E72D21A8B0D3F00A0D07C /* String+EmojiTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+EmojiTests.swift"; sourceTree = "<group>"; };
+		8D7B67C61A18A4C500BDBFB7 /* NSDate+Format.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+Format.swift"; sourceTree = "<group>"; };
+		8D7B67C81A18A4F300BDBFB7 /* NSDate+FormatTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NSDate+FormatTests.swift"; path = "../Common/NSDate+FormatTests.swift"; sourceTree = "<group>"; };
+		8D7CBC751A905E6E00C39B5D /* CreateTopicViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateTopicViewModel.swift; sourceTree = "<group>"; };
+		8D7DB46C1A99F7DE0093C2D3 /* EditTopicViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditTopicViewModel.swift; sourceTree = "<group>"; };
+		8D7DB46E1A9A146E0093C2D3 /* TopicInfoDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicInfoDataSource.swift; sourceTree = "<group>"; };
+		8D7DB4711A9B69140093C2D3 /* NSComboBox+RacExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSComboBox+RacExtension.swift"; sourceTree = "<group>"; };
+		8D93F8E11AAB39EE00005808 /* CreateNewMessageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateNewMessageViewController.swift; sourceTree = "<group>"; };
+		8D93F8E31AAB448F00005808 /* CreateNewMessageViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateNewMessageViewModel.swift; sourceTree = "<group>"; };
+		8D9686041A0E40AE009E8A98 /* TypetalkApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TypetalkApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8D9686081A0E40AE009E8A98 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8D9686091A0E40AE009E8A98 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		8D96860B1A0E40AE009E8A98 /* TopicListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicListViewController.swift; sourceTree = "<group>"; };
+		8D96860D1A0E40AE009E8A98 /* MessageListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageListViewController.swift; sourceTree = "<group>"; };
+		8D9686101A0E40AE009E8A98 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		8D9686121A0E40AE009E8A98 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		8D9686151A0E40AE009E8A98 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		8D96861B1A0E40AE009E8A98 /* TypetalkAppTests-iOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "TypetalkAppTests-iOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8D9686201A0E40AE009E8A98 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8D9686211A0E40AE009E8A98 /* TypetalkAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypetalkAppTests.swift; sourceTree = "<group>"; };
+		8D96864B1A0E45A1009E8A98 /* Client+RacExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Client+RacExtension.swift"; sourceTree = "<group>"; };
+		8DAC5C281A0F4B280066EC44 /* MessageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
+		8DC068DB1A7E749A0039326F /* TypetalkApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TypetalkApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8DC068DE1A7E749A0039326F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8DC068DF1A7E749A0039326F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		8DC068E31A7E749A0039326F /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		8DC068E61A7E749A0039326F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		8DC068EC1A7E749A0039326F /* TypetalkAppTests-OSX.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "TypetalkAppTests-OSX.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8DC068F11A7E749A0039326F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8DC068F21A7E749A0039326F /* TypetalkApp_OSXTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypetalkApp_OSXTests.swift; sourceTree = "<group>"; };
+		8DCA5F111A875333000F6206 /* AttachmentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttachmentView.swift; sourceTree = "<group>"; };
+		8DDA9B051A1703EF006A74D2 /* CreateTopicViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateTopicViewController.swift; sourceTree = "<group>"; };
+		8DDA9B071A1703EF006A74D2 /* TextFieldCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldCell.swift; sourceTree = "<group>"; };
+		8DE2BACF1A7E8C2D0078B830 /* MessageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
+		8DE2BAD11A7E8C370078B830 /* MessageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
+		8DE2BAD21A7E8C370078B830 /* TopicViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicViewController.swift; sourceTree = "<group>"; };
+		8DE2BAD91A7F993C0078B830 /* MessageListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageListViewModel.swift; sourceTree = "<group>"; };
+		8DE2BADA1A7F993C0078B830 /* CreateTopicViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateTopicViewModel.swift; sourceTree = "<group>"; };
+		8DE2BADB1A7F993C0078B830 /* TopicListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicListViewModel.swift; sourceTree = "<group>"; };
+		8DE2BADF1A7F99AB0078B830 /* MessagesDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MessagesDataSource.swift; path = TypetalkApp/DataSources/MessagesDataSource.swift; sourceTree = SOURCE_ROOT; };
+		8DE2BAE01A7F99AB0078B830 /* TopicsDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TopicsDataSource.swift; path = TypetalkApp/DataSources/TopicsDataSource.swift; sourceTree = SOURCE_ROOT; };
+		8DE2BAE91A7F9C950078B830 /* CompletionDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompletionDataSource.swift; sourceTree = "<group>"; };
+		8DE2BAED1A7FB2060078B830 /* TopicListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicListViewModel.swift; sourceTree = "<group>"; };
+		8DE2BAEF1A7FB6010078B830 /* MessageListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageListViewModel.swift; sourceTree = "<group>"; };
+		8DE627931A95FBB1000EADC3 /* ObservableArray.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObservableArray.swift; sourceTree = "<group>"; };
+		8DE8254B1A811271007A2875 /* Attachment+ContentType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Attachment+ContentType.swift"; sourceTree = "<group>"; };
+		8DE8254F1A826CF7007A2875 /* NSXLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSXLabel.swift; sourceTree = "<group>"; };
+		8DE874101A0E7C3400D681DF /* TopicCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicCell.swift; sourceTree = "<group>"; };
+		96733CAB78C66B2C6BFDAF74 /* Pods-TypetalkApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TypetalkApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-TypetalkApp/Pods-TypetalkApp.release.xcconfig"; sourceTree = "<group>"; };
+		BE80CA377C3919F4FA5599BA /* Pods_TypetalkApp_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TypetalkApp_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DFC02F327EA0ADA09F856AE3 /* Pods-TypetalkApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TypetalkApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TypetalkApp/Pods-TypetalkApp.debug.xcconfig"; sourceTree = "<group>"; };
+		EEB7DCF00107E037D3DC4BFA /* Pods-TypetalkAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TypetalkAppTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TypetalkAppTests/Pods-TypetalkAppTests.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8D9686011A0E40AE009E8A98 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				46E5613D0A2ECFF262601BDB /* Pods_TypetalkApp_iOS.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8D9686181A0E40AE009E8A98 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4D7228E4ACD45ED4DC87E157 /* Pods_TypetalkAppTests_iOS.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8DC068D81A7E749A0039326F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				10FC99ECD5298A6536D261E5 /* Pods_TypetalkApp_OSX.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8DC068E91A7E749A0039326F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1593E1401E58EF1623771865 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8D424F0C1A69574C0034C498 /* Alamofire.framework */,
+				8D424F0D1A69574C0034C498 /* ReactiveCocoa.framework */,
+				8D424F0E1A69574C0034C498 /* TypetalkKit.framework */,
+				11B9897FC7D736AA65B1BCAB /* Pods_TypetalkApp.framework */,
+				453FA102A29D43E51C79DA33 /* Pods_TypetalkAppTests.framework */,
+				72EAC77812D2AB39E33EEE73 /* Pods_TypetalkApp_OSX.framework */,
+				BE80CA377C3919F4FA5599BA /* Pods_TypetalkApp_iOS.framework */,
+				3E7309321BCF036C93EF1F07 /* Pods_TypetalkAppTests_iOS.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		8D2AB2C11A99BE2000E484B0 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				8D2AB2C21A99BE5A00E484B0 /* NSTableView+Menu.swift */,
+				8D7DB4711A9B69140093C2D3 /* NSComboBox+RacExtension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		8D4E483A1A6ABD3B008C843B /* DataSources */ = {
+			isa = PBXGroup;
+			children = (
+				8DE2BAE01A7F99AB0078B830 /* TopicsDataSource.swift */,
+				8DE2BADF1A7F99AB0078B830 /* MessagesDataSource.swift */,
+				8DE2BAE91A7F9C950078B830 /* CompletionDataSource.swift */,
+				8D7DB46E1A9A146E0093C2D3 /* TopicInfoDataSource.swift */,
+			);
+			name = DataSources;
+			path = TypetalkApp/DataSources;
+			sourceTree = "<group>";
+		};
+		8D4E483B1A6ABD6F008C843B /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				8D96860B1A0E40AE009E8A98 /* TopicListViewController.swift */,
+				8D96860D1A0E40AE009E8A98 /* MessageListViewController.swift */,
+				8DDA9B051A1703EF006A74D2 /* CreateTopicViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		8D4E483C1A6ABD9D008C843B /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				8DE874101A0E7C3400D681DF /* TopicCell.swift */,
+				8D4DE33B1A3B317200E0A0B7 /* AutoCompletionCell.swift */,
+				8DAC5C281A0F4B280066EC44 /* MessageCell.swift */,
+				8DDA9B071A1703EF006A74D2 /* TextFieldCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		8D4E483D1A6ABDD1008C843B /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				8D96864B1A0E45A1009E8A98 /* Client+RacExtension.swift */,
+				8D7B67C61A18A4C500BDBFB7 /* NSDate+Format.swift */,
+				8D6E72C41A87B77E00A0D07C /* Alamofire+RacExtension.swift */,
+				8DE8254B1A811271007A2875 /* Attachment+ContentType.swift */,
+				8D4218A31AA42182009D2077 /* Post+Ops.swift */,
+				8D6E72CF1A8B0A0100A0D07C /* String+Emoji.swift */,
+			);
+			name = Extensions;
+			path = TypetalkApp/Extensions;
+			sourceTree = "<group>";
+		};
+		8D6E72C81A8905A300A0D07C /* WindowControllers */ = {
+			isa = PBXGroup;
+			children = (
+				8D6E72C91A89060400A0D07C /* MainWindowController.swift */,
+			);
+			path = WindowControllers;
+			sourceTree = "<group>";
+		};
+		8D6E72CB1A8B09C700A0D07C /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				8D6E72CC1A8B09E300A0D07C /* Emoji.swift */,
+				8DE627931A95FBB1000EADC3 /* ObservableArray.swift */,
+			);
+			name = Utils;
+			path = TypetalkApp/Utils;
+			sourceTree = "<group>";
+		};
+		8D9685FB1A0E40AE009E8A98 = {
+			isa = PBXGroup;
+			children = (
+				8DC068FA1A7E74E80039326F /* TypetalkApp-Common */,
+				8D9686061A0E40AE009E8A98 /* TypetalkApp-iOS */,
+				8D96861E1A0E40AE009E8A98 /* TypetalkAppTests-iOS */,
+				8DC068DC1A7E749A0039326F /* TypetalkApp-OSX */,
+				8DC068EF1A7E749A0039326F /* TypetalkAppTests-OSX */,
+				8D9686051A0E40AE009E8A98 /* Products */,
+				FC16A9DDBE81D0E87FEE9561 /* Pods */,
+				1593E1401E58EF1623771865 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		8D9686051A0E40AE009E8A98 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8D9686041A0E40AE009E8A98 /* TypetalkApp.app */,
+				8D96861B1A0E40AE009E8A98 /* TypetalkAppTests-iOS.xctest */,
+				8DC068DB1A7E749A0039326F /* TypetalkApp.app */,
+				8DC068EC1A7E749A0039326F /* TypetalkAppTests-OSX.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		8D9686061A0E40AE009E8A98 /* TypetalkApp-iOS */ = {
+			isa = PBXGroup;
+			children = (
+				8D9686091A0E40AE009E8A98 /* AppDelegate.swift */,
+				8DE2BAD81A7F99070078B830 /* ViewModels */,
+				8D4E483B1A6ABD6F008C843B /* ViewControllers */,
+				8D4E483C1A6ABD9D008C843B /* Views */,
+				8D96860F1A0E40AE009E8A98 /* Main.storyboard */,
+				8D9686121A0E40AE009E8A98 /* Images.xcassets */,
+				8D9686141A0E40AE009E8A98 /* LaunchScreen.xib */,
+				8D9686071A0E40AE009E8A98 /* Supporting Files */,
+			);
+			name = "TypetalkApp-iOS";
+			path = TypetalkApp/iOS;
+			sourceTree = "<group>";
+		};
+		8D9686071A0E40AE009E8A98 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				8D9686081A0E40AE009E8A98 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		8D96861E1A0E40AE009E8A98 /* TypetalkAppTests-iOS */ = {
+			isa = PBXGroup;
+			children = (
+				8D9686211A0E40AE009E8A98 /* TypetalkAppTests.swift */,
+				8D7B67C81A18A4F300BDBFB7 /* NSDate+FormatTests.swift */,
+				8D6E72D21A8B0D3F00A0D07C /* String+EmojiTests.swift */,
+				8D96861F1A0E40AE009E8A98 /* Supporting Files */,
+			);
+			name = "TypetalkAppTests-iOS";
+			path = TypetalkAppTests/iOS;
+			sourceTree = "<group>";
+		};
+		8D96861F1A0E40AE009E8A98 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				8D9686201A0E40AE009E8A98 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		8DC068DC1A7E749A0039326F /* TypetalkApp-OSX */ = {
+			isa = PBXGroup;
+			children = (
+				8DC068DF1A7E749A0039326F /* AppDelegate.swift */,
+				8D2AB2C11A99BE2000E484B0 /* Extensions */,
+				8D6E72C81A8905A300A0D07C /* WindowControllers */,
+				8DE2BAEC1A7FB1BF0078B830 /* ViewModels */,
+				8DE2BACD1A7E8BCB0078B830 /* ViewControllers */,
+				8DE2BACE1A7E8BDC0078B830 /* Views */,
+				8DC068E31A7E749A0039326F /* Images.xcassets */,
+				8DC068E51A7E749A0039326F /* Main.storyboard */,
+				8DC068DD1A7E749A0039326F /* Supporting Files */,
+			);
+			name = "TypetalkApp-OSX";
+			path = TypetalkApp/OSX;
+			sourceTree = "<group>";
+		};
+		8DC068DD1A7E749A0039326F /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				8DC068DE1A7E749A0039326F /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		8DC068EF1A7E749A0039326F /* TypetalkAppTests-OSX */ = {
+			isa = PBXGroup;
+			children = (
+				8DC068F21A7E749A0039326F /* TypetalkApp_OSXTests.swift */,
+				8DC068F01A7E749A0039326F /* Supporting Files */,
+			);
+			name = "TypetalkAppTests-OSX";
+			path = TypetalkAppTests/OSX;
+			sourceTree = "<group>";
+		};
+		8DC068F01A7E749A0039326F /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				8DC068F11A7E749A0039326F /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		8DC068FA1A7E74E80039326F /* TypetalkApp-Common */ = {
+			isa = PBXGroup;
+			children = (
+				8D6E72CB1A8B09C700A0D07C /* Utils */,
+				8D4E483D1A6ABDD1008C843B /* Extensions */,
+				8D4E483A1A6ABD3B008C843B /* DataSources */,
+			);
+			name = "TypetalkApp-Common";
+			sourceTree = "<group>";
+		};
+		8DE2BACD1A7E8BCB0078B830 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				8DE2BAD21A7E8C370078B830 /* TopicViewController.swift */,
+				8DE2BAD11A7E8C370078B830 /* MessageViewController.swift */,
+				8D93F8E11AAB39EE00005808 /* CreateNewMessageViewController.swift */,
+				8D6B6C971A8EEB7D00313732 /* CreateNewTopicViewController.swift */,
+				8D2AB2C51A99E82C00E484B0 /* EditTopicViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		8DE2BACE1A7E8BDC0078B830 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				8D2AB2BE1A98E7AA00E484B0 /* TopicCell.swift */,
+				8DE2BACF1A7E8C2D0078B830 /* MessageCell.swift */,
+				8DCA5F111A875333000F6206 /* AttachmentView.swift */,
+				8DE8254F1A826CF7007A2875 /* NSXLabel.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		8DE2BAD81A7F99070078B830 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				8DE2BADB1A7F993C0078B830 /* TopicListViewModel.swift */,
+				8DE2BAD91A7F993C0078B830 /* MessageListViewModel.swift */,
+				8DE2BADA1A7F993C0078B830 /* CreateTopicViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		8DE2BAEC1A7FB1BF0078B830 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				8DE2BAED1A7FB2060078B830 /* TopicListViewModel.swift */,
+				8DE2BAEF1A7FB6010078B830 /* MessageListViewModel.swift */,
+				8D93F8E31AAB448F00005808 /* CreateNewMessageViewModel.swift */,
+				8D7CBC751A905E6E00C39B5D /* CreateTopicViewModel.swift */,
+				8D7DB46C1A99F7DE0093C2D3 /* EditTopicViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		FC16A9DDBE81D0E87FEE9561 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				DFC02F327EA0ADA09F856AE3 /* Pods-TypetalkApp.debug.xcconfig */,
+				96733CAB78C66B2C6BFDAF74 /* Pods-TypetalkApp.release.xcconfig */,
+				34FF8320FA8EA2D261025B2F /* Pods-TypetalkAppTests.debug.xcconfig */,
+				EEB7DCF00107E037D3DC4BFA /* Pods-TypetalkAppTests.release.xcconfig */,
+				423F71B0352D06F256B2D0E3 /* Pods-TypetalkApp-OSX.debug.xcconfig */,
+				4BE3C6807BF4F8425E51AF5E /* Pods-TypetalkApp-OSX.release.xcconfig */,
+				0DB20618472FF5DB3926BBBE /* Pods-TypetalkApp-iOS.debug.xcconfig */,
+				4B9211E0AA3B32B22A537151 /* Pods-TypetalkApp-iOS.release.xcconfig */,
+				61BA4C2B4421DA94CFB51423 /* Pods-TypetalkAppTests-iOS.debug.xcconfig */,
+				6DC14FE7E2149647EA71AC90 /* Pods-TypetalkAppTests-iOS.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		8D9686031A0E40AE009E8A98 /* TypetalkApp-iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8D9686251A0E40AE009E8A98 /* Build configuration list for PBXNativeTarget "TypetalkApp-iOS" */;
+			buildPhases = (
+				2253BA529C7AD9F20885C9E2 /* Check Pods Manifest.lock */,
+				8D9686001A0E40AE009E8A98 /* Sources */,
+				8D9686011A0E40AE009E8A98 /* Frameworks */,
+				8D9686021A0E40AE009E8A98 /* Resources */,
+				44058989B216B66D6F090E85 /* Copy Pods Resources */,
+				F268D7474C1B66B82788E50A /* Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "TypetalkApp-iOS";
+			productName = TypetalkApp;
+			productReference = 8D9686041A0E40AE009E8A98 /* TypetalkApp.app */;
+			productType = "com.apple.product-type.application";
+		};
+		8D96861A1A0E40AE009E8A98 /* TypetalkAppTests-iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8D9686281A0E40AE009E8A98 /* Build configuration list for PBXNativeTarget "TypetalkAppTests-iOS" */;
+			buildPhases = (
+				D602DA77573B3A39198AFF27 /* Check Pods Manifest.lock */,
+				8D9686171A0E40AE009E8A98 /* Sources */,
+				8D9686181A0E40AE009E8A98 /* Frameworks */,
+				8D9686191A0E40AE009E8A98 /* Resources */,
+				31DBF2B551A0A4FB14ED7A3C /* Copy Pods Resources */,
+				4EF52D811D2A6347D8C1C86C /* Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8D96861D1A0E40AE009E8A98 /* PBXTargetDependency */,
+			);
+			name = "TypetalkAppTests-iOS";
+			productName = TypetalkAppTests;
+			productReference = 8D96861B1A0E40AE009E8A98 /* TypetalkAppTests-iOS.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		8DC068DA1A7E749A0039326F /* TypetalkApp-OSX */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8DC068F81A7E749A0039326F /* Build configuration list for PBXNativeTarget "TypetalkApp-OSX" */;
+			buildPhases = (
+				4E6AC84EA97C577F558367F7 /* Check Pods Manifest.lock */,
+				8DC068D71A7E749A0039326F /* Sources */,
+				8DC068D81A7E749A0039326F /* Frameworks */,
+				8DC068D91A7E749A0039326F /* Resources */,
+				9D5A8625A7B159FC399A8331 /* Embed Pods Frameworks */,
+				0BDC8053DED3A42EAA6130F6 /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "TypetalkApp-OSX";
+			productName = "TypetalkApp-OSX";
+			productReference = 8DC068DB1A7E749A0039326F /* TypetalkApp.app */;
+			productType = "com.apple.product-type.application";
+		};
+		8DC068EB1A7E749A0039326F /* TypetalkAppTests-OSX */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8DC068F91A7E749A0039326F /* Build configuration list for PBXNativeTarget "TypetalkAppTests-OSX" */;
+			buildPhases = (
+				8DC068E81A7E749A0039326F /* Sources */,
+				8DC068E91A7E749A0039326F /* Frameworks */,
+				8DC068EA1A7E749A0039326F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8DC068EE1A7E749A0039326F /* PBXTargetDependency */,
+			);
+			name = "TypetalkAppTests-OSX";
+			productName = "TypetalkApp-OSXTests";
+			productReference = 8DC068EC1A7E749A0039326F /* TypetalkAppTests-OSX.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		8D9685FC1A0E40AE009E8A98 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0610;
+				ORGANIZATIONNAME = "Safx Developers";
+				TargetAttributes = {
+					8D9686031A0E40AE009E8A98 = {
+						CreatedOnToolsVersion = 6.1;
+					};
+					8D96861A1A0E40AE009E8A98 = {
+						CreatedOnToolsVersion = 6.1;
+						TestTargetID = 8D9686031A0E40AE009E8A98;
+					};
+					8DC068DA1A7E749A0039326F = {
+						CreatedOnToolsVersion = 6.1.1;
+					};
+					8DC068EB1A7E749A0039326F = {
+						CreatedOnToolsVersion = 6.1.1;
+						TestTargetID = 8DC068DA1A7E749A0039326F;
+					};
+				};
+			};
+			buildConfigurationList = 8D9685FF1A0E40AE009E8A98 /* Build configuration list for PBXProject "TypetalkApp" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 8D9685FB1A0E40AE009E8A98;
+			productRefGroup = 8D9686051A0E40AE009E8A98 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8D9686031A0E40AE009E8A98 /* TypetalkApp-iOS */,
+				8D96861A1A0E40AE009E8A98 /* TypetalkAppTests-iOS */,
+				8DC068DA1A7E749A0039326F /* TypetalkApp-OSX */,
+				8DC068EB1A7E749A0039326F /* TypetalkAppTests-OSX */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8D9686021A0E40AE009E8A98 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8D9686111A0E40AE009E8A98 /* Main.storyboard in Resources */,
+				8D9686161A0E40AE009E8A98 /* LaunchScreen.xib in Resources */,
+				8D9686131A0E40AE009E8A98 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8D9686191A0E40AE009E8A98 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8DC068D91A7E749A0039326F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8DC068E41A7E749A0039326F /* Images.xcassets in Resources */,
+				8DC068E71A7E749A0039326F /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8DC068EA1A7E749A0039326F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0BDC8053DED3A42EAA6130F6 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TypetalkApp-OSX/Pods-TypetalkApp-OSX-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		2253BA529C7AD9F20885C9E2 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		31DBF2B551A0A4FB14ED7A3C /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TypetalkAppTests-iOS/Pods-TypetalkAppTests-iOS-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		44058989B216B66D6F090E85 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TypetalkApp-iOS/Pods-TypetalkApp-iOS-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4E6AC84EA97C577F558367F7 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		4EF52D811D2A6347D8C1C86C /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TypetalkAppTests-iOS/Pods-TypetalkAppTests-iOS-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9D5A8625A7B159FC399A8331 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TypetalkApp-OSX/Pods-TypetalkApp-OSX-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D602DA77573B3A39198AFF27 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		F268D7474C1B66B82788E50A /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TypetalkApp-iOS/Pods-TypetalkApp-iOS-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8D9686001A0E40AE009E8A98 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8D96864C1A0E45A1009E8A98 /* Client+RacExtension.swift in Sources */,
+				8DE874111A0E7C3400D681DF /* TopicCell.swift in Sources */,
+				8DDA9B0A1A1703EF006A74D2 /* TextFieldCell.swift in Sources */,
+				8D6E72C71A87BEDE00A0D07C /* Alamofire+RacExtension.swift in Sources */,
+				8D7DB46F1A9A146E0093C2D3 /* TopicInfoDataSource.swift in Sources */,
+				8DE2BADD1A7F993C0078B830 /* CreateTopicViewModel.swift in Sources */,
+				8D96860E1A0E40AE009E8A98 /* MessageListViewController.swift in Sources */,
+				8D7B67C71A18A4C500BDBFB7 /* NSDate+Format.swift in Sources */,
+				8D4DE33C1A3B317200E0A0B7 /* AutoCompletionCell.swift in Sources */,
+				8DE627941A95FBB1000EADC3 /* ObservableArray.swift in Sources */,
+				8D96860C1A0E40AE009E8A98 /* TopicListViewController.swift in Sources */,
+				8D4218A41AA42182009D2077 /* Post+Ops.swift in Sources */,
+				8DE2BADC1A7F993C0078B830 /* MessageListViewModel.swift in Sources */,
+				8DE8254C1A811271007A2875 /* Attachment+ContentType.swift in Sources */,
+				8DE2BADE1A7F993C0078B830 /* TopicListViewModel.swift in Sources */,
+				8DE2BAEA1A7F9C950078B830 /* CompletionDataSource.swift in Sources */,
+				8DE2BAE11A7F99AB0078B830 /* MessagesDataSource.swift in Sources */,
+				8D6E72CE1A8B09ED00A0D07C /* Emoji.swift in Sources */,
+				8D96860A1A0E40AE009E8A98 /* AppDelegate.swift in Sources */,
+				8DAC5C291A0F4B280066EC44 /* MessageCell.swift in Sources */,
+				8DE2BAE21A7F99AB0078B830 /* TopicsDataSource.swift in Sources */,
+				8DDA9B081A1703EF006A74D2 /* CreateTopicViewController.swift in Sources */,
+				8D6E72D01A8B0A0100A0D07C /* String+Emoji.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8D9686171A0E40AE009E8A98 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8D9686221A0E40AE009E8A98 /* TypetalkAppTests.swift in Sources */,
+				8D6E72D51A8B0D4A00A0D07C /* String+EmojiTests.swift in Sources */,
+				8D6E72D71A8B0DDA00A0D07C /* Emoji.swift in Sources */,
+				8DE2BAE81A7F9A630078B830 /* Client+RacExtension.swift in Sources */,
+				8D7B67C91A18A4F300BDBFB7 /* NSDate+FormatTests.swift in Sources */,
+				8DE8254E1A8112B0007A2875 /* Attachment+ContentType.swift in Sources */,
+				8DE2BAE71A7F9A600078B830 /* NSDate+Format.swift in Sources */,
+				8D6E72D61A8B0DB200A0D07C /* String+Emoji.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8DC068D71A7E749A0039326F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8D7DB4731A9B691A0093C2D3 /* NSComboBox+RacExtension.swift in Sources */,
+				8D93F8E41AAB448F00005808 /* CreateNewMessageViewModel.swift in Sources */,
+				8DE2BAE41A7F99B30078B830 /* MessagesDataSource.swift in Sources */,
+				8D2AB2C01A98E99D00E484B0 /* TopicCell.swift in Sources */,
+				8DE2BAE61A7F9A5F0078B830 /* NSDate+Format.swift in Sources */,
+				8DE2BAD51A7E8CA80078B830 /* TopicViewController.swift in Sources */,
+				8D6E72D11A8B0A0100A0D07C /* String+Emoji.swift in Sources */,
+				8D7CBC761A905E6E00C39B5D /* CreateTopicViewModel.swift in Sources */,
+				8DE2BAD71A7E8CAF0078B830 /* MessageCell.swift in Sources */,
+				8DE8254D1A8112B0007A2875 /* Attachment+ContentType.swift in Sources */,
+				8DCA5F121A875333000F6206 /* AttachmentView.swift in Sources */,
+				8DE627951A95FBB1000EADC3 /* ObservableArray.swift in Sources */,
+				8D7DB4701A9A146E0093C2D3 /* TopicInfoDataSource.swift in Sources */,
+				8D6E72CA1A89060400A0D07C /* MainWindowController.swift in Sources */,
+				8DE2BAEE1A7FB2060078B830 /* TopicListViewModel.swift in Sources */,
+				8D2AB2C71A99E8F000E484B0 /* EditTopicViewController.swift in Sources */,
+				8D6B6C981A8EEB7D00313732 /* CreateNewTopicViewController.swift in Sources */,
+				8D4218A51AA42182009D2077 /* Post+Ops.swift in Sources */,
+				8D6E72CD1A8B09E300A0D07C /* Emoji.swift in Sources */,
+				8DE2BAD61A7E8CAC0078B830 /* MessageViewController.swift in Sources */,
+				8DE2BAE31A7F99B00078B830 /* TopicsDataSource.swift in Sources */,
+				8DE2BAE51A7F9A5B0078B830 /* Client+RacExtension.swift in Sources */,
+				8DE2BAF01A7FB6010078B830 /* MessageListViewModel.swift in Sources */,
+				8D7DB46D1A99F7DE0093C2D3 /* EditTopicViewModel.swift in Sources */,
+				8DE2BAEB1A7F9CBE0078B830 /* CompletionDataSource.swift in Sources */,
+				8D6E72C61A87BEB300A0D07C /* Alamofire+RacExtension.swift in Sources */,
+				8DE825501A826CF7007A2875 /* NSXLabel.swift in Sources */,
+				8D93F8E21AAB39EE00005808 /* CreateNewMessageViewController.swift in Sources */,
+				8D2AB2C41A99BE7000E484B0 /* NSTableView+Menu.swift in Sources */,
+				8DC068E01A7E749A0039326F /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8DC068E81A7E749A0039326F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8DC068F31A7E749A0039326F /* TypetalkApp_OSXTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		8D96861D1A0E40AE009E8A98 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8D9686031A0E40AE009E8A98 /* TypetalkApp-iOS */;
+			targetProxy = 8D96861C1A0E40AE009E8A98 /* PBXContainerItemProxy */;
+		};
+		8DC068EE1A7E749A0039326F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8DC068DA1A7E749A0039326F /* TypetalkApp-OSX */;
+			targetProxy = 8DC068ED1A7E749A0039326F /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		8D96860F1A0E40AE009E8A98 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8D9686101A0E40AE009E8A98 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		8D9686141A0E40AE009E8A98 /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8D9686151A0E40AE009E8A98 /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+		8DC068E51A7E749A0039326F /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8DC068E61A7E749A0039326F /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		8D9686231A0E40AE009E8A98 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"$(BUILD_ROOT)/../IntermediateBuildFilesPath/UninstalledProducts/include",
+				);
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "-ObjC";
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		8D9686241A0E40AE009E8A98 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"$(BUILD_ROOT)/../IntermediateBuildFilesPath/UninstalledProducts/include",
+				);
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "-ObjC";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		8D9686261A0E40AE009E8A98 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0DB20618472FF5DB3926BBBE /* Pods-TypetalkApp-iOS.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = "$(SRCROOT)/TypetalkApp/iOS/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = TypetalkApp;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		8D9686271A0E40AE009E8A98 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4B9211E0AA3B32B22A537151 /* Pods-TypetalkApp-iOS.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = "$(SRCROOT)/TypetalkApp/iOS/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = TypetalkApp;
+			};
+			name = Release;
+		};
+		8D9686291A0E40AE009E8A98 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 61BA4C2B4421DA94CFB51423 /* Pods-TypetalkAppTests-iOS.debug.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = TypetalkAppTests/iOS/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TypetalkApp.app/TypetalkApp";
+			};
+			name = Debug;
+		};
+		8D96862A1A0E40AE009E8A98 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6DC14FE7E2149647EA71AC90 /* Pods-TypetalkAppTests-iOS.release.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = TypetalkAppTests/iOS/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TypetalkApp.app/TypetalkApp";
+			};
+			name = Release;
+		};
+		8DC068F41A7E749A0039326F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 423F71B0352D06F256B2D0E3 /* Pods-TypetalkApp-OSX.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "";
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "$(SRCROOT)/TypetalkApp/OSX/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				PRODUCT_NAME = TypetalkApp;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		8DC068F51A7E749A0039326F /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4BE3C6807BF4F8425E51AF5E /* Pods-TypetalkApp-OSX.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				INFOPLIST_FILE = "$(SRCROOT)/TypetalkApp/OSX/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				PRODUCT_NAME = TypetalkApp;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		8DC068F61A7E749A0039326F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = TypetalkAppTests/OSX/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TypetalkApp.app/Contents/MacOS/TypetalkApp";
+			};
+			name = Debug;
+		};
+		8DC068F71A7E749A0039326F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = TypetalkAppTests/OSX/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TypetalkApp.app/Contents/MacOS/TypetalkApp";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		8D9685FF1A0E40AE009E8A98 /* Build configuration list for PBXProject "TypetalkApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8D9686231A0E40AE009E8A98 /* Debug */,
+				8D9686241A0E40AE009E8A98 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8D9686251A0E40AE009E8A98 /* Build configuration list for PBXNativeTarget "TypetalkApp-iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8D9686261A0E40AE009E8A98 /* Debug */,
+				8D9686271A0E40AE009E8A98 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8D9686281A0E40AE009E8A98 /* Build configuration list for PBXNativeTarget "TypetalkAppTests-iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8D9686291A0E40AE009E8A98 /* Debug */,
+				8D96862A1A0E40AE009E8A98 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8DC068F81A7E749A0039326F /* Build configuration list for PBXNativeTarget "TypetalkApp-OSX" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8DC068F41A7E749A0039326F /* Debug */,
+				8DC068F51A7E749A0039326F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8DC068F91A7E749A0039326F /* Build configuration list for PBXNativeTarget "TypetalkAppTests-OSX" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8DC068F61A7E749A0039326F /* Debug */,
+				8DC068F71A7E749A0039326F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 8D9685FC1A0E40AE009E8A98 /* Project object */;
+}
