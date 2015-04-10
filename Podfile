@@ -11,6 +11,7 @@ pod 'TypetalkKit'
 pod 'yavfl'
 pod 'SlackTextViewController'
 pod 'ionicons'
+pod 'MarkdownKit', :git => 'https://github.com/safx/MarkdownKit.git', :submodules => true
 end
 
 target 'TypetalkAppTests-iOS' do
@@ -21,6 +22,7 @@ pod 'TypetalkKit'
 pod 'yavfl'
 pod 'SlackTextViewController'
 pod 'ionicons'
+pod 'MarkdownKit', :git => 'https://github.com/safx/MarkdownKit.git', :submodules => true
 end
 
 target 'TypetalkApp-OSX' do
@@ -29,4 +31,5 @@ pod "ReactiveCocoa", "3.0.0-alpha.1"
 pod 'Alamofire'
 pod 'TypetalkKit'
 pod 'yavfl'
+pod 'MarkdownKit', :git => 'https://github.com/safx/MarkdownKit.git', :submodules => true
 end

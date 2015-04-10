@@ -44,6 +44,8 @@
 		8D9686161A0E40AE009E8A98 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D9686141A0E40AE009E8A98 /* LaunchScreen.xib */; };
 		8D9686221A0E40AE009E8A98 /* TypetalkAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9686211A0E40AE009E8A98 /* TypetalkAppTests.swift */; };
 		8D96864C1A0E45A1009E8A98 /* Client+RacExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D96864B1A0E45A1009E8A98 /* Client+RacExtension.swift */; };
+		8D9E27391AD2C14D00906ECD /* MarkdownAST.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9E27381AD2C14D00906ECD /* MarkdownAST.swift */; };
+		8D9E273A1AD2C14D00906ECD /* MarkdownAST.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9E27381AD2C14D00906ECD /* MarkdownAST.swift */; };
 		8DAC5C291A0F4B280066EC44 /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DAC5C281A0F4B280066EC44 /* MessageCell.swift */; };
 		8DC068E01A7E749A0039326F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC068DF1A7E749A0039326F /* AppDelegate.swift */; };
 		8DC068E41A7E749A0039326F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8DC068E31A7E749A0039326F /* Images.xcassets */; };
@@ -142,6 +144,7 @@
 		8D9686201A0E40AE009E8A98 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8D9686211A0E40AE009E8A98 /* TypetalkAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypetalkAppTests.swift; sourceTree = "<group>"; };
 		8D96864B1A0E45A1009E8A98 /* Client+RacExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Client+RacExtension.swift"; sourceTree = "<group>"; };
+		8D9E27381AD2C14D00906ECD /* MarkdownAST.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarkdownAST.swift; sourceTree = "<group>"; };
 		8DAC5C281A0F4B280066EC44 /* MessageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
 		8DC068DB1A7E749A0039326F /* TypetalkApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TypetalkApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DC068DE1A7E749A0039326F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -294,6 +297,7 @@
 			children = (
 				8D6E72CC1A8B09E300A0D07C /* Emoji.swift */,
 				8DE627931A95FBB1000EADC3 /* ObservableArray.swift */,
+				8D9E27381AD2C14D00906ECD /* MarkdownAST.swift */,
 			);
 			name = Utils;
 			path = TypetalkApp/Utils;
@@ -797,6 +801,7 @@
 				8D7DB46F1A9A146E0093C2D3 /* TopicInfoDataSource.swift in Sources */,
 				8DE2BADD1A7F993C0078B830 /* CreateTopicViewModel.swift in Sources */,
 				8D96860E1A0E40AE009E8A98 /* MessageListViewController.swift in Sources */,
+				8D9E27391AD2C14D00906ECD /* MarkdownAST.swift in Sources */,
 				8D7B67C71A18A4C500BDBFB7 /* NSDate+Format.swift in Sources */,
 				8D4DE33C1A3B317200E0A0B7 /* AutoCompletionCell.swift in Sources */,
 				8DE627941A95FBB1000EADC3 /* ObservableArray.swift in Sources */,
@@ -850,6 +855,7 @@
 				8D7DB4701A9A146E0093C2D3 /* TopicInfoDataSource.swift in Sources */,
 				8D6E72CA1A89060400A0D07C /* MainWindowController.swift in Sources */,
 				8DE2BAEE1A7FB2060078B830 /* TopicListViewModel.swift in Sources */,
+				8D9E273A1AD2C14D00906ECD /* MarkdownAST.swift in Sources */,
 				8D2AB2C71A99E8F000E484B0 /* EditTopicViewController.swift in Sources */,
 				8D6B6C981A8EEB7D00313732 /* CreateNewTopicViewController.swift in Sources */,
 				8D4218A51AA42182009D2077 /* Post+Ops.swift in Sources */,
