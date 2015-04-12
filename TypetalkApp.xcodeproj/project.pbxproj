@@ -20,13 +20,6 @@
 		8D6E72C61A87BEB300A0D07C /* Alamofire+RacExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6E72C41A87B77E00A0D07C /* Alamofire+RacExtension.swift */; };
 		8D6E72C71A87BEDE00A0D07C /* Alamofire+RacExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6E72C41A87B77E00A0D07C /* Alamofire+RacExtension.swift */; };
 		8D6E72CA1A89060400A0D07C /* MainWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6E72C91A89060400A0D07C /* MainWindowController.swift */; };
-		8D6E72CD1A8B09E300A0D07C /* Emoji.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6E72CC1A8B09E300A0D07C /* Emoji.swift */; };
-		8D6E72CE1A8B09ED00A0D07C /* Emoji.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6E72CC1A8B09E300A0D07C /* Emoji.swift */; };
-		8D6E72D01A8B0A0100A0D07C /* String+Emoji.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6E72CF1A8B0A0100A0D07C /* String+Emoji.swift */; };
-		8D6E72D11A8B0A0100A0D07C /* String+Emoji.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6E72CF1A8B0A0100A0D07C /* String+Emoji.swift */; };
-		8D6E72D51A8B0D4A00A0D07C /* String+EmojiTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6E72D21A8B0D3F00A0D07C /* String+EmojiTests.swift */; };
-		8D6E72D61A8B0DB200A0D07C /* String+Emoji.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6E72CF1A8B0A0100A0D07C /* String+Emoji.swift */; };
-		8D6E72D71A8B0DDA00A0D07C /* Emoji.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6E72CC1A8B09E300A0D07C /* Emoji.swift */; };
 		8D7B67C71A18A4C500BDBFB7 /* NSDate+Format.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D7B67C61A18A4C500BDBFB7 /* NSDate+Format.swift */; };
 		8D7B67C91A18A4F300BDBFB7 /* NSDate+FormatTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D7B67C81A18A4F300BDBFB7 /* NSDate+FormatTests.swift */; };
 		8D7CBC761A905E6E00C39B5D /* CreateTopicViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D7CBC751A905E6E00C39B5D /* CreateTopicViewModel.swift */; };
@@ -121,9 +114,6 @@
 		8D6B6C971A8EEB7D00313732 /* CreateNewTopicViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateNewTopicViewController.swift; sourceTree = "<group>"; };
 		8D6E72C41A87B77E00A0D07C /* Alamofire+RacExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Alamofire+RacExtension.swift"; path = "TypetalkApp/Extensions/Alamofire+RacExtension.swift"; sourceTree = SOURCE_ROOT; };
 		8D6E72C91A89060400A0D07C /* MainWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainWindowController.swift; sourceTree = "<group>"; };
-		8D6E72CC1A8B09E300A0D07C /* Emoji.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Emoji.swift; sourceTree = "<group>"; };
-		8D6E72CF1A8B0A0100A0D07C /* String+Emoji.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Emoji.swift"; sourceTree = "<group>"; };
-		8D6E72D21A8B0D3F00A0D07C /* String+EmojiTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+EmojiTests.swift"; sourceTree = "<group>"; };
 		8D7B67C61A18A4C500BDBFB7 /* NSDate+Format.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+Format.swift"; sourceTree = "<group>"; };
 		8D7B67C81A18A4F300BDBFB7 /* NSDate+FormatTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NSDate+FormatTests.swift"; path = "../Common/NSDate+FormatTests.swift"; sourceTree = "<group>"; };
 		8D7CBC751A905E6E00C39B5D /* CreateTopicViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateTopicViewModel.swift; sourceTree = "<group>"; };
@@ -278,7 +268,6 @@
 				8D6E72C41A87B77E00A0D07C /* Alamofire+RacExtension.swift */,
 				8DE8254B1A811271007A2875 /* Attachment+ContentType.swift */,
 				8D4218A31AA42182009D2077 /* Post+Ops.swift */,
-				8D6E72CF1A8B0A0100A0D07C /* String+Emoji.swift */,
 			);
 			name = Extensions;
 			path = TypetalkApp/Extensions;
@@ -295,7 +284,6 @@
 		8D6E72CB1A8B09C700A0D07C /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				8D6E72CC1A8B09E300A0D07C /* Emoji.swift */,
 				8DE627931A95FBB1000EADC3 /* ObservableArray.swift */,
 				8D9E27381AD2C14D00906ECD /* MarkdownAST.swift */,
 			);
@@ -357,7 +345,6 @@
 			children = (
 				8D9686211A0E40AE009E8A98 /* TypetalkAppTests.swift */,
 				8D7B67C81A18A4F300BDBFB7 /* NSDate+FormatTests.swift */,
-				8D6E72D21A8B0D3F00A0D07C /* String+EmojiTests.swift */,
 				8D96861F1A0E40AE009E8A98 /* Supporting Files */,
 			);
 			name = "TypetalkAppTests-iOS";
@@ -812,12 +799,10 @@
 				8DE2BADE1A7F993C0078B830 /* TopicListViewModel.swift in Sources */,
 				8DE2BAEA1A7F9C950078B830 /* CompletionDataSource.swift in Sources */,
 				8DE2BAE11A7F99AB0078B830 /* MessagesDataSource.swift in Sources */,
-				8D6E72CE1A8B09ED00A0D07C /* Emoji.swift in Sources */,
 				8D96860A1A0E40AE009E8A98 /* AppDelegate.swift in Sources */,
 				8DAC5C291A0F4B280066EC44 /* MessageCell.swift in Sources */,
 				8DE2BAE21A7F99AB0078B830 /* TopicsDataSource.swift in Sources */,
 				8DDA9B081A1703EF006A74D2 /* CreateTopicViewController.swift in Sources */,
-				8D6E72D01A8B0A0100A0D07C /* String+Emoji.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -826,13 +811,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D9686221A0E40AE009E8A98 /* TypetalkAppTests.swift in Sources */,
-				8D6E72D51A8B0D4A00A0D07C /* String+EmojiTests.swift in Sources */,
-				8D6E72D71A8B0DDA00A0D07C /* Emoji.swift in Sources */,
 				8DE2BAE81A7F9A630078B830 /* Client+RacExtension.swift in Sources */,
 				8D7B67C91A18A4F300BDBFB7 /* NSDate+FormatTests.swift in Sources */,
 				8DE8254E1A8112B0007A2875 /* Attachment+ContentType.swift in Sources */,
 				8DE2BAE71A7F9A600078B830 /* NSDate+Format.swift in Sources */,
-				8D6E72D61A8B0DB200A0D07C /* String+Emoji.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -846,7 +828,6 @@
 				8D2AB2C01A98E99D00E484B0 /* TopicCell.swift in Sources */,
 				8DE2BAE61A7F9A5F0078B830 /* NSDate+Format.swift in Sources */,
 				8DE2BAD51A7E8CA80078B830 /* TopicViewController.swift in Sources */,
-				8D6E72D11A8B0A0100A0D07C /* String+Emoji.swift in Sources */,
 				8D7CBC761A905E6E00C39B5D /* CreateTopicViewModel.swift in Sources */,
 				8DE2BAD71A7E8CAF0078B830 /* MessageCell.swift in Sources */,
 				8DE8254D1A8112B0007A2875 /* Attachment+ContentType.swift in Sources */,
@@ -859,7 +840,6 @@
 				8D2AB2C71A99E8F000E484B0 /* EditTopicViewController.swift in Sources */,
 				8D6B6C981A8EEB7D00313732 /* CreateNewTopicViewController.swift in Sources */,
 				8D4218A51AA42182009D2077 /* Post+Ops.swift in Sources */,
-				8D6E72CD1A8B09E300A0D07C /* Emoji.swift in Sources */,
 				8DE2BAD61A7E8CAC0078B830 /* MessageViewController.swift in Sources */,
 				8DE2BAE31A7F99B00078B830 /* TopicsDataSource.swift in Sources */,
 				8DE2BAE51A7F9A5B0078B830 /* Client+RacExtension.swift in Sources */,

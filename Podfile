@@ -12,6 +12,7 @@ pod 'yavfl'
 pod 'SlackTextViewController'
 pod 'ionicons'
 pod 'MarkdownKit', :git => 'https://github.com/safx/MarkdownKit.git', :submodules => true
+pod 'Emoji-swift'
 end
 
 target 'TypetalkAppTests-iOS' do
@@ -23,6 +24,7 @@ pod 'yavfl'
 pod 'SlackTextViewController'
 pod 'ionicons'
 pod 'MarkdownKit', :git => 'https://github.com/safx/MarkdownKit.git', :submodules => true
+pod 'Emoji-swift'
 end
 
 target 'TypetalkApp-OSX' do
@@ -32,4 +34,5 @@ pod 'Alamofire'
 pod 'TypetalkKit'
 pod 'yavfl'
 pod 'MarkdownKit', :git => 'https://github.com/safx/MarkdownKit.git', :submodules => true
+pod 'Emoji-swift'
 end

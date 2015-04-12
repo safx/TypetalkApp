@@ -8,6 +8,7 @@
 
 import TypetalkKit
 import ReactiveCocoa
+import Emoji
 
 class CompletionDataSource {
     let accounts = ObservableProperty([AccountWithOnlineStatus]())
@@ -71,7 +72,7 @@ class CompletionDataSource {
                 .filter(_filterfunc(foundWord, key: { $0.name }))
                 .map { CompletionModel(text: $0.name, description: $0.suggestion) }
         case ":":
-            return filter(emoji, _filterfunc(foundWord, key: { (k,v) in k }))
+            return filter(String.emojiDictionary, _filterfunc(foundWord, key: { (k,v) in k }))
                 .map { (k,v) in CompletionModel(text: k, description: v, completionString: "\(k):") }
         default:
             return []

@@ -10,6 +10,7 @@ import UIKit
 import TypetalkKit
 import Alamofire
 import yavfl
+import Emoji
 
 class MessageCell: UITableViewCell {
     private let message = UILabel()
@@ -33,7 +34,7 @@ class MessageCell: UITableViewCell {
     }
     
     private func modelDidSet() {
-        message.text = model!.message.emojiUnescape()
+        message.text = model!.message.emojiUnescapedString
         accountName.text = model!.account.name
         lastUpdate.text = model!.updatedAt.humanReadableTimeInterval
         

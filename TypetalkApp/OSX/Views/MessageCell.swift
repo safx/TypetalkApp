@@ -11,6 +11,7 @@ import Cocoa
 import TypetalkKit
 import Alamofire
 import yavfl
+import Emoji
 
 class MessageCell: NSTableCellView {
     private let message = NSXLabel()
@@ -40,7 +41,7 @@ class MessageCell: NSTableCellView {
     }
 
     private func modelDidSet() {
-        message.stringValue = model!.message.emojiUnescape()
+        message.stringValue = model!.message.emojiUnescapedString
         accountName.stringValue = model!.account.name
 
         //lastUpdate.stringValue = model!.updatedAt.humanReadableTimeInterval
