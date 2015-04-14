@@ -4,7 +4,7 @@ PODS:
   - ionicons (2.0.1)
   - JSONHelper (1.5.2)
   - LlamaKit (0.1.1)
-  - MarkdownKit (0.1.0)
+  - MarkdownKit (0.1.1)
   - ReactiveCocoa (3.0.0-alpha.1):
     - LlamaKit (= 0.1.1)
     - ReactiveCocoa/UI (= 3.0.0-alpha.1)
@@ -43,7 +43,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   MarkdownKit:
-    :commit: ab87f58e36a16ec1ed4c3b47f7533e7791b1e8e4
+    :commit: 1fc31bad1784c172618cd553def5f447f631af23
     :git: https://github.com/safx/MarkdownKit.git
 
 SPEC CHECKSUMS:
@@ -52,7 +52,7 @@ SPEC CHECKSUMS:
   ionicons: c7b0867373392e85c17f613d19ade04ccfbe5a7c
   JSONHelper: 2d7c3b037f29d2dc1f6d18b407cdd7566f0baf83
   LlamaKit: 25f47a933b6580a6fc159d95adb2e2953c7012e9
-  MarkdownKit: e7c2eb0bb80673882e4cfb38c1e48960f95f6e38
+  MarkdownKit: c6b83f360fb43533a081cd973e847d44e313437a
   ReactiveCocoa: 3b5e351bb3ab233d71f0329f36a7400af30d9783
   SlackTextViewController: 4a1797ac2f3616dbd37435fc62da655e61399cdd
   Starscream: 7b58834eff655baf6ec456c5dd056ec62fd147c9

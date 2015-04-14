@@ -9,7 +9,7 @@
 import Foundation
 import MarkdownKit
 
-@objc class MDKNode : NSObject {
+@objc class MarkdownNode : NSObject {
     var contents: [NSObject] = [NSObject]()
     let type: UInt32 = 0
 
@@ -44,10 +44,10 @@ import MarkdownKit
         contents.append(obj)
     }
 
-    class func parse(markdownText: String) -> MDKNode {
+    class func parse(markdownText: String) -> MarkdownNode {
 
-        let asNode = { (p: UnsafeMutablePointer<Void>) -> MDKNode in
-            return unsafeBitCast(p, MDKNode.self)
+        let asNode = { (p: UnsafeMutablePointer<Void>) -> MarkdownNode in
+            return unsafeBitCast(p, MarkdownNode.self)
         }
         let asObj = { (p: UnsafeMutablePointer<Void>) -> NSObject in
             return unsafeBitCast(p, NSObject.self)
@@ -61,13 +61,13 @@ import MarkdownKit
         var pool = NSMutableArray()
 
         renderer.block_new = { type in
-            let a = MDKNode(type: type.value)
+            let a = MarkdownNode(type: type.value)
             pool.addObject(a)
             return asVoid(a)
         }
 
         renderer.span_new = { type in
-            let a = MDKNode(type: type.value)
+            let a = MarkdownNode(type: type.value)
             pool.addObject(a)
             return asVoid(a)
         }
@@ -82,7 +82,7 @@ import MarkdownKit
         renderer.blockcode = { node_, code, lang in
             let node = asNode(node_)
 
-            let codeBlock = MDKNode(type: HOEDOWN_NODE_BLOCKCODE.value)
+            let codeBlock = MarkdownNode(type: HOEDOWN_NODE_BLOCKCODE.value)
             codeBlock.addObject(code)
             pool.addObject(codeBlock)
 
@@ -114,7 +114,7 @@ import MarkdownKit
                     }
                 }
             }
-            let link = MDKLink(content: content, link: link, title: title)
+            let link = MarkdownLink(content: content, link: link, title: title)
             node.addObject(link)
             return 1
         }
@@ -124,7 +124,7 @@ import MarkdownKit
 }
 
 
-@objc class MDKLink : NSObject {
+@objc class MarkdownLink : NSObject {
     let content: NSObject
     let link: NSString
     let title: NSString
