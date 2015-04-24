@@ -20,6 +20,8 @@
 		8D6E72C61A87BEB300A0D07C /* Alamofire+RacExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6E72C41A87B77E00A0D07C /* Alamofire+RacExtension.swift */; };
 		8D6E72C71A87BEDE00A0D07C /* Alamofire+RacExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6E72C41A87B77E00A0D07C /* Alamofire+RacExtension.swift */; };
 		8D6E72CA1A89060400A0D07C /* MainWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6E72C91A89060400A0D07C /* MainWindowController.swift */; };
+		8D71F7241AE29832007441CF /* MarkdownLite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D71F7231AE29832007441CF /* MarkdownLite.swift */; };
+		8D71F7251AE29832007441CF /* MarkdownLite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D71F7231AE29832007441CF /* MarkdownLite.swift */; };
 		8D7B67C71A18A4C500BDBFB7 /* NSDate+Format.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D7B67C61A18A4C500BDBFB7 /* NSDate+Format.swift */; };
 		8D7B67C91A18A4F300BDBFB7 /* NSDate+FormatTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D7B67C81A18A4F300BDBFB7 /* NSDate+FormatTests.swift */; };
 		8D7CBC761A905E6E00C39B5D /* CreateTopicViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D7CBC751A905E6E00C39B5D /* CreateTopicViewModel.swift */; };
@@ -114,6 +116,7 @@
 		8D6B6C971A8EEB7D00313732 /* CreateNewTopicViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateNewTopicViewController.swift; sourceTree = "<group>"; };
 		8D6E72C41A87B77E00A0D07C /* Alamofire+RacExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Alamofire+RacExtension.swift"; path = "TypetalkApp/Extensions/Alamofire+RacExtension.swift"; sourceTree = SOURCE_ROOT; };
 		8D6E72C91A89060400A0D07C /* MainWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainWindowController.swift; sourceTree = "<group>"; };
+		8D71F7231AE29832007441CF /* MarkdownLite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarkdownLite.swift; sourceTree = "<group>"; };
 		8D7B67C61A18A4C500BDBFB7 /* NSDate+Format.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+Format.swift"; sourceTree = "<group>"; };
 		8D7B67C81A18A4F300BDBFB7 /* NSDate+FormatTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NSDate+FormatTests.swift"; path = "../Common/NSDate+FormatTests.swift"; sourceTree = "<group>"; };
 		8D7CBC751A905E6E00C39B5D /* CreateTopicViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateTopicViewModel.swift; sourceTree = "<group>"; };
@@ -286,6 +289,7 @@
 			children = (
 				8DE627931A95FBB1000EADC3 /* ObservableArray.swift */,
 				8D9E27381AD2C14D00906ECD /* MarkdownAST.swift */,
+				8D71F7231AE29832007441CF /* MarkdownLite.swift */,
 			);
 			name = Utils;
 			path = TypetalkApp/Utils;
@@ -794,6 +798,7 @@
 				8DE627941A95FBB1000EADC3 /* ObservableArray.swift in Sources */,
 				8D96860C1A0E40AE009E8A98 /* TopicListViewController.swift in Sources */,
 				8D4218A41AA42182009D2077 /* Post+Ops.swift in Sources */,
+				8D71F7241AE29832007441CF /* MarkdownLite.swift in Sources */,
 				8DE2BADC1A7F993C0078B830 /* MessageListViewModel.swift in Sources */,
 				8DE8254C1A811271007A2875 /* Attachment+ContentType.swift in Sources */,
 				8DE2BADE1A7F993C0078B830 /* TopicListViewModel.swift in Sources */,
@@ -842,6 +847,7 @@
 				8D4218A51AA42182009D2077 /* Post+Ops.swift in Sources */,
 				8DE2BAD61A7E8CAC0078B830 /* MessageViewController.swift in Sources */,
 				8DE2BAE31A7F99B00078B830 /* TopicsDataSource.swift in Sources */,
+				8D71F7251AE29832007441CF /* MarkdownLite.swift in Sources */,
 				8DE2BAE51A7F9A5B0078B830 /* Client+RacExtension.swift in Sources */,
 				8DE2BAF01A7FB6010078B830 /* MessageListViewModel.swift in Sources */,
 				8D7DB46D1A99F7DE0093C2D3 /* EditTopicViewModel.swift in Sources */,
