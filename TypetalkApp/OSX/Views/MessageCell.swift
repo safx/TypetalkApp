@@ -14,7 +14,7 @@ import yavfl
 import Emoji
 
 class MessageCell: NSTableCellView {
-    private let message = NSXLabel()
+    private let message = MarkdownView()
     private let lastUpdate = NSXLabel()
     private let accountImage = NSImageView()
     private let accountName = NSXLabel()
@@ -41,10 +41,11 @@ class MessageCell: NSTableCellView {
     }
 
     private func modelDidSet() {
-        message.stringValue = model!.message.emojiUnescapedString
+        let node = MarkdownNode.parse(model!.message)
+        message.node = node.markdownLite
+
         accountName.stringValue = model!.account.name
 
-        //lastUpdate.stringValue = model!.updatedAt.humanReadableTimeInterval
         let updated = model!.updatedAt.humanReadableTimeInterval
         let numLikes = model!.likes.count
 
@@ -96,9 +97,6 @@ class MessageCell: NSTableCellView {
     private func setupView() {
         let fm = NSFontManager.sharedFontManager()
 
-        message.selectable = true
-        message.font = NSFont(name: "Helvetica Neue", size: 13)
-        message.lineBreakMode = .ByWordWrapping
         message.setContentHuggingPriority(1, forOrientation: .Vertical)
         accountName.font = fm.fontWithFamily("Helvetica Neue", traits: .BoldFontMask, weight: 0, size: 12)
         accountName.textColor = NSColor.blackColor()
@@ -130,12 +128,13 @@ class MessageCell: NSTableCellView {
         let attr: [NSObject:AnyObject] = [NSFontAttributeName: font]
         let mes = model.message
 
-        let size = (mes as NSString).boundingRectWithSize(NSSize(width: bounds.width - 74, height: 9999.0), options:
-            .UsesLineFragmentOrigin, attributes: attr)
+        // TODO: cache node
+        let node = MarkdownNode.parse(mes)
+        let messageHeight = node.markdownLite.getHeight(bounds.size.width - 74)
 
         let attachment_heights = map(model.attachments, AttachmentView.viewHeight)
         let total_attachment_height = CGFloat(reduce(attachment_heights, 8, +))
 
-        return max(size.height + total_attachment_height + 36, 56)
+        return max(messageHeight + total_attachment_height + 36, 56)
     }
 }

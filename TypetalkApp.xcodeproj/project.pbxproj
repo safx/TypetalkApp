@@ -74,6 +74,7 @@
 		8DE8254E1A8112B0007A2875 /* Attachment+ContentType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE8254B1A811271007A2875 /* Attachment+ContentType.swift */; };
 		8DE825501A826CF7007A2875 /* NSXLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE8254F1A826CF7007A2875 /* NSXLabel.swift */; };
 		8DE874111A0E7C3400D681DF /* TopicCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE874101A0E7C3400D681DF /* TopicCell.swift */; };
+		8DED3CBC1AE6930600B42133 /* MarkdownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DED3CBB1AE6930600B42133 /* MarkdownView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -165,6 +166,7 @@
 		8DE8254B1A811271007A2875 /* Attachment+ContentType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Attachment+ContentType.swift"; sourceTree = "<group>"; };
 		8DE8254F1A826CF7007A2875 /* NSXLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSXLabel.swift; sourceTree = "<group>"; };
 		8DE874101A0E7C3400D681DF /* TopicCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicCell.swift; sourceTree = "<group>"; };
+		8DED3CBB1AE6930600B42133 /* MarkdownView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarkdownView.swift; sourceTree = "<group>"; };
 		96733CAB78C66B2C6BFDAF74 /* Pods-TypetalkApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TypetalkApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-TypetalkApp/Pods-TypetalkApp.release.xcconfig"; sourceTree = "<group>"; };
 		BE80CA377C3919F4FA5599BA /* Pods_TypetalkApp_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TypetalkApp_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DFC02F327EA0ADA09F856AE3 /* Pods-TypetalkApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TypetalkApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TypetalkApp/Pods-TypetalkApp.debug.xcconfig"; sourceTree = "<group>"; };
@@ -435,6 +437,7 @@
 				8DE2BACF1A7E8C2D0078B830 /* MessageCell.swift */,
 				8DCA5F111A875333000F6206 /* AttachmentView.swift */,
 				8DE8254F1A826CF7007A2875 /* NSXLabel.swift */,
+				8DED3CBB1AE6930600B42133 /* MarkdownView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -855,6 +858,7 @@
 				8D6E72C61A87BEB300A0D07C /* Alamofire+RacExtension.swift in Sources */,
 				8DE825501A826CF7007A2875 /* NSXLabel.swift in Sources */,
 				8D93F8E21AAB39EE00005808 /* CreateNewMessageViewController.swift in Sources */,
+				8DED3CBC1AE6930600B42133 /* MarkdownView.swift in Sources */,
 				8D2AB2C41A99BE7000E484B0 /* NSTableView+Menu.swift in Sources */,
 				8DC068E01A7E749A0039326F /* AppDelegate.swift in Sources */,
 			);
