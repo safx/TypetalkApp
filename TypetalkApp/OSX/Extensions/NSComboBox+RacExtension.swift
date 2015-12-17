@@ -7,23 +7,21 @@
 //
 
 import Cocoa
-import ReactiveCocoa
-import LlamaKit
+import RxSwift
+import RxCocoa
 
 extension NSComboBox {
 
-    func rac_selectionSignal() -> ColdSignal<Int> {
+    func rac_selectionSignal() -> Observable<Int> {
         let c = NSNotificationCenter.defaultCenter()
-        return ColdSignal { [weak self] sink, disposable in
-            let observer = c.addObserverForName(NSComboBoxSelectionDidChangeNotification, object: self, queue: nil) { notification in
+        return create { [weak self] observer in
+            let obs = c.addObserverForName(NSComboBoxSelectionDidChangeNotification, object: self, queue: nil) { notification in
                 if let s = self {
-                    sink.put(.Next(Box(s.indexOfSelectedItem)))
+                    observer.onNext(s.indexOfSelectedItem)
                 }
             }
 
-            disposable.addDisposable {
-                c.removeObserver(observer)
-            }
+            return AnonymousDisposable { c.removeObserver(obs) }
         }
     }
 

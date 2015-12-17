@@ -7,8 +7,7 @@
 //
 
 import Foundation
-import ReactiveCocoa
-import LlamaKit
+import RxSwift
 
 public enum ArrayElementsChangeEvent<T> {
     case Inserted([Int])
@@ -18,12 +17,12 @@ public enum ArrayElementsChangeEvent<T> {
 
 public class ObservableArray<T> {
     public typealias Element = T
-    public typealias Event = ArrayElementsChangeEvent<T>
-    public typealias Signal = HotSignal<Event>
+    public typealias EventType = ArrayElementsChangeEvent<T>
+    public typealias Event = Observable<EventType>
 
     private var elements = [Element]()
-    private var valueChangedClosure: (ArrayElementsChangeEvent<T> -> ())?
-    public  var signal: Signal!
+    private var valueChangedClosure: (EventType -> ())?
+    public  var event: Event!
 
     public var startIndex: Int          { return elements.startIndex }
     public var endIndex: Int            { return elements.endIndex }
@@ -36,11 +35,12 @@ public class ObservableArray<T> {
     public var debugDescription: String { return elements.debugDescription }
 
     public init() {
-        signal = Signal { s in
+        event = create { ob in
             self.valueChangedClosure = { diff -> () in
-                s.put(diff)
+                ob.on(.Next(diff))
             }
-        } .deliverOn(QueueScheduler())
+            return AnonymousDisposable {} // FIXME
+        }// .deliverOn(QueueScheduler())
     }
 
     public func reserveCapacity(minimumCapacity: Int) {
@@ -54,7 +54,7 @@ public class ObservableArray<T> {
 
     public func extend(newElements: [T]) {
         let c = elements.count
-        elements.extend(newElements)
+        elements.appendContentsOf(newElements)
         valueChangedClosure?(.Inserted(Array<Int>(c..<elements.count)))
     }
 
@@ -86,7 +86,7 @@ public class ObservableArray<T> {
     }
 
     public func sorted(isOrderedBefore: (T, T) -> Bool) -> [T] {
-        return elements.sorted(isOrderedBefore)
+        return elements.sort(isOrderedBefore)
     }
 
     public func map<U>(transform: (T) -> U) -> [U] {
@@ -102,8 +102,8 @@ public class ObservableArray<T> {
     }
 
     public func splice(newElements: [T], atIndex i: Int) {
-        if countElements(newElements) > 0 {
-            elements.splice(newElements, atIndex: i)
+        if !newElements.isEmpty {
+            elements.insertContentsOf(newElements, at: i)
             valueChangedClosure?(.Inserted(Array<Int>(i..<i + newElements.count)))
         }
     }

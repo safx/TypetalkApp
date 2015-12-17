@@ -8,18 +8,20 @@
 
 import Cocoa
 import TypetalkKit
-import ReactiveCocoa
-import LlamaKit
+import RxSwift
+
 
 class CreateTopicViewController: NSViewController {
     let viewModel = CreateTopicViewModel()
+    private let disposeBag = DisposeBag()
 
     @IBAction func textChanged(sender: NSTextField) {
         let topicName = sender.stringValue.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
         
         if !topicName.isEmpty {
             viewModel.createTopic(topicName)
-                .start()
+                .subscribe()
+                .addDisposableTo(disposeBag)
         }
         presentingViewController?.dismissViewController(self)
     }

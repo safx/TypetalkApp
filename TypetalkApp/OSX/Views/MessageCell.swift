@@ -12,21 +12,24 @@ import TypetalkKit
 import Alamofire
 import yavfl
 import Emoji
+import RxSwift
 
 class MessageCell: NSTableCellView {
-    private let message = MarkdownView()
+    private let message = NSXLabel() //MarkdownView()
     private let lastUpdate = NSXLabel()
     private let accountImage = NSImageView()
     private let accountName = NSXLabel()
     private var attachments = [AttachmentView]()
     private var constraint: NSLayoutConstraint?
 
+    private let disposeBag = DisposeBag()
+
     private(set) var model: Post? {
         didSet { modelDidSet() }
     }
 
     init(model: Post) {
-        super.init()
+        super.init(frame: NSMakeRect(0, 0, 0, 0)) // FIXME:RX
         setupView()
         self.model = model
         modelDidSet()
@@ -41,8 +44,11 @@ class MessageCell: NSTableCellView {
     }
 
     private func modelDidSet() {
-        let node = MarkdownNode.parse(model!.message)
+        // FIXME:RX
+        /*let node = MarkdownNode.parse(model!.message)
         message.node = node.markdownLite
+        */
+        message.stringValue = model!.message
 
         accountName.stringValue = model!.account.name
 
@@ -56,15 +62,20 @@ class MessageCell: NSTableCellView {
             lastUpdate.stringValue = "\(updated)"
         }
 
-        let url = model!.account.imageUrl.absoluteString!
+        let url = model!.account.imageUrl
 
-        Alamofire.request(.GET, url)
-            .rac_response()
-            .start { res in
+        Alamofire.request(Alamofire.Method.GET, url)
+            .rx_response()
+            .subscribe(onNext: { data -> Void in
                 dispatch_async(dispatch_get_main_queue(), { () in
-                    self.accountImage.image = NSImage(data: res)
+                    self.accountImage.image = NSImage(data: data)
                 })
-            }
+            }, onError: { err -> Void in
+                Swift.print("\(err)")
+            }, onCompleted: { () -> Void in
+                Swift.print("Completed")
+            })
+            .addDisposableTo(disposeBag)
 
         var prev: NSView = message
         for i in model!.attachments {
@@ -72,10 +83,10 @@ class MessageCell: NSTableCellView {
             self.addSubview(att)
             self.attachments.append(att)
             visualFormat(accountImage, prev, att) { img, prev, att in
-                .H ~ |-20-[att]-20-|
-                .V ~ [img]-(>=4)-[att]
-                .V ~ [prev]-8-[att]
-                .V ~ [att,==200~250]
+                .H ~ |-20-[att]-20-|;
+                .V ~ [img]-(>=4)-[att];
+                .V ~ [prev]-8-[att];
+                .V ~ [att,==200~250];
             }
             prev = att
         }
@@ -108,15 +119,15 @@ class MessageCell: NSTableCellView {
         }
 
         visualFormat(message) { mes in
-            .H ~ |-64-[mes]-8-|
-            .V ~ |-28-[mes]
+            .H ~ |-64-[mes]-8-|;
+            .V ~ |-28-[mes];
         }
 
         visualFormat(lastUpdate, message, accountImage, accountName) { up, mes, img, name in
-            .H ~ |-8-[img,==40]-16-[name]
-            .H ~ [name]-8-[up] % .AlignAllBaseline
-            .V ~ |-4-[img,==40]
-            .V ~ |-4-[name,==20]
+            .H ~ |-8-[img,==40]-16-[name];
+            .H ~ [name]-8-[up] % .AlignAllBaseline;
+            .V ~ |-4-[img,==40];
+            .V ~ |-4-[name,==20];
         }
 
         updateConstraints()
@@ -129,11 +140,11 @@ class MessageCell: NSTableCellView {
         let mes = model.message
 
         // TODO: cache node
-        let node = MarkdownNode.parse(mes)
-        let messageHeight = node.markdownLite.getHeight(bounds.size.width - 74)
+        // FIXME:RX let node = MarkdownNode.parse(mes)
+        let messageHeight = CGFloat(80) //FIXME:RX  node.markdownLite.getHeight(bounds.size.width - 74)
 
-        let attachment_heights = map(model.attachments, AttachmentView.viewHeight)
-        let total_attachment_height = CGFloat(reduce(attachment_heights, 8, +))
+        let attachment_heights = model.attachments.map(AttachmentView.viewHeight)
+        let total_attachment_height = CGFloat(attachment_heights.reduce(8, combine: +))
 
         return max(messageHeight + total_attachment_height + 36, 56)
     }

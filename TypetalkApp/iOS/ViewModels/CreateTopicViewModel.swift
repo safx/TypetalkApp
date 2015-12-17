@@ -8,8 +8,8 @@
 
 import UIKit
 import TypetalkKit
-import ReactiveCocoa
-import LlamaKit
+import RxSwift
+
 
 
 class CreateTopicViewModel: NSObject, UITableViewDataSource {
@@ -37,7 +37,7 @@ class CreateTopicViewModel: NSObject, UITableViewDataSource {
             topicNameCell?.textField
                 .rac_textSignal()
                 .throttle(0.05)
-                .asColdSignal()
+                .asObservable()
                 .start { [weak self] res in
                            if let text = res as NSString? {
                                println("\(text)")
@@ -68,7 +68,7 @@ class CreateTopicViewModel: NSObject, UITableViewDataSource {
 
     // MARK: - Action
 
-    func createTopicAction() -> ColdSignal<Client.CreateTopicResponse> {
+    func createTopicAction() -> Observable<Client.CreateTopicResponse> {
         return parentViewModel!.createTopicAction(topicTitle.value)
     }
 

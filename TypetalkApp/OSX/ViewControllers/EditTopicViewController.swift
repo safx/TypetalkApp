@@ -8,8 +8,8 @@
 
 import Cocoa
 import TypetalkKit
-import ReactiveCocoa
-import LlamaKit
+import RxSwift
+
 
 
 class EditTopicViewController: NSViewController, NSTableViewDataSource, NSTableViewDelegate {
@@ -23,6 +23,8 @@ class EditTopicViewController: NSViewController, NSTableViewDataSource, NSTableV
     @IBOutlet weak var acceptButton: NSButton!
     @IBOutlet weak var membersTableView: NSTableView!
     @IBOutlet weak var invitesTableView: NSTableView!
+
+    private let disposeBag = DisposeBag()
 
     var topic: Topic? = nil {
         didSet {
@@ -50,17 +52,19 @@ class EditTopicViewController: NSViewController, NSTableViewDataSource, NSTableV
             self.lastPostedLabel.stringValue = posted.humanReadableTimeInterval
         }
 
-        viewModel.teamListIndex.values.combineLatestWith(viewModel.teamList.values)
-            .filter { $0.1.count > 0 }
-            .deliverOn(MainScheduler())
-            .start(next: { (index, teams) -> () in
+        combineLatest(viewModel.teamListIndex, viewModel.teamList) { ($0, $1) }
+            .filter { !$0.1.isEmpty }
+            .subscribeOn(MainScheduler.sharedInstance)
+            .subscribeNext { (index, teams) -> () in
                 self.teamListBox.removeAllItems()
                 self.teamListBox.addItemsWithObjectValues(teams.map { $0.description } )
                 self.teamListBox.selectItemAtIndex(index)
                 self.acceptButton.enabled = true
-            })
+            }
+            .addDisposableTo(disposeBag)
 
-        teamListBox
+        // FIXME:RX
+        /*teamListBox
             .rac_selectionSignal()
             .combineLatestWith(viewModel.teamList.values)
             .map { $0.1 }
@@ -73,30 +77,31 @@ class EditTopicViewController: NSViewController, NSTableViewDataSource, NSTableV
                     }
                 }
             }
-
+        .addDisposableTo(disposeBag)
+*/
         topicNameLabel
-            .rac_textSignal()
-            .throttle(0.05)
-            .asColdSignal()
-            .start { [weak self] res in
-                if let text = res as NSString? {
-                    self?.viewModel.topicName.put(text)
-                }
+            .rx_text
+            .throttle(0.05, MainScheduler.sharedInstance)
+            .subscribeNext { [weak self] res in
+                self?.viewModel.topicName.value = res
             }
+            .addDisposableTo(disposeBag)
 
-        viewModel.accounts.values
-            .deliverOn(MainScheduler())
-            .start(next: { [weak self] _ in
+        viewModel.accounts
+            .subscribeOn(MainScheduler.sharedInstance)
+            .subscribeNext { [weak self] _ in
                 self?.membersTableView.reloadData()
                 ()
-            })
+            }
+            .addDisposableTo(disposeBag)
 
-        viewModel.invites.values
-            .deliverOn(MainScheduler())
-            .start(next: { [weak self] _ in
+        viewModel.invites
+            .subscribeOn(MainScheduler.sharedInstance)
+            .subscribeNext { [weak self] _ in
                 self?.invitesTableView.reloadData()
                 ()
-            })
+            }
+            .addDisposableTo(disposeBag)
     }
 
     @IBAction func deleteTopic(sender: AnyObject) {
@@ -112,7 +117,7 @@ class EditTopicViewController: NSViewController, NSTableViewDataSource, NSTableV
         alert.informativeText = "WARNING: All messages in this topic will be removed permanently."
         alert.alertStyle = .WarningAlertStyle
 
-        if let key = NSApp.keyWindow? {
+        if let key = NSApp.keyWindow {
             alert.beginSheetModalForWindow(key) { [weak self] res in
                 if res == NSAlertFirstButtonReturn {
                     if let s = self {
@@ -160,7 +165,7 @@ class EditTopicViewController: NSViewController, NSTableViewDataSource, NSTableV
                 }
                 if i == "name"    { return invite.account?.name ?? "" }
                 if i == "status"  { return invite.status }
-                if i == "date"    { return invite.createdAt.humanReadableTimeInterval }
+                if i == "date"    { return invite.createdAt!.humanReadableTimeInterval }
             }
         }
         return nil

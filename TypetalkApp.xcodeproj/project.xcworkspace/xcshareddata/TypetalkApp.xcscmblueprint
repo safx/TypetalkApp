@@ -1,0 +1,58 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "B3D9DB878A5C277C23A6A3314F26A479DD04CDD7",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "9540366943750F418CA1A28462EA7F786EC07683" : 0,
+    "877620D38CC1C6ECCA1384F6DAF4EE294A3FB94C" : 0,
+    "E084C86B03F81D63323C9E7510697EA528A758C7" : 0,
+    "51B210D0D41486D3ADD6940D57E4480BBD4DE4C5" : 0,
+    "B3D9DB878A5C277C23A6A3314F26A479DD04CDD7" : 0,
+    "67620B5EFA902936DF04070AF595B76AB0333747" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "F526BC01-83BD-446D-808B-5B2DA3E943FC",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "9540366943750F418CA1A28462EA7F786EC07683" : "TypetalkAppExternal\/TypetalkKit\/External\/JSONHelper",
+    "877620D38CC1C6ECCA1384F6DAF4EE294A3FB94C" : "TypetalkAppExternal\/TypetalkKit",
+    "E084C86B03F81D63323C9E7510697EA528A758C7" : "TypetalkAppExternal\/ReactiveCocoa\/External\/xcconfigs",
+    "51B210D0D41486D3ADD6940D57E4480BBD4DE4C5" : "TypetalkAppExternal\/ReactiveCocoa",
+    "B3D9DB878A5C277C23A6A3314F26A479DD04CDD7" : "TypetalkApp",
+    "67620B5EFA902936DF04070AF595B76AB0333747" : "TypetalkAppExternal\/TypetalkKit\/External\/Alamofire"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "TypetalkApp",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "TypetalkApp.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/ReactiveCocoa\/ReactiveCocoa.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "51B210D0D41486D3ADD6940D57E4480BBD4DE4C5"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/Alamofire\/Alamofire.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "67620B5EFA902936DF04070AF595B76AB0333747"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/safx\/TypetalkKit.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "877620D38CC1C6ECCA1384F6DAF4EE294A3FB94C"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/isair\/JSONHelper.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "9540366943750F418CA1A28462EA7F786EC07683"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:safx\/TypetalkApp.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "B3D9DB878A5C277C23A6A3314F26A479DD04CDD7"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/jspahrsummers\/xcconfigs.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "E084C86B03F81D63323C9E7510697EA528A758C7"
+    }
+  ]
+}

@@ -9,13 +9,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "External/ReactiveCocoa/ReactiveCocoa/Swift/Scheduler.swift"
-            timestampString = "437736811.585014"
+            filePath = "TypetalkApp/OSX/AppDelegate.swift"
+            timestampString = "472063310.031997"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "117"
-            endingLineNumber = "117"
-            landmarkName = "schedule(_:)"
+            startingLineNumber = "17"
+            endingLineNumber = "17"
+            landmarkName = "init()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -25,13 +25,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "External/ReactiveCocoa/ReactiveCocoa/Swift/ColdSignal.swift"
-            timestampString = "437735865.236127"
+            filePath = "TypetalkApp/Extensions/Client+RacExtension.swift"
+            timestampString = "472137795.015443"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "420"
-            endingLineNumber = "420"
-            landmarkName = "deliverOn(_:)"
+            startingLineNumber = "27"
+            endingLineNumber = "27"
+            landmarkName = "request(_:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -41,137 +41,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "External/ReactiveCocoa/ReactiveCocoa/Swift/Scheduler.swift"
-            timestampString = "437736811.585014"
+            filePath = "TypetalkApp/OSX/ViewControllers/TopicViewController.swift"
+            timestampString = "472145147.246497"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "120"
-            endingLineNumber = "120"
-            landmarkName = "schedule(_:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "External/ReactiveCocoa/ReactiveCocoa/Swift/HotSignal.swift"
-            timestampString = "437737914.159804"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "536"
-            endingLineNumber = "536"
-            landmarkName = "replay(_:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "External/ReactiveCocoa/ReactiveCocoa/Swift/ColdSignal.swift"
-            timestampString = "437736422.648517"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "419"
-            endingLineNumber = "419"
-            landmarkName = "deliverOn(_:)"
-            landmarkType = "5">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "ReactiveCocoa.ColdSignal.(deliverOn &lt;A&gt;(ReactiveCocoa.ColdSignal&lt;A&gt;) -&gt; (ReactiveCocoa.Scheduler) -&gt; ReactiveCocoa.ColdSignal&lt;A&gt;).(closure #1).(closure #1)"
-                  moduleName = "ReactiveCocoa"
-                  urlString = "file:///Users/safx/src/Sample/TypetalkApp/External/ReactiveCocoa/ReactiveCocoa/Swift/ColdSignal.swift"
-                  timestampString = "437737592.586694"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "419"
-                  endingLineNumber = "419"
-                  offsetFromSymbolStart = "32">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "ReactiveCocoa.ColdSignal.(deliverOn &lt;A&gt;(ReactiveCocoa.ColdSignal&lt;A&gt;) -&gt; (ReactiveCocoa.Scheduler) -&gt; ReactiveCocoa.ColdSignal&lt;A&gt;).(closure #1).(closure #1).(closure #1)"
-                  moduleName = "ReactiveCocoa"
-                  urlString = "file:///Users/safx/src/Sample/TypetalkApp/External/ReactiveCocoa/ReactiveCocoa/Swift/ColdSignal.swift"
-                  timestampString = "437737592.586997"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "420"
-                  endingLineNumber = "420"
-                  offsetFromSymbolStart = "33">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "External/ReactiveCocoa/ReactiveCocoa/Swift/ColdSignal.swift"
-            timestampString = "437737109.216964"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "803"
-            endingLineNumber = "803"
-            landmarkName = "first()"
-            landmarkType = "5">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "ReactiveCocoa.ColdSignal.first &lt;A&gt;(ReactiveCocoa.ColdSignal&lt;A&gt;)() -&gt; LlamaKit.Result&lt;A&gt;"
-                  moduleName = "ReactiveCocoa"
-                  urlString = "file:///Users/safx/src/Sample/TypetalkApp/External/ReactiveCocoa/ReactiveCocoa/Swift/ColdSignal.swift"
-                  timestampString = "437738208.626428"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "803"
-                  endingLineNumber = "803"
-                  offsetFromSymbolStart = "163">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "ReactiveCocoa.ColdSignal.(first &lt;A&gt;(ReactiveCocoa.ColdSignal&lt;A&gt;) -&gt; () -&gt; LlamaKit.Result&lt;A&gt;).(closure #1)"
-                  moduleName = "ReactiveCocoa"
-                  urlString = "file:///Users/safx/src/Sample/TypetalkApp/External/ReactiveCocoa/ReactiveCocoa/Swift/ColdSignal.swift"
-                  timestampString = "437738208.626557"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "804"
-                  endingLineNumber = "804"
-                  offsetFromSymbolStart = "27">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "TypetalkApp/NewTopicViewController.swift"
-            timestampString = "437818205.85403"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "41"
-            endingLineNumber = "41"
-            landmarkName = "createTopic(_:)"
+            startingLineNumber = "95"
+            endingLineNumber = "95"
+            landmarkName = "prepareForSegue(_:sender:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

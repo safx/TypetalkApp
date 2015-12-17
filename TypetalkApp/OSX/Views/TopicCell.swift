@@ -29,7 +29,7 @@ class TopicCell: NSTableCellView {
     }
 
     init(model: TopicWithUserInfo) {
-        super.init()
+        super.init(frame: NSMakeRect(0, 0, 0, 0)) // FIXME:RX
         setupView()
         self.model = model
         modelDidSet()
@@ -71,15 +71,15 @@ class TopicCell: NSTableCellView {
 
         var cs: [AnyObject] = []
         visualFormat(image, name, badge) { img, name, badge in
-            .H ~ |-4-[img]-4-[name]-4-[badge]-4-| % .AlignAllCenterY
-            .H ~ [img,==16]
-            .V ~ |-4-[name]-4-|
-            .V ~ |-4-[img]-4-|
-            .V ~ |-4-[badge]-4-|
-            cs = .H ~ [badge,>=16]
+            .H ~ |-4-[img]-4-[name]-4-[badge]-4-| % .AlignAllCenterY;
+            .H ~ [img,==16];
+            .V ~ |-4-[name]-4-|;
+            .V ~ |-4-[img]-4-|;
+            .V ~ |-4-[badge]-4-|;
+            cs = .H ~ [badge,>=16];
         }
-        if countElements(cs) > 0 {
-            self.badgeWidthConstraint = cs[0] as NSLayoutConstraint
+        if let first = cs.first, c = first as? NSLayoutConstraint {
+            badgeWidthConstraint = c
         }
     }
 }

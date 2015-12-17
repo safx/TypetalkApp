@@ -52,7 +52,7 @@ let verticalDirection = CGFloat(-1.0)
         ctx.saveGraphicsState()
 
         let gfx = ctx.CGContext
-        var xform = NSAffineTransform()
+        let xform = NSAffineTransform()
         xform.translateXBy(0, yBy: height - 12)
         xform.scaleXBy(1, yBy: -1)
         xform.concat()
@@ -66,13 +66,13 @@ let verticalDirection = CGFloat(-1.0)
 
 let DefaultFont = Font.systemFontOfSize(15)
 let FixedFont = Font(name: "Menlo", size: 14)!
-let ParagraphMargin = UIEdgeInsetsMake(4, 4, 4, 4)
-let QuoteMargin = UIEdgeInsetsMake(4, 12, 4, 4)
-let QuotePadding = UIEdgeInsetsMake(0, 4, 0, 0)
+let ParagraphMargin = UIEdgeInsetsMake(4, left: 4, bottom: 4, right: 4)
+let QuoteMargin = UIEdgeInsetsMake(4, left: 12, bottom: 4, right: 4)
+let QuotePadding = UIEdgeInsetsMake(0, left: 4, bottom: 0, right: 0)
 let QuoteBorderColor = Color(white: 0.7, alpha: 1).CGColor
 let QuoteLeftBorderWidth = CGFloat(2)
-let CodeMargin = UIEdgeInsetsMake(4, 8, 4, 8)
-let CodePadding = UIEdgeInsetsMake(4, 8, 4, 4)
+let CodeMargin = UIEdgeInsetsMake(4, left: 8, bottom: 4, right: 8)
+let CodePadding = UIEdgeInsetsMake(4, left: 8, bottom: 4, right: 4)
 let CodeBackgroundColor = Color(white: 0.9, alpha: 1).CGColor
 
 
@@ -129,21 +129,21 @@ enum MarkdownBlock {
         let size = CGSize(width: CGFloat(width), height: CGFloat.max)
         switch self {
         case .Document(let blocks):
-            return reduce(blocks, 0) { a, e in
+            return blocks.reduce(0) { a, e in
                 let h = e.getHeight(width)
                 return a + h
             }
         case .Quote(let blocks):
-            return reduce(blocks, 0) { a, e in
-                let h = e.getHeight(width - HorizontalMargin(QuoteMargin, QuotePadding))
+            return blocks.reduce(0) { a, e in
+                let h = e.getHeight(width - HorizontalMargin(QuoteMargin, margin2: QuotePadding))
                 return a + h
-                } + VerticalMargin(QuoteMargin, QuotePadding)
+                } + VerticalMargin(QuoteMargin, margin2: QuotePadding)
         case .Paragraph:
             let s = CGSize(width: width - HorizontalMargin(ParagraphMargin), height: CGFloat.max)
             let bounds = attributedString.boundingRectWithSize(s, options: drawingOptions, context: nil)
             return bounds.height + VerticalMargin(ParagraphMargin)
         case .Code:
-            let s = CGSize(width: width - HorizontalMargin(CodeMargin, CodePadding), height: CGFloat.max)
+            let s = CGSize(width: width - HorizontalMargin(CodeMargin, margin2: CodePadding), height: CGFloat.max)
             let bounds = attributedString.boundingRectWithSize(s, options: drawingOptions, context: nil)
             return bounds.height + VerticalMargin(CodeMargin, CodePadding)
         }
@@ -164,7 +164,7 @@ enum MarkdownBlock {
             let es = inlines.map { $0.attributedString }
             var a = NSMutableAttributedString()
             a.beginEditing()
-            a = reduce(es, a) { a, e in
+            a = es.reduce(a) { a, e in
                 a.appendAttributedString(e)
                 return a
             }
@@ -176,8 +176,8 @@ enum MarkdownBlock {
     }
 
     private func drawChildrenInRect(elements: [MarkdownBlock], rect: CGRect, withCurrentGraphicsContext: ContextClosure, context: NSStringDrawingContext?) {
-        reduce(elements, CGFloat(0)) { top, elem in
-            let offsetRect = rect.rectByOffsetting(dx: 0, dy: top)
+        elements.reduce(CGFloat(0)) { top, elem in
+            let offsetRect = rect.offsetBy(dx: 0, dy: top)
             elem.drawInRect(offsetRect, withCurrentGraphicsContext: withCurrentGraphicsContext, context: context)
             let height = elem.getHeight(rect.size.width)
             return top + height * verticalDirection
@@ -191,7 +191,7 @@ enum MarkdownBlock {
         case .Document(let blocks):
             drawChildrenInRect(blocks, rect: rect, withCurrentGraphicsContext: withCurrentGraphicsContext, context: context)
         case .Quote(let blocks):
-            let rect1 = UIEdgeInsetsInsetRect(rect , QuoteMargin)
+            let rect1 = UIEdgeInsetsInsetRect(rect, insets: QuoteMargin)
 
             withCurrentGraphicsContext { gfx -> () in
                 CGContextSetFillColorWithColor(gfx, QuoteBorderColor)
@@ -200,13 +200,13 @@ enum MarkdownBlock {
                 ()
             }
 
-            let rect2 = UIEdgeInsetsInsetRect(rect1, QuotePadding)
+            let rect2 = UIEdgeInsetsInsetRect(rect1, insets: QuotePadding)
             drawChildrenInRect(blocks, rect: rect2, withCurrentGraphicsContext: withCurrentGraphicsContext, context: context)
         case .Paragraph(let inlines):
-            let r = UIEdgeInsetsInsetRect(rect, ParagraphMargin)
+            let r = UIEdgeInsetsInsetRect(rect, insets: ParagraphMargin)
             attributedString.drawWithRect(r, options: drawingOptions, context: context)
         case .Code(let (code, lang)):
-            let rect1 = UIEdgeInsetsInsetRect(rect, CodeMargin)
+            let rect1 = UIEdgeInsetsInsetRect(rect, insets: CodeMargin)
 
             withCurrentGraphicsContext { gfx -> () in
                 CGContextSetFillColorWithColor(gfx, CodeBackgroundColor)
@@ -215,38 +215,38 @@ enum MarkdownBlock {
                 ()
             }
             
-            let rect2 = UIEdgeInsetsInsetRect(rect1, CodePadding)
+            let rect2 = UIEdgeInsetsInsetRect(rect1, insets: CodePadding)
             attributedString.drawWithRect(rect2, options: drawingOptions, context: context)
         }
     }
 }
 
-import MarkdownKit
+//import MarkdownKit
 
 extension MarkdownNode {
     var markdownLite: MarkdownBlock {
         switch type {
-        case HOEDOWN_NODE_DOCUMENT.value      : return .Document(blockChildren)
+        case HOEDOWN_NODE_DOCUMENT.rawValue      : return .Document(blockChildren)
         default: fatalError()
         }
     }
 
     private var inlineChildren: [MarkdownInline] {
-        return map(contents) { c in
+        return contents.map { c in
             if let t = c as? NSString {
-                return .Text(t)
+                return .Text(t) as (String)
             } else if let ln = c as? MarkdownLink {
-                return .Link(ln.title, NSURL(string: ln.link))
+                return .Link(ln.title as String, NSURL(string: ln.link as String))
             }
             fatalError()
         }
     }
 
     private var blockChildren: [MarkdownBlock] {
-        return map(contents as [MarkdownNode]) { c in
+        return map(contents as! [MarkdownNode]) { c in
             switch c.type {
             case HOEDOWN_NODE_PARAGRAPH.value     : return .Paragraph(c.inlineChildren)
-            case HOEDOWN_NODE_BLOCKCODE.value     : return .Code(c.contents[0] as NSString, "")
+            case HOEDOWN_NODE_BLOCKCODE.value     : return .Code(c.contents[0] as! NSString as String, "")
             case HOEDOWN_NODE_BLOCKQUOTE.value    : return .Quote(c.blockChildren)
             default: fatalError()
             }

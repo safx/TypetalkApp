@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import MarkdownKit
+//import MarkdownKit
 
 @objc class MarkdownNode : NSObject {
     var contents: [NSObject] = [NSObject]()
@@ -23,16 +23,16 @@ import MarkdownKit
             c += contents[i].description
         }
 
-        if type >= HOEDOWN_NODE_BLOCK_LAST.value {
+        if type >= HOEDOWN_NODE_BLOCK_LAST.rawValue {
             return "\(c)"
         }
 
         let t = { (type: UInt32) -> String in
             switch type {
-            case HOEDOWN_NODE_DOCUMENT.value      : return "body"
-            case HOEDOWN_NODE_PARAGRAPH.value     : return "p"
-            case HOEDOWN_NODE_BLOCKCODE.value     : return "pre"
-            case HOEDOWN_NODE_BLOCKQUOTE.value    : return "blockquote"
+            case HOEDOWN_NODE_DOCUMENT.rawValue      : return "body"
+            case HOEDOWN_NODE_PARAGRAPH.rawValue     : return "p"
+            case HOEDOWN_NODE_BLOCKCODE.rawValue     : return "pre"
+            case HOEDOWN_NODE_BLOCKQUOTE.rawValue    : return "blockquote"
             default: fatalError()
             }
             }(type)
@@ -58,16 +58,16 @@ import MarkdownKit
 
         let renderer = MDKRenderer()
 
-        var pool = NSMutableArray()
+        let pool = NSMutableArray()
 
         renderer.block_new = { type in
-            let a = MarkdownNode(type: type.value)
+            let a = MarkdownNode(type: type.rawValue)
             pool.addObject(a)
             return asVoid(a)
         }
 
         renderer.span_new = { type in
-            let a = MarkdownNode(type: type.value)
+            let a = MarkdownNode(type: type.rawValue)
             pool.addObject(a)
             return asVoid(a)
         }
@@ -82,7 +82,7 @@ import MarkdownKit
         renderer.blockcode = { node_, code, lang in
             let node = asNode(node_)
 
-            let codeBlock = MarkdownNode(type: HOEDOWN_NODE_BLOCKCODE.value)
+            let codeBlock = MarkdownNode(type: HOEDOWN_NODE_BLOCKCODE.rawValue)
             codeBlock.addObject(code)
             pool.addObject(codeBlock)
 

@@ -9,8 +9,7 @@
 
 import Cocoa
 import TypetalkKit
-import ReactiveCocoa
-import LlamaKit
+import RxSwift
 
 
 class CreateTopicViewModel: NSObject {
@@ -19,7 +18,7 @@ class CreateTopicViewModel: NSObject {
     
     // MARK: - Action
 
-    func createTopic(topicName: String) -> ColdSignal<Client.CreateTopicResponse> {
+    func createTopic(topicName: String) -> Observable<CreateTopic.Response> {
         return parentViewModel!.createTopic(topicName)
     }
     

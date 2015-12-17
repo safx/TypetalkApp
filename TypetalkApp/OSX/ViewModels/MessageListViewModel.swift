@@ -7,16 +7,17 @@
 //
 
 import Foundation
+import AppKit
 import TypetalkKit
-import ReactiveCocoa
-import LlamaKit
+import RxSwift
+
 
 class MessageListViewModel : NSObject, NSTableViewDataSource {
     private let model = MessagesDataSource()
     var posts: ObservableArray<Post> {
         return model.posts
     }
-    var bookmarkIndex: ObservableProperty<Int> {
+    var bookmarkIndex: Variable<Int> {
         return model.bookmarkIndex
     }
 
@@ -39,7 +40,7 @@ class MessageListViewModel : NSObject, NSTableViewDataSource {
 
    // MARK: client
 
-    func postMessage(message: String) -> ColdSignal<PostMessageResponse> {
+    func postMessage(message: String) -> Observable<PostMessageResponse> {
         return model.postMessage(message)
     }
 

@@ -19,9 +19,9 @@ class NSXLabel : NSTextField {
             }
         }
     }
-    
-    override init() {
-        super.init()
+
+    init() {
+        super.init(frame: NSMakeRect(0, 0, 0, 0)) // FIXME:RX
         setupView()
     }
     
@@ -46,7 +46,7 @@ class NSXLabel : NSTextField {
 class NSXBadgeLabel : NSXLabel {
 
     override init() {
-        super.init()
+        super.init(frame: NSMakeRect(0, 0, 0, 0)) // FIXME:RX
         setupView()
     }
 
@@ -61,15 +61,16 @@ class NSXBadgeLabel : NSXLabel {
     
     override private func setupView() {
         super.setupView()
-        alignment = .CenterTextAlignment
+        alignment = .Center
     }
 
     override func drawRect(dirtyRect: NSRect) {
         let rect = NSRect(origin: CGPoint(x: 0, y: 0), size: self.bounds.size)
-        let gradient = NSGradient(startingColor: NSColor(calibratedWhite: 0.8, alpha: 1.0),
-                                    endingColor: NSColor(calibratedWhite: 0.8, alpha: 1.0))
-        let path = NSBezierPath(roundedRect: rect, xRadius: 8, yRadius: 8)
-        gradient.drawInBezierPath(path, angle: 90)
+        if let gradient = NSGradient(startingColor: NSColor(calibratedWhite: 0.8, alpha: 1.0),
+                                          endingColor: NSColor(calibratedWhite: 0.8, alpha: 1.0)) {
+            let path = NSBezierPath(roundedRect: rect, xRadius: 8, yRadius: 8)
+            gradient.drawInBezierPath(path, angle: 90)
+        }
 
         super.drawRect(dirtyRect)
     }

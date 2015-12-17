@@ -8,8 +8,8 @@
 
 import Cocoa
 import TypetalkKit
-import ReactiveCocoa
-import LlamaKit
+import RxSwift
+
 
 class TopicListViewModel : NSObject, NSTableViewDataSource {
     private let model = TopicsDataSource()
@@ -18,8 +18,8 @@ class TopicListViewModel : NSObject, NSTableViewDataSource {
         return model.topics
     }
 
-    func fetch() -> TopicsDataSource.Signal {
-        return model.fetch(observe: true)
+    func fetch() -> TopicsDataSource.Event {
+        return model.fetch(true)
     }
 
     // MARK: - NSTableViewDataSource
@@ -30,15 +30,15 @@ class TopicListViewModel : NSObject, NSTableViewDataSource {
 
     // MARK: - ViewModel Actions
 
-    func createTopic(topicName: String) -> ColdSignal<Client.CreateTopicResponse> {
+    func createTopic(topicName: String) -> Observable<CreateTopic.Response> {
         return model.createTopic(topicName)
     }
 
-    func favoriteTopic(topicId: TopicID) -> ColdSignal<Client.FavoriteTopicResponse> {
+    func favoriteTopic(topicId: TopicID) -> Observable<FavoriteTopic.Response> {
         return model.favoriteTopic(topicId)
     }
 
-    func unfavoriteTopic(topicId: TopicID) -> ColdSignal<Client.UnfavoriteTopicResponse> {
+    func unfavoriteTopic(topicId: TopicID) -> Observable<UnfavoriteTopic.Response> {
         return model.unfavoriteTopic(topicId)
     }
 }

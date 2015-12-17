@@ -9,25 +9,26 @@
 
 import Cocoa
 import TypetalkKit
-import ReactiveCocoa
-import LlamaKit
+import RxSwift
+
 
 class EditTopicViewModel: NSObject {
     private let model = TopicInfoDataSource()
-    var accounts: ObservableProperty<[Account]> {
+    private let disposeBag = DisposeBag()
+
+    var accounts: Variable<[Account]> {
         return model.accounts
     }
-    var invites: ObservableProperty<[TopicInvite]> {
+
+    var invites: Variable<[TopicInvite]> {
         return model.invites
     }
 
+    let teamList = Variable([TeamListItem]())
+    let teamListIndex = Variable(0)
 
-
-    let teamList = ObservableProperty([TeamListItem]())
-    let teamListIndex = ObservableProperty(0)
-
-    let topicName = ObservableProperty("")
-    var teamId = ObservableProperty(TeamID(-1))
+    let topicName = Variable("")
+    var teamId = Variable(TeamID(-1))
     
     private(set) var oldTopicName: String = ""
     private(set) var oldTeamId: TeamID = -1
@@ -36,39 +37,38 @@ class EditTopicViewModel: NSObject {
 
     func fetch(topic: Topic) {
         oldTopicName = topic.name
-        topicName.put(topic.name)
+        topicName.value = topic.name
 
         model.fetch(topic.id)
-        model.teams.values
-            .map { t -> TeamID in t.count == 0 ? -1 : t[0].team.id }
-            .combineLatestWith(teamList.values)
-            .start { (teamId, teams) in
-                self.teamId.put(teamId)
+
+        let ids = model.teams.map { t -> TeamID in t.count == 0 ? -1 : t[0].team.id }
+        combineLatest(ids, teamList) { ($0, $1) }
+            .subscribeNext { (teamId, teams) in
+                self.teamId.value = teamId
                 self.oldTeamId = teamId
                 for i in 0..<teams.count {
                     if teams[i].id == teamId {
-                        self.teamListIndex.put(i)
+                        self.teamListIndex.value = i
                         return
                     }
                 }
             }
+            .addDisposableTo(disposeBag)
 
-        Client.sharedClient.getTeams()
+        TypetalkAPI.request(GetTeams())
             .map { $0.teams }
             .filter { $0.count > 0 }
-            .map { teams in
-                var ts = teams.map { TeamListItem(team: $0) }
-                ts.insert(TeamListItem(), atIndex: 0)
-                return ts
+            .subscribeNext { teams in
+                let ts = teams.map { TeamListItem(team: $0) }
+                self.teamList.value = [TeamListItem()] + ts
             }
-            .start { teamlist in
-                self.teamList.put(teamlist)
-            }
+            .addDisposableTo(disposeBag)
     }
 
     func deleteTopic() {
         model.deleteTopic(model.topic.value.id)
-            .start()
+            .subscribe()
+            .addDisposableTo(disposeBag)
     }
 
     func updateTopic() {
@@ -78,15 +78,16 @@ class EditTopicViewModel: NSObject {
 
         let t: TeamID? = s == -1 ? nil : s
         model.updateTopic(model.topic.value.id, name: name, teamId: t)
-            .start()
+            .subscribe()
+            .addDisposableTo(disposeBag)
     }
 
     // MARK: -
 
     @objc class TeamListItem : NSObject {
-        let id: TeamID = -1
-        let name = "(None)"
-        let count = 0
+        var id: TeamID = -1
+        var name = "(None)"
+        var count = 0
         override var description: String {
             if id == -1 { return name }
             let p = count > 1 ? "s" : ""
