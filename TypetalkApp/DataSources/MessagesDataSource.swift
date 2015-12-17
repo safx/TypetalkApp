@@ -7,17 +7,17 @@
 //
 
 import TypetalkKit
-import ReactiveCocoa
+import RxSwift
 
 class MessagesDataSource {
-    typealias Signal = ObservableArray<Post>.Signal
+    typealias Event = ObservableArray<Post>.Event
 
-    let team = ObservableProperty(Team())
-    let topic = ObservableProperty(Topic())
-    let bookmark = ObservableProperty(Bookmark())
+    let team = Variable(Team())
+    let topic = Variable(Topic())
+    let bookmark = Variable(Bookmark())
     let posts = ObservableArray<Post>()
-    let hasNext = ObservableProperty(false)
-    let bookmarkIndex = ObservableProperty<Int>(0)
+    let hasNext = Variable(false)
+    let bookmarkIndex = Variable<Int>(0)
     var observing = false
 
     // MARK: - Model ops
@@ -41,31 +41,32 @@ class MessagesDataSource {
     }
     
     private func fetch_impl(topicId: TopicID, from: PostID?) {
-        let s = Client.sharedClient.getMessages(topicId, count:100, from: from)
-        s.start(
-            next: { res in
+        let s = TypetalkAPI.request(GetMessages(topicId: topicId, count:100, from: from))
+        s.subscribe(
+            onNext: { res in
                 let firstFetch = self.posts.count == 0
 
-                self.team.put(res.team)
-                self.topic.put(res.topic)
+                self.team.value = res.team
+                self.topic.value = res.topic
                 self.posts.splice(res.posts, atIndex: 0)
-                self.hasNext.put(res.hasNext)
+                self.hasNext.value = res.hasNext
 
                 if firstFetch {
-                    self.bookmark.put(res.bookmark)
+                    self.bookmark.value = res.bookmark
                     self.updateBookmarkIndex(self.bookmark.value.postId) // FIXME: change automatically
                 }
             },
-            error: { err in
-                println("E \(err)")
+            onError: { err in
+                print("E \(err)")
             },
-            completed:{ () in
+            onCompleted:{ () in
             }
         )
     }
     
     private func startObserving() {
-        let s = Client.sharedClient.streamimgSignal
+        // FIXME:RX
+        /*let s = TypetalkAPI.streamimgSignal
         s.observe { event in
             switch event {
             case .PostMessage(let res):   self.appendMessage(res.post!)
@@ -75,7 +76,7 @@ class MessagesDataSource {
             case .SaveBookmark(let res):  self.updateBookmark(res.unread)
             default: ()
             }
-        }
+        }*/
     }
 
     private func appendMessage(post: Post) {
@@ -87,7 +88,7 @@ class MessagesDataSource {
     private func find(topicId: TopicID, postId: PostID, closure: (Post, Int) -> ()) {
         if topicId != topic.value.id { return }
 
-        for var i = 0; i < countElements(posts); ++i {
+        for i in 0..<posts.count {
             if posts[i].id == postId {
                 closure(posts[i], i)
                 return
@@ -117,21 +118,21 @@ class MessagesDataSource {
     private func updateBookmark(unread: Unread) {
         if unread.topicId == topic.value.id {
             let b = Bookmark(postId: unread.postId, updatedAt: bookmark.value.updatedAt)
-            bookmark.put(b)
+            bookmark.value = b
             updateBookmarkIndex(b.postId) // FIXME: change automatically
         }
     }
 
     private func updateBookmarkIndex(postId: PostID) {
         find(topic.value.id, postId: postId) { post, idx in
-            self.bookmarkIndex.put(idx)
+            self.bookmarkIndex.value = idx
         }
     }
 
     // MARK: Acting to REST client
 
-    func postMessage(message: String) -> ColdSignal<PostMessageResponse>  {
+    func postMessage(message: String) -> Observable<PostMessage.Response>  {
         let id = topic.value.id
-        return Client.sharedClient.postMessage(id, message: message, replyTo: nil, fileKeys: [], talkIds: [])
+        return TypetalkAPI.request(PostMessage(topicId: id, message: message, replyTo: nil, fileKeys: [], talkIds: []))
     }
 }

@@ -7,7 +7,7 @@
 //
 
 import TypetalkKit
-import ReactiveCocoa
+import RxSwift
 
 class MessageListViewModel: NSObject, UITableViewDataSource {
     let model = MessagesDataSource()

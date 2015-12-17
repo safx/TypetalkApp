@@ -10,30 +10,35 @@ import Foundation
 
 import Cocoa
 import TypetalkKit
-import ReactiveCocoa
-import LlamaKit
+import RxSwift
+
 
 class CreateNewMessageViewController: NSViewController {
 
     @IBOutlet var messageBox: NSTextView!
     @IBOutlet weak var postButton: NSButton!
+    @IBOutlet weak var messageViewController: MessageViewController!
 
     let viewModel = CreateNewMessageViewModel()
     var parentViewModel: MessageListViewModel?
     var topic: TopicWithUserInfo?
 
+    private let disposeBag = DisposeBag()
+
     override func viewDidLoad() {
         weak var weakSelf = self
-        messageBox
+
+        // FIXME:RX
+        /*messageBox
             .rac_textSignal()
             .throttle(0.05)
-            .asColdSignal()
+            .asObservable()
             .start { res in
                 if let text = res as NSString? {
                     println("\(text)")
                     weakSelf?.postButton.enabled = text.length > 0
                 }
-        }
+        }*/
 
     }
 
@@ -42,13 +47,14 @@ class CreateNewMessageViewController: NSViewController {
             if text == "" { return }
 
             viewModel.postMessage(text)
-                .start { [weak self] v in
+                .subscribeNext { [weak self] v in
                     dispatch_async(dispatch_get_main_queue()) {
                         self?.messageBox.string = ""
                         ()
                     }
                     ()
                 }
+                .addDisposableTo(disposeBag)
         }
     }
 }

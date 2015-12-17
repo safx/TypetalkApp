@@ -7,34 +7,35 @@
 //
 
 import TypetalkKit
-import ReactiveCocoa
-import LlamaKit
+import RxSwift
+
 
 class TopicsDataSource {
-    typealias Signal = ObservableArray<TopicWithUserInfo>.Signal
+    typealias Event = ObservableArray<TopicWithUserInfo>.Event
 
     let topics = ObservableArray<TopicWithUserInfo>()
 
-    func fetch(observe: Bool = false) -> Signal {
-        let s = Client.sharedClient.getTopics()
-        s.start(
-            next: { res in
+    func fetch(observe: Bool = false) -> Event {
+        let s = TypetalkAPI.request(GetTopics())
+        s.subscribe(
+            onNext: { res in
                 self.topics.extend(res.topics)
             },
-            error: { err in
-                println("\(err)")
+            onError: { err in
+                print("\(err)")
             },
-            completed:{ () in
+            onCompleted:{ () in
                 if (observe) {
                     self.startObserving()
                 }
             }
         )
-        return topics.signal
+        return topics.event
     }
 
     private func startObserving() {
-        let s = Client.sharedClient.streamimgSignal
+        // FIXME:RX
+        /*let s = TypetalkAPI.streamimgSignal
         s.observe { event in
             switch event {
             case .CreateTopic(let res):     self.insertTopic(res)
@@ -49,7 +50,7 @@ class TopicsDataSource {
             case .SaveBookmark(let res):    self.updateTopic(res.unread)
             default: ()
             }
-        }
+        }*/
     }
 
     private func insertTopic(topic: TopicWithUserInfo) {
@@ -61,7 +62,7 @@ class TopicsDataSource {
     }
 
     private func find(topicId: TopicID, closure: (TopicWithUserInfo, Int) -> ()) {
-        for var i = 0; i < countElements(topics); ++i {
+        for i in 0..<topics.count {
             if topics[i].topic.id == topicId {
                 closure(topics[i], i)
                 return
@@ -108,22 +109,22 @@ class TopicsDataSource {
 
     // MARK: Acting to REST client
 
-    func createTopic(topicName: String) -> ColdSignal<Client.CreateTopicResponse> {
+    func createTopic(topicName: String) -> Observable<CreateTopic.Response> {
         let teamId: TeamID? = nil
         let inviteMembers = [String]()
         let inviteMessage = ""
-        return Client.sharedClient.createTopic(topicName, teamId: teamId, inviteMembers: inviteMembers, inviteMessage: inviteMessage)
+        return TypetalkAPI.request(CreateTopic(name: topicName, teamId: teamId, inviteMembers: inviteMembers, inviteMessage: inviteMessage))
     }
 
-    func deleteTopic(topicId: TopicID) -> ColdSignal<Client.DeleteTopicResponse> {
-        return Client.sharedClient.deleteTopic(topicId)
+    func deleteTopic(topicId: TopicID) -> Observable<DeleteTopic.Response> {
+        return TypetalkAPI.request(DeleteTopic(topicId: topicId))
     }
 
-    func favoriteTopic(topicId: TopicID) -> ColdSignal<Client.FavoriteTopicResponse> {
-        return Client.sharedClient.favoriteTopic(topicId)
+    func favoriteTopic(topicId: TopicID) -> Observable<FavoriteTopic.Response> {
+        return TypetalkAPI.request(FavoriteTopic(topicId: topicId))
     }
 
-    func unfavoriteTopic(topicId: TopicID) -> ColdSignal<Client.UnfavoriteTopicResponse> {
-        return Client.sharedClient.unfavoriteTopic(topicId)
+    func unfavoriteTopic(topicId: TopicID) -> Observable<UnfavoriteTopic.Response> {
+        return TypetalkAPI.request(UnfavoriteTopic(topicId: topicId))
     }
 }

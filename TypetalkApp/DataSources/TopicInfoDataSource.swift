@@ -7,34 +7,36 @@
 //
 
 import TypetalkKit
-import ReactiveCocoa
+import RxSwift
 
 class TopicInfoDataSource {
-    typealias Signal = ObservableArray<Post>.Signal
+    typealias Event = ObservableArray<Post>.Event
 
-    let topic = ObservableProperty(Topic())
-    let teams = ObservableProperty([TeamWithMembers]())
-    let accounts = ObservableProperty([Account]())
-    let invites = ObservableProperty([TopicInvite]())
+    let topic = Variable(Topic())
+    let teams = Variable([TeamWithMembers]())
+    let accounts = Variable([Account]())
+    let invites = Variable([TopicInvite]())
+
+    private let disposeBag = DisposeBag()
 
     // MARK: - Model ops
 
     func fetch(topicId: TopicID) {
-        let s = Client.sharedClient.getTopicDetails(topicId)
-        s.start(
-            next: { res in
-                self.topic.put(res.topic)
-                self.teams.put(res.teams)
-                self.accounts.put(res.accounts)
-                self.invites.put(res.invites)
-            })
+        let s = TypetalkAPI.request(GetTopicDetails(topicId: topicId))
+        s.subscribeNext { res in
+            self.topic.value = res.topic
+            self.teams.value = res.teams
+            self.accounts.value = res.accounts
+            self.invites.value = res.invites
+        }
+        .addDisposableTo(disposeBag)
     }
 
-    func updateTopic(topicId: TopicID, name: String, teamId: TeamID?) -> ColdSignal<Client.UpdateTopicResponse> {
-        return Client.sharedClient.updateTopic(topicId, name: name, teamId: teamId)
+    func updateTopic(topicId: TopicID, name: String, teamId: TeamID?) -> Observable<UpdateTopic.Response> {
+        return TypetalkAPI.request(UpdateTopic(topicId: topicId, name: name, teamId: teamId))
     }
 
-    func deleteTopic(topicId: TopicID) -> ColdSignal<Client.DeleteTopicResponse> {
-        return Client.sharedClient.deleteTopic(topicId)
+    func deleteTopic(topicId: TopicID) -> Observable<DeleteTopic.Response> {
+        return TypetalkAPI.request(DeleteTopic(topicId: topicId))
     }
 }

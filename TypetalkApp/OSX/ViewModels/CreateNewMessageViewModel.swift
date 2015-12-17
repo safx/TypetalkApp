@@ -8,8 +8,7 @@
 
 import Foundation
 import TypetalkKit
-import ReactiveCocoa
-import LlamaKit
+import RxSwift
 
 class CreateNewMessageViewModel {
 
@@ -17,7 +16,7 @@ class CreateNewMessageViewModel {
 
     // MARK: - Action
 
-    func postMessage(message: String) -> ColdSignal<PostMessageResponse> {
+    func postMessage(message: String) -> Observable<PostMessageResponse> {
         return parentViewModel!.postMessage(message)
     }
 

@@ -7,12 +7,12 @@
 //
 
 import TypetalkKit
-import ReactiveCocoa
+import RxSwift
 import Emoji
 
 class CompletionDataSource {
-    let accounts = ObservableProperty([AccountWithOnlineStatus]())
-    let talks = ObservableProperty([Talk]())
+    let accounts = Variable([AccountWithOnlineStatus]())
+    let talks = Variable([Talk]())
 
     // MARK: - Model ops
 
@@ -22,35 +22,35 @@ class CompletionDataSource {
     }
     
     private func fetchTopicMembers(topicId: TopicID) {
-        let s = Client.sharedClient.getTopicMembers(topicId)
-        s.start(
-            next: { res in
-                self.accounts.put(res.accounts)
+        let s = TypetalkAPI.request(GetTopicMembers(topicId: topicId))
+        s.subscribe(
+            onNext: { res in
+                self.accounts.value = res.accounts
             },
-            error: { err in
-                println("E \(err)")
+            onError: { err in
+                print("E \(err)")
             },
-            completed:{ () in
+            onCompleted:{ () in
             }
         )
     }
     
     private func fetchTalks(topicId: TopicID) {
-        let s = Client.sharedClient.getTalks(topicId)
-        s.start(
-            next: { res in
-                self.talks.put(res.talks)
+        let s = TypetalkAPI.request(GetTalks(topicId: topicId))
+        s.subscribe(
+            onNext: { res in
+                self.talks.value = res.talks
             },
-            error: { err in
-                println("E \(err)")
+            onError: { err in
+                print("E \(err)")
             },
-            completed:{ () in
+            onCompleted:{ () in
             }
         )
     }
 
     private func _filterfunc<T>(foundWord: String, key:(T -> String))(e: T) -> Bool {
-        if countElements(foundWord) == 0 {
+        if foundWord.isEmpty {
             return true
         }
         
@@ -72,7 +72,7 @@ class CompletionDataSource {
                 .filter(_filterfunc(foundWord, key: { $0.name }))
                 .map { CompletionModel(text: $0.name, description: $0.suggestion) }
         case ":":
-            return filter(String.emojiDictionary, _filterfunc(foundWord, key: { (k,v) in k }))
+            return String.emojiDictionary.filter(_filterfunc(foundWord, key: { (k,v) in k }))
                 .map { (k,v) in CompletionModel(text: k, description: v, completionString: "\(k):") }
         default:
             return []

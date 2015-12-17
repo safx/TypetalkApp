@@ -8,8 +8,8 @@
 
 import UIKit
 import TypetalkKit
-import ReactiveCocoa
-import LlamaKit
+import RxSwift
+
 
 class TopicListViewModel: NSObject, UITableViewDataSource {
     var model = TopicsDataSource()
@@ -49,7 +49,7 @@ class TopicListViewModel: NSObject, UITableViewDataSource {
 
     // MARK: - ViewModel Actions
 
-    func createTopicAction(topicName: String) -> ColdSignal<Client.CreateTopicResponse> {
+    func createTopicAction(topicName: String) -> Observable<Client.CreateTopicResponse> {
         return model.createTopic(topicName)
     }
 }

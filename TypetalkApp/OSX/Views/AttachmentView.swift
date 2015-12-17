@@ -9,18 +9,21 @@
 import Cocoa
 import TypetalkKit
 import yavfl
+import RxSwift
 
 class AttachmentView: NSView {
     private var thumbnailImage: NSImageView?
     private var iconImage: NSImageView?
     private var fileInfoLabel: NSXLabel?
-    
+
+    private let disposeBag = DisposeBag()
+
     private(set) var model: URLAttachment? {
         didSet { modelDidSet() }
     }
 
     init(attachment: URLAttachment) {
-        super.init()
+        super.init(frame: NSMakeRect(0, 0, 0, 0)) // FIXME:RX
         self.model = attachment
         modelDidSet()
     }
@@ -40,38 +43,40 @@ class AttachmentView: NSView {
                 //thumbnail.contentMode = .ScaleAspectFit
                 self.addSubview(thumbnailImage!)
                 visualFormat(thumbnailImage!) { thumbnail in
-                    .H ~ |-0-[thumbnail]-0-|
-                    .V ~ |-0-[thumbnail]-0-|
+                    .H ~ |-0-[thumbnail]-0-|;
+                    .V ~ |-0-[thumbnail]-0-|;
                 }
 
-                let s = Client.sharedClient.downloadAttachmentWithURL(m.apiUrl, type: AttachmentView.resolveAttachmentType(m))
-                s.start(
-                    next: { res in
-                        println("** \(m.attachment.fileName)")
-                        dispatch_async(dispatch_get_main_queue(), { () in
-                            self.thumbnailImage!.image = NSImage(data: res)
-                        })
-                    },
-                    error: { err in
-                        println("E \(err)")
-                    },
-                    completed:{ () in
-                    }
-                )
+                if let downloadRequest = DownloadAttachment(url: m.apiUrl, attachmentType: AttachmentView.resolveAttachmentType(m)) {
+                    let s = TypetalkAPI.request(downloadRequest)
+                    s.subscribe(
+                        onNext: { res in
+                            Swift.print("** \(m.attachment.fileName)")
+                            dispatch_async(dispatch_get_main_queue(), { () in
+                                self.thumbnailImage!.image = NSImage(data: res)
+                            })
+                        },
+                        onError: { err in
+                            Swift.print("E \(err)")
+                        },
+                        onCompleted:{ () in
+                    })
+                    .addDisposableTo(disposeBag)
+                }
             } else {
                 fileInfoLabel = NSXLabel()
                 let name = m.attachment.fileName
                 let size = NSByteCountFormatter.stringFromByteCount(Int64(m.attachment.fileSize), countStyle: .File)
                 let attr = [
                     NSForegroundColorAttributeName: NSColor.blueColor(),
-                    NSUnderlineStyleAttributeName: NSSingleUnderlineStyle
+                    NSUnderlineStyleAttributeName: NSUnderlineStyle.StyleSingle.rawValue
                 ]
                 let text = NSAttributedString(string: "\(name) (\(size))", attributes: attr)
                 fileInfoLabel?.attributedStringValue = text
                 self.addSubview(fileInfoLabel!)
                 visualFormat(fileInfoLabel!) { label in
-                    .H ~ |-64-[label]-0-|
-                    .V ~ |-0-[label]-0-|
+                    .H ~ |-64-[label]-0-|;
+                    .V ~ |-0-[label]-0-|;
                 }
                 
             }
@@ -80,14 +85,14 @@ class AttachmentView: NSView {
 
     class func viewHeight(a: URLAttachment) -> Int {
         let margin = 8
-        if countElements(a.thumbnails) > 0 {
+        if !a.thumbnails.isEmpty {
             return a.thumbnails[0].height + margin
         }
         return a.attachment.isImageFile ? 200 : 30 + margin
     }
     
     class private func resolveAttachmentType(a: URLAttachment) -> AttachmentType? {
-        if countElements(a.thumbnails) > 0 {
+        if !a.thumbnails.isEmpty {
             return a.thumbnails[0].type // FIXME
         }
         return nil

@@ -8,16 +8,17 @@
 
 import Cocoa
 import TypetalkKit
-
+import RxSwift
 
 class TopicViewController: NSViewController, NSTableViewDelegate, NSMenuDelegate {
     @IBOutlet weak var tableView: NSTableView!
     private let viewModel = TopicListViewModel()
     private var oldNumberOfRows = 0
+    private let disposeBag = DisposeBag()
 
     private var selectedTopic: TopicWithUserInfo? {
         let row = tableView.selectedRow
-        if 0 <= row && row < countElements(viewModel.topics) {
+        if (0..<viewModel.topics.count).contains(row) {
             return viewModel.topics[row]
         }
         return nil
@@ -32,7 +33,7 @@ class TopicViewController: NSViewController, NSTableViewDelegate, NSMenuDelegate
 
         weak var weakTableView = tableView
         viewModel.fetch()
-            .observe { next in
+            .subscribeNext { next in
                 let rows = self.viewModel.topics.count
                 switch next {
                 case .Inserted(let indeces):
@@ -43,7 +44,7 @@ class TopicViewController: NSViewController, NSTableViewDelegate, NSMenuDelegate
                             t.insertRowsAtIndexes(NSTableView.asIndexSet(indeces), withAnimation: .EffectFade)
                         }
                     }
-                case .Deleted(let (indeces, elements)):
+                case .Deleted(let (indeces, _)):
                     NSTableView.update(weakTableView) { t in
                         t.removeRowsAtIndexes(NSTableView.asIndexSet(indeces), withAnimation: .EffectFade)
                     }
@@ -54,6 +55,7 @@ class TopicViewController: NSViewController, NSTableViewDelegate, NSMenuDelegate
                 }
                 self.oldNumberOfRows = rows
             }
+            .addDisposableTo(disposeBag)
 
         let menu = NSMenu(title: "Topic Item Menu")
         menu.delegate = self
@@ -63,8 +65,8 @@ class TopicViewController: NSViewController, NSTableViewDelegate, NSMenuDelegate
     // MARK: - Action
 
     @IBAction func columnChangeSelected(sender: NSTableView) {
-        selectedTopic.map { topic -> () in
-            let controller = self.parentViewController?.childViewControllers[1].childViewControllers[0] as MessageViewController
+        _ = selectedTopic.flatMap { topic -> () in
+            let controller = self.parentViewController?.childViewControllers[1].childViewControllers[0] as! MessageViewController
             controller.topic = topic
         }
     }
@@ -74,16 +76,16 @@ class TopicViewController: NSViewController, NSTableViewDelegate, NSMenuDelegate
     }
 
     func unfavoriteTopic(sender: NSMenuItem) {
-        selectedTopic.map {
+        _ = selectedTopic.map {
             self.viewModel.unfavoriteTopic($0.topic.id)
-                .start()
+                .subscribe()
         }
     }
 
     func favoriteTopic(sender: NSMenuItem) {
-        selectedTopic.map {
+        _ = selectedTopic.map {
             self.viewModel.favoriteTopic($0.topic.id)
-                .start()
+                .subscribe()
         }
     }
 
@@ -91,10 +93,10 @@ class TopicViewController: NSViewController, NSTableViewDelegate, NSMenuDelegate
 
     override func prepareForSegue(segue: NSStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "newTopic" {
-            let controller = segue.destinationController as CreateTopicViewController
+            let controller = segue.destinationController as! CreateTopicViewController
             controller.viewModel.parentViewModel = viewModel
         } else if segue.identifier == "editTopic" {
-            let controller = segue.destinationController as EditTopicViewController
+            let controller = segue.destinationController as! EditTopicViewController
             controller.topic = selectedTopic!.topic
         }
     }
@@ -116,7 +118,7 @@ class TopicViewController: NSViewController, NSTableViewDelegate, NSMenuDelegate
 
     // MARK: - NSTableViewDelegate
 
-    func tableView(tableView: NSTableView, viewForTableColumn: NSTableColumn, row: Int) -> NSView? {
+    func tableView(tableView: NSTableView, viewForTableColumn: NSTableColumn?, row: Int) -> NSView? {
         if 0 <= row && row < viewModel.topics.count {
             return TopicCell(model: viewModel.topics[row])
         }

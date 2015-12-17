@@ -8,8 +8,8 @@
 
 import UIKit
 import TypetalkKit
-import ReactiveCocoa
-import LlamaKit
+import RxSwift
+
 
 class CreateTopicViewController: UITableViewController {
     let viewModel = CreateTopicViewModel()
