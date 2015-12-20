@@ -12,7 +12,7 @@ import RxSwift
 
 
 class CreateTopicViewController: NSViewController {
-    let viewModel = CreateTopicViewModel()
+    internal let viewModel = CreateTopicViewModel()
     private let disposeBag = DisposeBag()
 
     @IBAction func textChanged(sender: NSTextField) {

@@ -20,6 +20,8 @@ class MessagesDataSource {
     let bookmarkIndex = Variable<Int>(0)
     var observing = false
 
+    let disposeBag = DisposeBag()
+
     // MARK: - Model ops
 
     func fetch(topicId: TopicID) {
@@ -62,12 +64,12 @@ class MessagesDataSource {
             onCompleted:{ () in
             }
         )
+        .addDisposableTo(disposeBag)
     }
     
     private func startObserving() {
-        // FIXME:RX
-        /*let s = TypetalkAPI.streamimgSignal
-        s.observe { event in
+        TypetalkAPI.streamimgEvent
+        .subscribeNext { event in
             switch event {
             case .PostMessage(let res):   self.appendMessage(res.post!)
             case .DeleteMessage(let res): self.deleteMessage(res.post!)
@@ -76,7 +78,8 @@ class MessagesDataSource {
             case .SaveBookmark(let res):  self.updateBookmark(res.unread)
             default: ()
             }
-        }*/
+        }
+        .addDisposableTo(disposeBag)
     }
 
     private func appendMessage(post: Post) {

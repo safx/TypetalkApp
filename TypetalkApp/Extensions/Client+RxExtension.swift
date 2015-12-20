@@ -100,57 +100,60 @@ extension TypetalkAPI {
 
 extension TypetalkAPI {
 
-    /*static public var streamimgSignal : Observable<StreamingEvent> {
+    static var streamimgEvent : Observable<StreamingEvent> {
         struct Static {
-            static let instance = Client.streamimg(Client.sharedClient)
+            static let instance = TypetalkAPI.streamimgObservableImpl()
+                .catchError { error -> Observable<StreamingEvent> in
+                    let err = error as NSError
+                    print("Streaming Error: \(err)")
+
+                    let delay: Observable<StreamingEvent> = empty()
+                        .delaySubscription(TypetalkAPI.retryInterval(err), MainScheduler.sharedInstance)
+
+                    if err.domain == "Websocket" && err.code == 1 { // Invalid HTTP upgrade in Starscream
+                        // attempt to connect with HTTP first, and then upgrade to WebSocket
+                        return delay.concat(TypetalkAPI.request(GetNotificationStatus()).map { _ in
+                            return StreamingEvent.Connected // FIXME
+                            })
+                            .concat(TypetalkAPI.sharedPublishSubject)
+                    }
+
+                    return delay.concat(TypetalkAPI.sharedPublishSubject)
+            }
         }
         return Static.instance
     }
-    private class func streamimgHotSignal(client: Client) -> Observable<StreamingEvent> {
-        return Client.streamimgObservable(client)
-            .deliverOn(QueueScheduler())
-            .startMulticasted(nil)
+
+    static private var sharedPublishSubject: PublishSubject<StreamingEvent> {
+        struct Static {
+            static let instance = PublishSubject<StreamingEvent>()
+        }
+        return Static.instance
+    }
+
+    private class func streamimgObservableImpl() -> PublishSubject<StreamingEvent> {
+        let subject = sharedPublishSubject
+        streaming { ev in
+            switch ev {
+            case .Disconnected(let err):
+                if let e = err {
+                    subject.on(.Error(e))
+                } else {
+                    subject.on(.Completed)
+                }
+            case .Connected:
+                print("connected")
+                fallthrough
+            default:
+                dump(ev)
+                subject.on(.Next(ev))
+            }
+        }
+        return subject
     }
 
     private class func retryInterval(error: NSError) -> NSTimeInterval {
         return 10
     }
-
-    private class func streamimgObservable(client: Client) -> Observable<StreamingEvent> {
-        return Observable<StreamingEvent> { s, _ in
-            client.streaming { ev in
-                switch ev {
-                case .Disconnected(let err):
-                    if let e = err {
-                        s.put(.Error(e))
-                    } else {
-                        s.put(.Completed)
-                    }
-                case .Connected:
-                    println("connected")
-                    fallthrough
-                default:
-                    dump(ev)
-                    s.put(.Next(Box(ev)))
-                }
-            }
-            return
-        }
-        .`catch` { err -> Observable<StreamingEvent> in
-            println("Streaming Error: \(err)")
-            let delay: Observable<StreamingEvent> = Observable.empty()
-                        .delay(Client.retryInterval(err), onScheduler: QueueScheduler())
-
-            let s = Client.streamimgObservable(client)
-
-            if err.domain == "Websocket" && err.code == 1 { // Invalid HTTP upgrade in Starscream
-                // attempt to connect with HTTP first, and then upgrade to WebSocket
-                return delay.then(Client.sharedClient.getNotificationStatus())
-                            .then(s)
-            }
-
-            return delay.then(s)
-        }
-    }*/
 }
 

@@ -14,7 +14,7 @@ import RxSwift
 
 class CreateTopicViewModel: NSObject {
 
-    var parentViewModel: TopicListViewModel?
+    internal var parentViewModel: TopicListViewModel?
     
     // MARK: - Action
 

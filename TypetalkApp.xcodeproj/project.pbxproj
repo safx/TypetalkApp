@@ -23,7 +23,7 @@
 		8D7DB46D1A99F7DE0093C2D3 /* EditTopicViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D7DB46C1A99F7DE0093C2D3 /* EditTopicViewModel.swift */; };
 		8D7DB46F1A9A146E0093C2D3 /* TopicInfoDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D7DB46E1A9A146E0093C2D3 /* TopicInfoDataSource.swift */; };
 		8D7DB4701A9A146E0093C2D3 /* TopicInfoDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D7DB46E1A9A146E0093C2D3 /* TopicInfoDataSource.swift */; };
-		8D7DB4731A9B691A0093C2D3 /* NSComboBox+RacExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D7DB4711A9B69140093C2D3 /* NSComboBox+RacExtension.swift */; };
+		8D7DB4731A9B691A0093C2D3 /* NSComboBox+RxExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D7DB4711A9B69140093C2D3 /* NSComboBox+RxExtension.swift */; };
 		8D8AED221C22FC920015FD07 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D424F0C1A69574C0034C498 /* Alamofire.framework */; };
 		8D8AED231C22FC920015FD07 /* TypetalkKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D424F0E1A69574C0034C498 /* TypetalkKit.framework */; };
 		8D8AED2C1C22FC920015FD07 /* APIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D8AED241C22FC920015FD07 /* APIKit.framework */; };
@@ -175,7 +175,7 @@
 		8D7CBC751A905E6E00C39B5D /* CreateTopicViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateTopicViewModel.swift; sourceTree = "<group>"; };
 		8D7DB46C1A99F7DE0093C2D3 /* EditTopicViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditTopicViewModel.swift; sourceTree = "<group>"; };
 		8D7DB46E1A9A146E0093C2D3 /* TopicInfoDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicInfoDataSource.swift; sourceTree = "<group>"; };
-		8D7DB4711A9B69140093C2D3 /* NSComboBox+RacExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSComboBox+RacExtension.swift"; sourceTree = "<group>"; };
+		8D7DB4711A9B69140093C2D3 /* NSComboBox+RxExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSComboBox+RxExtension.swift"; sourceTree = "<group>"; };
 		8D8AED241C22FC920015FD07 /* APIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = APIKit.framework; path = Carthage/Build/iOS/APIKit.framework; sourceTree = "<group>"; };
 		8D8AED251C22FC920015FD07 /* Emoji.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Emoji.framework; path = Carthage/Build/iOS/Emoji.framework; sourceTree = "<group>"; };
 		8D8AED261C22FC920015FD07 /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Result.framework; path = Carthage/Build/iOS/Result.framework; sourceTree = "<group>"; };
@@ -319,7 +319,7 @@
 			isa = PBXGroup;
 			children = (
 				8D2AB2C21A99BE5A00E484B0 /* NSTableView+Menu.swift */,
-				8D7DB4711A9B69140093C2D3 /* NSComboBox+RacExtension.swift */,
+				8D7DB4711A9B69140093C2D3 /* NSComboBox+RxExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -830,7 +830,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8D7DB4731A9B691A0093C2D3 /* NSComboBox+RacExtension.swift in Sources */,
+				8D7DB4731A9B691A0093C2D3 /* NSComboBox+RxExtension.swift in Sources */,
 				8D93F8E41AAB448F00005808 /* CreateNewMessageViewModel.swift in Sources */,
 				8DE2BAE41A7F99B30078B830 /* MessagesDataSource.swift in Sources */,
 				8D2AB2C01A98E99D00E484B0 /* TopicCell.swift in Sources */,

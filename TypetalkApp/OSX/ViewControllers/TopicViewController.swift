@@ -68,6 +68,9 @@ class TopicViewController: NSViewController, NSTableViewDelegate, NSMenuDelegate
         _ = selectedTopic.flatMap { topic -> () in
             let controller = self.parentViewController?.childViewControllers[1].childViewControllers[0] as! MessageViewController
             controller.topic = topic
+
+            let newMessageController = self.parentViewController?.childViewControllers[1].childViewControllers[1] as! CreateNewMessageViewController
+            newMessageController.viewModel.parentViewModel = controller.viewModel
         }
     }
 
@@ -76,14 +79,14 @@ class TopicViewController: NSViewController, NSTableViewDelegate, NSMenuDelegate
     }
 
     func unfavoriteTopic(sender: NSMenuItem) {
-        _ = selectedTopic.map {
+        _ = selectedTopic.flatMap {
             self.viewModel.unfavoriteTopic($0.topic.id)
                 .subscribe()
         }
     }
 
     func favoriteTopic(sender: NSMenuItem) {
-        _ = selectedTopic.map {
+        _ = selectedTopic.flatMap {
             self.viewModel.favoriteTopic($0.topic.id)
                 .subscribe()
         }
