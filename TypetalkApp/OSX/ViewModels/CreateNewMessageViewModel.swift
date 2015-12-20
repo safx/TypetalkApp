@@ -12,7 +12,7 @@ import RxSwift
 
 class CreateNewMessageViewModel {
 
-    var parentViewModel: MessageListViewModel? = nil
+    internal var parentViewModel: MessageListViewModel? = nil
 
     // MARK: - Action
 

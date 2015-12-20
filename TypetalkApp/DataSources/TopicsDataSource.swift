@@ -15,6 +15,8 @@ class TopicsDataSource {
 
     let topics = ObservableArray<TopicWithUserInfo>()
 
+    let disposeBag = DisposeBag()
+
     func fetch(observe: Bool = false) -> Event {
         let s = TypetalkAPI.request(GetTopics())
         s.subscribe(
@@ -30,13 +32,13 @@ class TopicsDataSource {
                 }
             }
         )
+        .addDisposableTo(disposeBag)
         return topics.event
     }
 
     private func startObserving() {
-        // FIXME:RX
-        /*let s = TypetalkAPI.streamimgSignal
-        s.observe { event in
+        TypetalkAPI.streamimgEvent
+        .subscribeNext { event in
             switch event {
             case .CreateTopic(let res):     self.insertTopic(res)
             case .DeleteTopic(let res):     self.deleteTopic(res)
@@ -50,7 +52,8 @@ class TopicsDataSource {
             case .SaveBookmark(let res):    self.updateTopic(res.unread)
             default: ()
             }
-        }*/
+        }
+        .addDisposableTo(disposeBag)
     }
 
     private func insertTopic(topic: TopicWithUserInfo) {
@@ -58,7 +61,7 @@ class TopicsDataSource {
     }
 
     private func insertTopics(topics: [TopicWithUserInfo]) {
-        topics.map { self.insertTopic($0) }
+        topics.forEach { self.insertTopic($0) }
     }
 
     private func find(topicId: TopicID, closure: (TopicWithUserInfo, Int) -> ()) {
@@ -104,7 +107,7 @@ class TopicsDataSource {
     }
 
     private func deleteTopics(topics: [Topic]) {
-        topics.map { self.deleteTopic($0) }
+        topics.forEach { self.deleteTopic($0) }
     }
 
     // MARK: Acting to REST client

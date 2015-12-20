@@ -15,12 +15,11 @@ import RxSwift
 
 class CreateNewMessageViewController: NSViewController {
 
-    @IBOutlet var messageBox: NSTextView!
+    @IBOutlet var messageBox: NSTextField!
     @IBOutlet weak var postButton: NSButton!
     @IBOutlet weak var messageViewController: MessageViewController!
 
     let viewModel = CreateNewMessageViewModel()
-    var parentViewModel: MessageListViewModel?
     var topic: TopicWithUserInfo?
 
     private let disposeBag = DisposeBag()
@@ -28,33 +27,34 @@ class CreateNewMessageViewController: NSViewController {
     override func viewDidLoad() {
         weak var weakSelf = self
 
-        // FIXME:RX
-        /*messageBox
-            .rac_textSignal()
-            .throttle(0.05)
-            .asObservable()
-            .start { res in
+        messageBox
+            .rx_text
+            .throttle(0.05, MainScheduler.sharedInstance)
+            .distinctUntilChanged()
+            .subscribeNext { res in
                 if let text = res as NSString? {
-                    println("\(text)")
+                    Swift.print("\(text)")
                     weakSelf?.postButton.enabled = text.length > 0
                 }
-        }*/
+            }
+            .addDisposableTo(disposeBag)
 
     }
 
     @IBAction func postMessage(sender: AnyObject) {
-        if let text = messageBox.string {
-            if text == "" { return }
+        guard viewModel.parentViewModel != nil else { return }
 
-            viewModel.postMessage(text)
-                .subscribeNext { [weak self] v in
-                    dispatch_async(dispatch_get_main_queue()) {
-                        self?.messageBox.string = ""
-                        ()
-                    }
+        let text = messageBox.stringValue
+        guard !text.isEmpty else { return }
+
+        viewModel.postMessage(text)
+            .subscribeNext { [weak self] v in
+                dispatch_async(dispatch_get_main_queue()) {
+                    self?.messageBox.stringValue = ""
                     ()
                 }
-                .addDisposableTo(disposeBag)
-        }
+                ()
+            }
+            .addDisposableTo(disposeBag)
     }
 }

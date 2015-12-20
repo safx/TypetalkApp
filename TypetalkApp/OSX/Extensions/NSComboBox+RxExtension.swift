@@ -12,7 +12,7 @@ import RxCocoa
 
 extension NSComboBox {
 
-    func rac_selectionSignal() -> Observable<Int> {
+    func rx_selectionSignal() -> Observable<Int> {
         let c = NSNotificationCenter.defaultCenter()
         return create { [weak self] observer in
             let obs = c.addObserverForName(NSComboBoxSelectionDidChangeNotification, object: self, queue: nil) { notification in

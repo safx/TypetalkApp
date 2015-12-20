@@ -14,7 +14,7 @@ import RxSwift
 class MessageViewController: NSViewController, NSTableViewDelegate {
 
     @IBOutlet weak var tableView: NSTableView!
-    private let viewModel = MessageListViewModel()
+    internal let viewModel = MessageListViewModel()
     private var oldNumberOfRows = 0
 
     private let disposeBag = DisposeBag()
