@@ -9,8 +9,8 @@
 import AppKit
 
 class MarkdownView : NSView {
-    // FIXME:RX
-    /*var node: MarkdownBlock?
+
+    var node: MarkdownBlock?
 
     override func drawRect(rect: CGRect) {
         //let context = NSStringDrawingContext()
@@ -19,7 +19,7 @@ class MarkdownView : NSView {
             let c = WithCurrentGraphicsContext(rect.height)
             n.drawInRect(rect, withCurrentGraphicsContext: c, context: nil)
         }
-    }*/
+    }
 }
 
 

@@ -25,3 +25,6 @@
 [submodule "Carthage/Checkouts/TypetalkKit"]
 	path = Carthage/Checkouts/TypetalkKit
 	url = https://github.com/safx/TypetalkKit.git
+[submodule "Carthage/Checkouts/MarkdownKit"]
+	path = Carthage/Checkouts/MarkdownKit
+	url = https://github.com/safx/MarkdownKit.git

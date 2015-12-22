@@ -15,7 +15,7 @@ import Emoji
 import RxSwift
 
 class MessageCell: NSTableCellView {
-    private let message = NSXLabel() //MarkdownView()
+    private let message = MarkdownView()
     private let lastUpdate = NSXLabel()
     private let accountImage = NSImageView()
     private let accountName = NSXLabel()
@@ -44,11 +44,8 @@ class MessageCell: NSTableCellView {
     }
 
     private func modelDidSet() {
-        // FIXME:RX
-        /*let node = MarkdownNode.parse(model!.message)
+        let node = MarkdownNode.parse(model!.message)
         message.node = node.markdownLite
-        */
-        message.stringValue = model!.message
 
         accountName.stringValue = model!.account.name
 
@@ -135,13 +132,12 @@ class MessageCell: NSTableCellView {
 
     // TODO: remove magic number
     class func estimateCellHeight(model: Post, bounds: NSRect) -> CGFloat {
-        let font = NSFont(name: "Helvetica Neue", size: 13)!
-        let attr: [NSObject:AnyObject] = [NSFontAttributeName: font]
-        let mes = model.message
+        //let font = NSFont(name: "Helvetica Neue", size: 13)!
+        //let attr: [NSObject:AnyObject] = [NSFontAttributeName: font]
 
         // TODO: cache node
-        // FIXME:RX let node = MarkdownNode.parse(mes)
-        let messageHeight = CGFloat(80) //FIXME:RX  node.markdownLite.getHeight(bounds.size.width - 74)
+        let node = MarkdownNode.parse(model.message)
+        let messageHeight = node.markdownLite.getHeight(bounds.size.width - 74)
 
         let attachment_heights = model.attachments.map(AttachmentView.viewHeight)
         let total_attachment_height = CGFloat(attachment_heights.reduce(8, combine: +))
