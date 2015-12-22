@@ -7,11 +7,11 @@
 //
 
 import Foundation
-//import MarkdownKit
+import MarkdownKit
 
 @objc class MarkdownNode : NSObject {
     var contents: [NSObject] = [NSObject]()
-    let type: UInt32 = 0
+    let type: UInt32
 
     init(type: UInt32) {
         self.type = type
@@ -140,3 +140,36 @@ import Foundation
     }
 }
 
+
+//import MarkdownKit
+
+extension MarkdownNode {
+    var markdownLite: MarkdownBlock {
+        switch type {
+        case HOEDOWN_NODE_DOCUMENT.rawValue      : return .Document(blockChildren)
+        default: fatalError()
+        }
+    }
+
+    private var inlineChildren: [MarkdownInline] {
+        return contents.map { c in
+            if let t = c as? NSString {
+                return .Text(t as String)
+            } else if let ln = c as? MarkdownLink {
+                return .Link(ln.title as String, NSURL(string: ln.link as String))
+            }
+            fatalError()
+        }
+    }
+
+    private var blockChildren: [MarkdownBlock] {
+        return (contents as! [MarkdownNode]).map { c in
+            switch c.type {
+            case HOEDOWN_NODE_PARAGRAPH.rawValue  : return .Paragraph(c.inlineChildren)
+            case HOEDOWN_NODE_BLOCKCODE.rawValue  : return .Code(c.contents[0] as! NSString as String, "")
+            case HOEDOWN_NODE_BLOCKQUOTE.rawValue : return .Quote(c.blockChildren)
+            default: fatalError()
+            }
+        }
+    }
+}

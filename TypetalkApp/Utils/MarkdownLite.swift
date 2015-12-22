@@ -22,9 +22,9 @@ typealias ContextClosure = (CGContext -> ()) -> ()
         closure(gfx)
     }
 
-    #else
+#else
     import AppKit
-let verticalDirection = CGFloat(-1.0)
+    let verticalDirection = CGFloat(-1.0)
     typealias EdgeInsets = NSEdgeInsets
     typealias Color = NSColor
     typealias Font = NSFont
@@ -39,7 +39,7 @@ let verticalDirection = CGFloat(-1.0)
     }
     class NSStringDrawingContext {}
     extension NSAttributedString {
-        func boundingRectWithSize(size: CGSize, options: NSStringDrawingOptions, context: NSStringDrawingContext?) -> CGRect {
+        func boundingRectWithSizeEx(size: CGSize, options: NSStringDrawingOptions, context: NSStringDrawingContext?) -> CGRect {
             return boundingRectWithSize(size, options: options)
         }
         func drawWithRect(rect: CGRect, options: NSStringDrawingOptions, context: NSStringDrawingContext?) {
@@ -95,11 +95,20 @@ func HorizontalMargin(margin1: EdgeInsets, margin2: EdgeInsets) -> CGFloat {
 enum MarkdownInline {
     case Link(String, NSURL?)
     case Text(String)
+}
 
+enum MarkdownBlock {
+    case Document([MarkdownBlock])
+    case Quote([MarkdownBlock])
+    case Paragraph([MarkdownInline])
+    case Code(String, String)
+}
+
+extension MarkdownInline {
     internal var attributedString: NSMutableAttributedString {
         switch self {
         case .Link(let (text, url)):
-            var attrs: [NSObject:AnyObject] = [
+            var attrs: [String:AnyObject] = [
                 NSFontAttributeName: DefaultFont,
                 NSForegroundColorAttributeName: Color.blueColor(),
                 NSUnderlineColorAttributeName: Color.blueColor(),
@@ -111,7 +120,7 @@ enum MarkdownInline {
             }
             return NSMutableAttributedString(string: text.emojiUnescapedString, attributes: attrs)
         case .Text(let text):
-            let attrs: [NSObject:AnyObject] = [
+            let attrs: [String:AnyObject] = [
                 NSFontAttributeName: DefaultFont
             ]
             return NSMutableAttributedString(string: text.emojiUnescapedString, attributes: attrs)
@@ -119,12 +128,7 @@ enum MarkdownInline {
     }
 }
 
-enum MarkdownBlock {
-    case Document([MarkdownBlock])
-    case Quote([MarkdownBlock])
-    case Paragraph([MarkdownInline])
-    case Code(String, String)
-
+extension MarkdownBlock {
     func getHeight(width: CGFloat) -> CGFloat {
         let size = CGSize(width: CGFloat(width), height: CGFloat.max)
         switch self {
@@ -140,12 +144,12 @@ enum MarkdownBlock {
                 } + VerticalMargin(QuoteMargin, margin2: QuotePadding)
         case .Paragraph:
             let s = CGSize(width: width - HorizontalMargin(ParagraphMargin), height: CGFloat.max)
-            let bounds = attributedString.boundingRectWithSize(s, options: drawingOptions, context: nil)
+            let bounds = attributedString.boundingRectWithSizeEx(s, options: drawingOptions, context: nil)
             return bounds.height + VerticalMargin(ParagraphMargin)
         case .Code:
             let s = CGSize(width: width - HorizontalMargin(CodeMargin, margin2: CodePadding), height: CGFloat.max)
-            let bounds = attributedString.boundingRectWithSize(s, options: drawingOptions, context: nil)
-            return bounds.height + VerticalMargin(CodeMargin, CodePadding)
+            let bounds = attributedString.boundingRectWithSizeEx(s, options: drawingOptions, context: nil)
+            return bounds.height + VerticalMargin(CodeMargin, margin2: CodePadding)
         }
     }
 
@@ -156,7 +160,7 @@ enum MarkdownBlock {
     private var attributedString: NSMutableAttributedString {
         switch self {
         case .Code(let (code, lang)):
-            let attrs: [NSObject:AnyObject] = [
+            let attrs: [String:AnyObject] = [
                 NSFontAttributeName: FixedFont
             ]
             return NSMutableAttributedString(string: code, attributes: attrs)
@@ -221,35 +225,3 @@ enum MarkdownBlock {
     }
 }
 
-//import MarkdownKit
-
-extension MarkdownNode {
-    var markdownLite: MarkdownBlock {
-        switch type {
-        case HOEDOWN_NODE_DOCUMENT.rawValue      : return .Document(blockChildren)
-        default: fatalError()
-        }
-    }
-
-    private var inlineChildren: [MarkdownInline] {
-        return contents.map { c in
-            if let t = c as? NSString {
-                return .Text(t) as (String)
-            } else if let ln = c as? MarkdownLink {
-                return .Link(ln.title as String, NSURL(string: ln.link as String))
-            }
-            fatalError()
-        }
-    }
-
-    private var blockChildren: [MarkdownBlock] {
-        return map(contents as! [MarkdownNode]) { c in
-            switch c.type {
-            case HOEDOWN_NODE_PARAGRAPH.value     : return .Paragraph(c.inlineChildren)
-            case HOEDOWN_NODE_BLOCKCODE.value     : return .Code(c.contents[0] as! NSString as String, "")
-            case HOEDOWN_NODE_BLOCKQUOTE.value    : return .Quote(c.blockChildren)
-            default: fatalError()
-            }
-        }
-    }
-}

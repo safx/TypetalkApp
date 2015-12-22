@@ -13,7 +13,7 @@ import TypetalkKit
 import RxSwift
 
 
-class CreateNewMessageViewController: NSViewController {
+class CreateNewMessageViewController: NSViewController, NSTextFieldDelegate {
 
     @IBOutlet var messageBox: NSTextField!
     @IBOutlet weak var postButton: NSButton!
@@ -27,6 +27,7 @@ class CreateNewMessageViewController: NSViewController {
     override func viewDidLoad() {
         weak var weakSelf = self
 
+        messageBox.delegate = self
         messageBox
             .rx_text
             .throttle(0.05, MainScheduler.sharedInstance)
@@ -56,5 +57,28 @@ class CreateNewMessageViewController: NSViewController {
                 ()
             }
             .addDisposableTo(disposeBag)
+    }
+
+    // MARK: - NSTextFieldDelegate
+
+    func handleCurrentEvent() -> Bool {
+        guard let ev = NSApp.currentEvent else { return false }
+        guard ev.type == .KeyDown else { return false }
+        let commandKey = ev.modifierFlags.contains(.CommandKeyMask)
+        if ev.keyCode == 0x24 && commandKey {
+            postMessage(messageBox)
+            return true
+        }
+        return false
+    }
+
+    func control(control: NSControl, textView: NSTextView, doCommandBySelector commandSelector: Selector) -> Bool {
+        if commandSelector == Selector("insertNewline:") {
+            textView.insertNewlineIgnoringFieldEditor(self)
+            return true
+        } else if !handleCurrentEvent() {
+            print(commandSelector.description)
+        }
+        return false
     }
 }

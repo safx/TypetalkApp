@@ -1,6 +1,7 @@
 github "Alamofire/Alamofire" "3.1.4"
 github "safx/Emoji-swift" "0.0.2"
-github "AliSoftware/OHHTTPStubs" "4.6.0"
+github "safx/MarkdownKit" "0.2.0"
+github "AliSoftware/OHHTTPStubs" "4.7.0"
 github "antitypical/Result" "1.0.1"
 github "ReactiveX/RxSwift" "2.0.0-beta.4"
 github "daltoniam/Starscream" "1.0.2"
