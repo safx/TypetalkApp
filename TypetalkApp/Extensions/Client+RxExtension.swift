@@ -20,7 +20,6 @@ extension TypetalkAPI {
 
     static func request<T: APIKitRequest>(request: T) -> Observable<T.Response> {
         let a = requestImpl(request)
-                //.subscribeOn(...)
         let s = isSignedIn ? a : authorize().concat(a)
         return s.catchError { error -> Observable<T.Response> in
             return requestRefreshToken(nil as T.Response?).concat(a)
@@ -33,6 +32,7 @@ extension TypetalkAPI {
             }
             return failWith(error)*/
         }
+        //.observeOn(...)
     }
 
     private static func requestImpl<T: APIKitRequest>(request: T) -> Observable<T.Response> {
@@ -113,13 +113,15 @@ extension TypetalkAPI {
                     if err.domain == "Websocket" && err.code == 1 { // Invalid HTTP upgrade in Starscream
                         // attempt to connect with HTTP first, and then upgrade to WebSocket
                         return delay.concat(TypetalkAPI.request(GetNotificationStatus()).map { _ in
-                            return StreamingEvent.Connected // FIXME
+                                return StreamingEvent.Connected
                             })
+                            .skip(1) // ignore `StreamingEvent.Connected` above
                             .concat(TypetalkAPI.sharedPublishSubject)
                     }
 
                     return delay.concat(TypetalkAPI.sharedPublishSubject)
             }
+            //.observeOn(...)
         }
         return Static.instance
     }

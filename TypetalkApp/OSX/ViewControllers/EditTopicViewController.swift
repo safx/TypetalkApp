@@ -165,7 +165,7 @@ class EditTopicViewController: NSViewController, NSTableViewDataSource, NSTableV
                 }
                 if i == "name"    { return invite.account?.name ?? "" }
                 if i == "status"  { return invite.status }
-                if i == "date"    { return invite.createdAt!.humanReadableTimeInterval }
+                if i == "date"    { return invite.createdAt?.humanReadableTimeInterval ?? "" }
             }
         }
         return nil

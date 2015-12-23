@@ -70,7 +70,7 @@ class MessageCell: NSTableCellView {
             }, onError: { err -> Void in
                 Swift.print("\(err)")
             }, onCompleted: { () -> Void in
-                Swift.print("Completed")
+                //Swift.print("Completed \(url)")
             })
             .addDisposableTo(disposeBag)
 
