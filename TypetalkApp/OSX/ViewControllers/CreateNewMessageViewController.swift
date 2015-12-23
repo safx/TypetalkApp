@@ -61,8 +61,7 @@ class CreateNewMessageViewController: NSViewController, NSTextFieldDelegate {
 
     // MARK: - NSTextFieldDelegate
 
-    func handleCurrentEvent() -> Bool {
-        guard let ev = NSApp.currentEvent else { return false }
+    func handleCurrentEvent(ev: NSEvent) -> Bool {
         guard ev.type == .KeyDown else { return false }
         let commandKey = ev.modifierFlags.contains(.CommandKeyMask)
         if ev.keyCode == 0x24 && commandKey {
@@ -76,8 +75,11 @@ class CreateNewMessageViewController: NSViewController, NSTextFieldDelegate {
         if commandSelector == Selector("insertNewline:") {
             textView.insertNewlineIgnoringFieldEditor(self)
             return true
-        } else if !handleCurrentEvent() {
-            print(commandSelector.description)
+        } else {
+            guard let ev = NSApp.currentEvent else { return false }
+            if !handleCurrentEvent(ev) {
+                print(commandSelector.description)
+            }
         }
         return false
     }
