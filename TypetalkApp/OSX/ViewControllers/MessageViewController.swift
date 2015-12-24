@@ -82,11 +82,10 @@ class MessageViewController: NSViewController, NSTableViewDelegate {
             .addDisposableTo(disposeBag)
 
         viewModel.bookmarkIndex
+            .observeOn(MainScheduler.sharedInstance)
             .subscribeNext { idx in
-                dispatch_async(dispatch_get_main_queue()) {
-                    weakTableView?.scrollRowToVisible(idx)
-                    ()
-                }
+                assert(NSThread.mainThread() == NSThread.currentThread(), "UI Thread expected.")
+                weakTableView?.scrollRowToVisible(idx)
             }
             .addDisposableTo(disposeBag)
 

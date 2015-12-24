@@ -82,6 +82,7 @@ class TopicViewController: NSViewController, NSTableViewDelegate, NSMenuDelegate
         _ = selectedTopic.flatMap {
             self.viewModel.unfavoriteTopic($0.topic.id)
                 .subscribe()
+                .addDisposableTo(disposeBag)
         }
     }
 
@@ -89,6 +90,7 @@ class TopicViewController: NSViewController, NSTableViewDelegate, NSMenuDelegate
         _ = selectedTopic.flatMap {
             self.viewModel.favoriteTopic($0.topic.id)
                 .subscribe()
+                .addDisposableTo(disposeBag)
         }
     }
 
@@ -107,16 +109,16 @@ class TopicViewController: NSViewController, NSTableViewDelegate, NSMenuDelegate
     // MARK: - NSMenuDelegate
 
     func menuNeedsUpdate(menu: NSMenu) {
-        if let topic = selectedTopic {
-            menu.removeAllItems()
-            let item1 = NSMenuItem(title: topic.favorite ? "Unfavorite topic" : "Favorite topic",
-                action: topic.favorite ? "unfavoriteTopic:" : "favoriteTopic:", keyEquivalent: "f")
-            let item2 = NSMenuItem(title: "Edit topic", action: "editTopic:", keyEquivalent: "e")
-            item1.enabled = true
-            item2.enabled = true
-            menu.addItem(item1)
-            menu.addItem(item2)
-        }
+        guard let topic = selectedTopic else { return }
+
+        menu.removeAllItems()
+        let item1 = NSMenuItem(title: topic.favorite ? "Unfavorite topic" : "Favorite topic",
+            action: topic.favorite ? "unfavoriteTopic:" : "favoriteTopic:", keyEquivalent: "f")
+        let item2 = NSMenuItem(title: "Edit topic", action: "editTopic:", keyEquivalent: "e")
+        item1.enabled = true
+        item2.enabled = true
+        menu.addItem(item1)
+        menu.addItem(item2)
     }
 
     // MARK: - NSTableViewDelegate

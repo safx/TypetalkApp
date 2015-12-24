@@ -41,14 +41,16 @@ class EditTopicViewModel: NSObject {
 
         model.fetch(topic.id)
 
-        let ids = model.teams.map { t -> TeamID in t.count == 0 ? -1 : t[0].team.id }
+        let ids = model.teams.map { t -> TeamID in
+            t.count == 0 ? -1 : t[0].team.id
+        }
         combineLatest(ids, teamList) { ($0, $1) }
             .subscribeNext { (teamId, teams) in
                 self.teamId.value = teamId
                 self.oldTeamId = teamId
-                for i in 0..<teams.count {
-                    if teams[i].id == teamId {
-                        self.teamListIndex.value = i
+                for (idx, team) in teams.enumerate() {
+                    if team.id == teamId {
+                        self.teamListIndex.value = idx
                         return
                     }
                 }
@@ -58,10 +60,11 @@ class EditTopicViewModel: NSObject {
         TypetalkAPI.request(GetTeams())
             .map { $0.teams }
             .filter { $0.count > 0 }
-            .subscribeNext { teams in
+            .map { teams in
                 let ts = teams.map { TeamListItem(team: $0) }
-                self.teamList.value = [TeamListItem()] + ts
+                return [TeamListItem()] + ts
             }
+            .bindTo(self.teamList)
             .addDisposableTo(disposeBag)
     }
 

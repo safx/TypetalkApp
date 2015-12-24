@@ -63,28 +63,16 @@ class EditTopicViewController: NSViewController, NSTableViewDataSource, NSTableV
             }
             .addDisposableTo(disposeBag)
 
-        // FIXME:RX
-        /*teamListBox
-            .rac_selectionSignal()
-            .combineLatestWith(viewModel.teamList.values)
-            .map { $0.1 }
-            .filter { $0.count > 0 }
-            .start { [weak self] teams in
-                if let s = self {
-                    let idx = s.teamListBox.indexOfSelectedItem
-                    if 0 <= idx && idx < teams.count {
-                        s.viewModel.teamId.put(teams[idx].id)
-                    }
-                }
-            }
-        .addDisposableTo(disposeBag)
-*/
+        combineLatest(viewModel.teamList, teamListBox.rx_selectionSignal()) { ($0, $1) }
+            .filter { teams, idx in teams.count > 0 && (0..<teams.count).contains(idx) }
+            .map { teams, idx in TeamID(teams[idx].id) }
+            .bindTo(viewModel.teamId)
+            .addDisposableTo(disposeBag)
+
         topicNameLabel
             .rx_text
             .throttle(0.05, MainScheduler.sharedInstance)
-            .subscribeNext { [weak self] res in
-                self?.viewModel.topicName.value = res
-            }
+            .bindTo(viewModel.topicName)
             .addDisposableTo(disposeBag)
 
         viewModel.accounts
