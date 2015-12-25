@@ -17,7 +17,7 @@ class MarkdownView : NSView {
         //context.minimumScaleFactor = 0.5
         if let n = node {
             let c = WithCurrentGraphicsContext(rect.height)
-            n.drawInRect(rect, withCurrentGraphicsContext: c, context: nil)
+            n.drawInRect(rect, context: nil, withCurrentGraphicsContext: c)
         }
     }
 }

@@ -63,10 +63,9 @@ class MessageCell: NSTableCellView {
 
         Alamofire.request(Alamofire.Method.GET, url)
             .rx_response()
+            .observeOn(MainScheduler.sharedInstance)
             .subscribe(onNext: { data -> Void in
-                dispatch_async(dispatch_get_main_queue(), { () in
-                    self.accountImage.image = NSImage(data: data)
-                })
+                self.accountImage.image = NSImage(data: data)
             }, onError: { err -> Void in
                 Swift.print("\(err)")
             }, onCompleted: { () -> Void in

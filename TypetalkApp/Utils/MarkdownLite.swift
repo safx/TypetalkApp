@@ -130,7 +130,7 @@ extension MarkdownInline {
 
 extension MarkdownBlock {
     func getHeight(width: CGFloat) -> CGFloat {
-        let size = CGSize(width: CGFloat(width), height: CGFloat.max)
+        //let size = CGSize(width: CGFloat(width), height: CGFloat.max)
         switch self {
         case .Document(let blocks):
             return blocks.reduce(0) { a, e in
@@ -159,7 +159,7 @@ extension MarkdownBlock {
 
     private var attributedString: NSMutableAttributedString {
         switch self {
-        case .Code(let (code, lang)):
+        case .Code(let (code, _/*lang*/)):
             let attrs: [String:AnyObject] = [
                 NSFontAttributeName: FixedFont
             ]
@@ -180,15 +180,15 @@ extension MarkdownBlock {
     }
 
     private func drawChildrenInRect(elements: [MarkdownBlock], rect: CGRect, withCurrentGraphicsContext: ContextClosure, context: NSStringDrawingContext?) {
-        elements.reduce(CGFloat(0)) { top, elem in
+        _ = elements.reduce(CGFloat(0)) { top, elem in
             let offsetRect = rect.offsetBy(dx: 0, dy: top)
-            elem.drawInRect(offsetRect, withCurrentGraphicsContext: withCurrentGraphicsContext, context: context)
+            elem.drawInRect(offsetRect, context: context, withCurrentGraphicsContext: withCurrentGraphicsContext)
             let height = elem.getHeight(rect.size.width)
             return top + height * verticalDirection
         }
     }
 
-    func drawInRect(rect: CGRect, withCurrentGraphicsContext: ContextClosure, context: NSStringDrawingContext? = nil) {
+    func drawInRect(rect: CGRect, context: NSStringDrawingContext? = nil, withCurrentGraphicsContext: ContextClosure) {
         let height = self.getHeight(rect.size.width)
 
         switch self {
@@ -206,10 +206,10 @@ extension MarkdownBlock {
 
             let rect2 = UIEdgeInsetsInsetRect(rect1, insets: QuotePadding)
             drawChildrenInRect(blocks, rect: rect2, withCurrentGraphicsContext: withCurrentGraphicsContext, context: context)
-        case .Paragraph(let inlines):
+        case .Paragraph: //(let inlines):
             let r = UIEdgeInsetsInsetRect(rect, insets: ParagraphMargin)
             attributedString.drawWithRect(r, options: drawingOptions, context: context)
-        case .Code(let (code, lang)):
+        case .Code: //(let (code, lang)):
             let rect1 = UIEdgeInsetsInsetRect(rect, insets: CodeMargin)
 
             withCurrentGraphicsContext { gfx -> () in

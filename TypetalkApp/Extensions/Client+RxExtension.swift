@@ -32,7 +32,6 @@ extension TypetalkAPI {
             }
             return failWith(error)*/
         }
-        //.observeOn(...)
     }
 
     private static func requestImpl<T: APIKitRequest>(request: T) -> Observable<T.Response> {
@@ -48,6 +47,7 @@ extension TypetalkAPI {
             }
             return AnonymousDisposable { self.cancelRequest(T) }
         }
+        .observeOn(SerialDispatchQueueScheduler(globalConcurrentQueuePriority: .Default))
     }
 }
 
@@ -115,13 +115,13 @@ extension TypetalkAPI {
                         return delay.concat(TypetalkAPI.request(GetNotificationStatus()).map { _ in
                                 return StreamingEvent.Connected
                             })
-                            .skip(1) // ignore `StreamingEvent.Connected` above
+                            .ignoreElements() // ignore `StreamingEvent.Connected` above
                             .concat(TypetalkAPI.sharedPublishSubject)
                     }
 
                     return delay.concat(TypetalkAPI.sharedPublishSubject)
             }
-            //.observeOn(...)
+            .observeOn(SerialDispatchQueueScheduler(globalConcurrentQueuePriority: .Default))
         }
         return Static.instance
     }

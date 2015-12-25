@@ -62,7 +62,7 @@ class MessageViewController: NSViewController, NSTableViewDelegate {
                                 }
                             }
                         }
-                    case .Deleted(let (indeces, elements)):
+                    case .Deleted(let (indeces, _/*elements*/)):
                         if rows == 0 {
                             NSTableView.reloadData(weakTableView)
                         } else {

@@ -27,7 +27,7 @@ extension Alamofire.Request {
             }
             return AnonymousDisposable { self.cancel() }
         }
-        //FIXME:RX .observeOn(...)
+        .observeOn(SerialDispatchQueueScheduler(globalConcurrentQueuePriority: .Default))
     }
 
 }

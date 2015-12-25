@@ -13,6 +13,7 @@ import Emoji
 class CompletionDataSource {
     let accounts = Variable([AccountWithOnlineStatus]())
     let talks = Variable([Talk]())
+    let disposeBag = DisposeBag()
 
     // MARK: - Model ops
 
@@ -33,6 +34,7 @@ class CompletionDataSource {
             onCompleted:{ () in
             }
         )
+        .addDisposableTo(disposeBag)
     }
     
     private func fetchTalks(topicId: TopicID) {
@@ -47,6 +49,7 @@ class CompletionDataSource {
             onCompleted:{ () in
             }
         )
+        .addDisposableTo(disposeBag)
     }
 
     private func _filterfunc<T>(foundWord: String, key:(T -> String))(e: T) -> Bool {
