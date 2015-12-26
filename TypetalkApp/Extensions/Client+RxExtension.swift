@@ -103,23 +103,27 @@ extension TypetalkAPI {
     static var streamimgEvent : Observable<StreamingEvent> {
         struct Static {
             static let instance = TypetalkAPI.streamimgObservableImpl()
-                .catchError { error -> Observable<StreamingEvent> in
-                    let err = error as NSError
-                    print("Streaming Error: \(err)")
+                .retryWhen { (errors: Observable<ErrorType>) in
+                    return errors
+                        .flatMapWithIndex{ error, retryCount -> Observable<Int64> in
+                            let err = error as NSError
 
-                    let delay: Observable<StreamingEvent> = empty()
-                        .delaySubscription(TypetalkAPI.retryInterval(err), MainScheduler.sharedInstance)
+                            let c = TypetalkAPI.retryInterval(err, count: retryCount)
+                            let s = SerialDispatchQueueScheduler(globalConcurrentQueuePriority: .Low)
 
-                    if err.domain == "Websocket" && err.code == 1 { // Invalid HTTP upgrade in Starscream
-                        // attempt to connect with HTTP first, and then upgrade to WebSocket
-                        return delay.concat(TypetalkAPI.request(GetNotificationStatus()).map { _ in
-                                return StreamingEvent.Connected
-                            })
-                            .ignoreElements() // ignore `StreamingEvent.Connected` above
-                            .concat(TypetalkAPI.sharedPublishSubject)
+                            if err.domain == "Websocket" && err.code == 1 { // Invalid HTTP upgrade in Starscream
+                                // attempt to connect with HTTP first, and then retry (i.e., upgrade to WebSocket)
+                                let reconnect = TypetalkAPI.request(GetNotificationStatus()).map { _ in
+                                    return Int64(0)
+                                }
+
+                                return timer(c, s)
+                                    .ignoreElements() // surpress emitting from timer
+                                    .concat(reconnect)
+                            }
+
+                            return timer(c, s)
                     }
-
-                    return delay.concat(TypetalkAPI.sharedPublishSubject)
             }
             .observeOn(SerialDispatchQueueScheduler(globalConcurrentQueuePriority: .Default))
         }
@@ -154,8 +158,8 @@ extension TypetalkAPI {
         return subject
     }
 
-    private class func retryInterval(error: NSError) -> NSTimeInterval {
-        return 10
+    private class func retryInterval(error: NSError, count: Int) -> NSTimeInterval {
+        return NSTimeInterval(10 + count * 5)
     }
 }
 
