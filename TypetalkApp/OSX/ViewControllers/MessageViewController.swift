@@ -43,7 +43,7 @@ class MessageViewController: NSViewController, NSTableViewDelegate {
 
         weak var weakSelf = self
         weak var weakTableView = tableView
-        viewModel.posts.event
+        viewModel.posts.rx_event
             .subscribeNext { next in
                 if let s = weakSelf {
                     let rows = self.viewModel.posts.count

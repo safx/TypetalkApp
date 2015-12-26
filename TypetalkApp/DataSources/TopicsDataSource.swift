@@ -11,7 +11,7 @@ import RxSwift
 
 
 class TopicsDataSource {
-    typealias Event = ObservableArray<TopicWithUserInfo>.Event
+    typealias Event = ObservableArray<TopicWithUserInfo>.EventObservableType
 
     let topics = ObservableArray<TopicWithUserInfo>()
 
@@ -33,7 +33,7 @@ class TopicsDataSource {
             }
         )
         .addDisposableTo(disposeBag)
-        return topics.event
+        return topics.rx_event
     }
 
     private func startObserving() {

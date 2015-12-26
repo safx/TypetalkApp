@@ -17,6 +17,7 @@ class CreateTopicViewModel: NSObject, UITableViewDataSource {
     var parentViewModel: TopicListViewModel?
     var topicNameCell: TextFieldCell?
     let topicTitle = Variable("")
+    private let disposeBag = DisposeBag()
 
     // MARK: - Table view data source
 
@@ -29,29 +30,27 @@ class CreateTopicViewModel: NSObject, UITableViewDataSource {
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("TextFieldCell", forIndexPath: indexPath)
+
         if indexPath.row == 0 {
             if let c = topicNameCell {
                 return c
             }
-            topicNameCell = tableView.dequeueReusableCellWithIdentifier("TextFieldCell", forIndexPath: indexPath) as? TextFieldCell
-            // FIXME:RX
-            /*
-            topicNameCell?.textField
-                .rac_textSignal()
-                .throttle(0.05)
+            guard let topicNameCell = cell as? TextFieldCell else {
+                return cell
+            }
+            topicNameCell.textField
+                .rx_text
+                .throttle(0.05, SerialDispatchQueueScheduler(globalConcurrentQueuePriority: .Low))
+                .distinctUntilChanged()
                 .asObservable()
-                .start { [weak self] res in
-                           if let text = res as NSString? {
-                               println("\(text)")
-                               self?.topicTitle.put(text)
-                           }
-                       }
-*/
-            return topicNameCell!
+                .observeOn(MainScheduler.sharedInstance)
+                .bindTo(topicTitle)
+                .addDisposableTo(disposeBag)
+
+            return topicNameCell
         }
 
-        let cell = tableView.dequeueReusableCellWithIdentifier("TextFieldCell", forIndexPath: indexPath) as! TextFieldCell
-        //cell.model = posts.value[indexPath.row]
         return cell
     }
 

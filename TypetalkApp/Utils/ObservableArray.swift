@@ -18,11 +18,19 @@ public enum ArrayElementsChangeEvent<T> {
 public class ObservableArray<T> {
     public typealias Element = T
     public typealias EventType = ArrayElementsChangeEvent<T>
-    public typealias Event = Observable<EventType>
+    public typealias EventObservableType = Observable<EventType>
+    public typealias ArrayObservableType = Observable<[T]>
 
+    public  var rx_event: EventObservableType {
+        return eventSubject
+    }
+    public  var rx_elements: ArrayObservableType {
+        return elementsSubject
+    }
+    private var eventSubject: PublishSubject<EventType>!
+    private var elementsSubject: PublishSubject<[T]>!
     private var elements = [Element]()
     private var valueChangedClosure: (EventType -> ())?
-    public  var event: Event!
 
     public var startIndex: Int          { return elements.startIndex }
     public var endIndex: Int            { return elements.endIndex }
@@ -35,12 +43,13 @@ public class ObservableArray<T> {
     public var debugDescription: String { return elements.debugDescription }
 
     public init() {
-        event = create { ob in
-            self.valueChangedClosure = { diff -> () in
-                ob.on(.Next(diff))
-            }
-            return AnonymousDisposable {} // FIXME
-        }// .deliverOn(QueueScheduler())
+        eventSubject = PublishSubject<EventType>()
+        elementsSubject = PublishSubject<[T]>()
+
+        valueChangedClosure = { diff -> () in
+            self.elementsSubject.on(.Next(self.elements))
+            self.eventSubject.on(.Next(diff))
+        }
     }
 
     public func reserveCapacity(minimumCapacity: Int) {

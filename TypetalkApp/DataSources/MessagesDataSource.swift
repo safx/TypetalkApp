@@ -10,7 +10,7 @@ import TypetalkKit
 import RxSwift
 
 class MessagesDataSource {
-    typealias Event = ObservableArray<Post>.Event
+    typealias Event = ObservableArray<Post>.EventObservableType
 
     let team = Variable(Team())
     let topic = Variable(Topic())

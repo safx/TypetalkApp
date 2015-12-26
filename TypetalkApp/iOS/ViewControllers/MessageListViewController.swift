@@ -76,7 +76,7 @@ class MessageListViewController: SLKTextViewController {
         self.configureView()
 
         weak var weakTableView = tableView
-        viewModel.model.posts.event
+        viewModel.model.posts.rx_event
             .subscribeNext { next in
                 switch next {
                 case .Inserted(let indeces):
