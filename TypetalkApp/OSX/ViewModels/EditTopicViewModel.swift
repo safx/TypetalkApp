@@ -57,7 +57,7 @@ class EditTopicViewModel: NSObject {
             }
             .addDisposableTo(disposeBag)
 
-        TypetalkAPI.request(GetTeams())
+        TypetalkAPI.rx_sendRequest(GetTeams())
             .map { $0.teams }
             .filter { $0.count > 0 }
             .map { teams in

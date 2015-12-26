@@ -48,7 +48,7 @@ class AttachmentView: NSView {
                 }
 
                 if let downloadRequest = DownloadAttachment(url: m.apiUrl, attachmentType: AttachmentView.resolveAttachmentType(m)) {
-                    let s = TypetalkAPI.request(downloadRequest)
+                    let s = TypetalkAPI.rx_sendRequest(downloadRequest)
                     s.subscribe(
                         onNext: { res in
                             Swift.print("** \(m.attachment.fileName)")

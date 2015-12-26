@@ -18,7 +18,7 @@ typealias TopicInvite = Invite // FIXME:RX
 
 extension TypetalkAPI {
 
-    static func request<T: APIKitRequest>(request: T) -> Observable<T.Response> {
+    static func rx_sendRequest<T: APIKitRequest>(request: T) -> Observable<T.Response> {
         let a = requestImpl(request)
         let s = isSignedIn ? a : authorize().concat(a)
         return s.catchError { error -> Observable<T.Response> in
@@ -100,7 +100,7 @@ extension TypetalkAPI {
 
 extension TypetalkAPI {
 
-    static var streamimgEvent : Observable<StreamingEvent> {
+    static var rx_streamimg : Observable<StreamingEvent> {
         struct Static {
             static let instance = TypetalkAPI.streamimgObservableImpl()
                 .retryWhen { (errors: Observable<ErrorType>) in
@@ -113,7 +113,7 @@ extension TypetalkAPI {
 
                             if err.domain == "Websocket" && err.code == 1 { // Invalid HTTP upgrade in Starscream
                                 // attempt to connect with HTTP first, and then retry (i.e., upgrade to WebSocket)
-                                let reconnect = TypetalkAPI.request(GetNotificationStatus()).map { _ in
+                                let reconnect = TypetalkAPI.rx_sendRequest(GetNotificationStatus()).map { _ in
                                     return Int64(0)
                                 }
 

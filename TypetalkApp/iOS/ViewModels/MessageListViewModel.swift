@@ -29,7 +29,7 @@ class MessageListViewModel: NSObject, UITableViewDataSource {
 
     func post(message: String) {
         let id = model.topic.value.id
-        let s = TypetalkAPI.request(PostMessage(topicId: id, message: message, replyTo: nil, fileKeys: [], talkIds: []))
+        let s = TypetalkAPI.rx_sendRequest(PostMessage(topicId: id, message: message, replyTo: nil, fileKeys: [], talkIds: []))
         s.subscribe (
             onNext: { res in
                 print("\(res)")

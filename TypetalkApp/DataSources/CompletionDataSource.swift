@@ -23,7 +23,7 @@ class CompletionDataSource {
     }
     
     private func fetchTopicMembers(topicId: TopicID) {
-        let s = TypetalkAPI.request(GetTopicMembers(topicId: topicId))
+        let s = TypetalkAPI.rx_sendRequest(GetTopicMembers(topicId: topicId))
         s.subscribe(
             onNext: { res in
                 self.accounts.value = res.accounts
@@ -38,7 +38,7 @@ class CompletionDataSource {
     }
     
     private func fetchTalks(topicId: TopicID) {
-        let s = TypetalkAPI.request(GetTalks(topicId: topicId))
+        let s = TypetalkAPI.rx_sendRequest(GetTalks(topicId: topicId))
         s.subscribe(
             onNext: { res in
                 self.talks.value = res.talks

@@ -18,7 +18,7 @@ class TopicsDataSource {
     let disposeBag = DisposeBag()
 
     func fetch(observe: Bool = false) -> Event {
-        let s = TypetalkAPI.request(GetTopics())
+        let s = TypetalkAPI.rx_sendRequest(GetTopics())
         s.subscribe(
             onNext: { res in
                 self.topics.extend(res.topics)
@@ -37,7 +37,7 @@ class TopicsDataSource {
     }
 
     private func startObserving() {
-        TypetalkAPI.streamimgEvent
+        TypetalkAPI.rx_streamimg
         .subscribeNext { event in
             switch event {
             case .CreateTopic(let res):     self.insertTopic(res)
@@ -116,18 +116,18 @@ class TopicsDataSource {
         let teamId: TeamID? = nil
         let inviteMembers = [String]()
         let inviteMessage = ""
-        return TypetalkAPI.request(CreateTopic(name: topicName, teamId: teamId, inviteMembers: inviteMembers, inviteMessage: inviteMessage))
+        return TypetalkAPI.rx_sendRequest(CreateTopic(name: topicName, teamId: teamId, inviteMembers: inviteMembers, inviteMessage: inviteMessage))
     }
 
     func deleteTopic(topicId: TopicID) -> Observable<DeleteTopic.Response> {
-        return TypetalkAPI.request(DeleteTopic(topicId: topicId))
+        return TypetalkAPI.rx_sendRequest(DeleteTopic(topicId: topicId))
     }
 
     func favoriteTopic(topicId: TopicID) -> Observable<FavoriteTopic.Response> {
-        return TypetalkAPI.request(FavoriteTopic(topicId: topicId))
+        return TypetalkAPI.rx_sendRequest(FavoriteTopic(topicId: topicId))
     }
 
     func unfavoriteTopic(topicId: TopicID) -> Observable<UnfavoriteTopic.Response> {
-        return TypetalkAPI.request(UnfavoriteTopic(topicId: topicId))
+        return TypetalkAPI.rx_sendRequest(UnfavoriteTopic(topicId: topicId))
     }
 }

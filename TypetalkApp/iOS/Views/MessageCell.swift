@@ -66,7 +66,7 @@ class MessageCell: UITableViewCell {
                 }
 
                 if let downloadRequest = DownloadAttachment(url: i.apiUrl, attachmentType: resolveAttachmentType(i)) {
-                    let s = TypetalkAPI.request(downloadRequest)
+                    let s = TypetalkAPI.rx_sendRequest(downloadRequest)
                     s.subscribe(
                         onNext: { res in
                             print("** \(i.attachment.fileName)")

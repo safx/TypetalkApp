@@ -43,7 +43,7 @@ class MessagesDataSource {
     }
     
     private func fetch_impl(topicId: TopicID, from: PostID?) {
-        let s = TypetalkAPI.request(GetMessages(topicId: topicId, count:100, from: from))
+        let s = TypetalkAPI.rx_sendRequest(GetMessages(topicId: topicId, count:100, from: from))
         s.subscribe(
             onNext: { res in
                 let firstFetch = self.posts.count == 0
@@ -68,7 +68,7 @@ class MessagesDataSource {
     }
     
     private func startObserving() {
-        TypetalkAPI.streamimgEvent
+        TypetalkAPI.rx_streamimg
         .subscribeNext { event in
             switch event {
             case .PostMessage(let res):   self.appendMessage(res.post!)
@@ -136,6 +136,6 @@ class MessagesDataSource {
 
     func postMessage(message: String) -> Observable<PostMessage.Response>  {
         let id = topic.value.id
-        return TypetalkAPI.request(PostMessage(topicId: id, message: message, replyTo: nil, fileKeys: [], talkIds: []))
+        return TypetalkAPI.rx_sendRequest(PostMessage(topicId: id, message: message, replyTo: nil, fileKeys: [], talkIds: []))
     }
 }

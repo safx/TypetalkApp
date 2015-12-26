@@ -22,7 +22,7 @@ class TopicInfoDataSource {
     // MARK: - Model ops
 
     func fetch(topicId: TopicID) {
-        let s = TypetalkAPI.request(GetTopicDetails(topicId: topicId))
+        let s = TypetalkAPI.rx_sendRequest(GetTopicDetails(topicId: topicId))
         s.subscribeNext { res in
             self.topic.value = res.topic
             self.teams.value = res.teams
@@ -33,10 +33,10 @@ class TopicInfoDataSource {
     }
 
     func updateTopic(topicId: TopicID, name: String, teamId: TeamID?) -> Observable<UpdateTopic.Response> {
-        return TypetalkAPI.request(UpdateTopic(topicId: topicId, name: name, teamId: teamId))
+        return TypetalkAPI.rx_sendRequest(UpdateTopic(topicId: topicId, name: name, teamId: teamId))
     }
 
     func deleteTopic(topicId: TopicID) -> Observable<DeleteTopic.Response> {
-        return TypetalkAPI.request(DeleteTopic(topicId: topicId))
+        return TypetalkAPI.rx_sendRequest(DeleteTopic(topicId: topicId))
     }
 }
