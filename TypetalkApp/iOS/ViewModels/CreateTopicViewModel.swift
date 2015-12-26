@@ -16,7 +16,7 @@ class CreateTopicViewModel: NSObject, UITableViewDataSource {
 
     var parentViewModel: TopicListViewModel?
     var topicNameCell: TextFieldCell?
-    let topicTitle = ObservableProperty("")
+    let topicTitle = Variable("")
 
     // MARK: - Table view data source
 
@@ -34,6 +34,8 @@ class CreateTopicViewModel: NSObject, UITableViewDataSource {
                 return c
             }
             topicNameCell = tableView.dequeueReusableCellWithIdentifier("TextFieldCell", forIndexPath: indexPath) as? TextFieldCell
+            // FIXME:RX
+            /*
             topicNameCell?.textField
                 .rac_textSignal()
                 .throttle(0.05)
@@ -44,11 +46,11 @@ class CreateTopicViewModel: NSObject, UITableViewDataSource {
                                self?.topicTitle.put(text)
                            }
                        }
-
+*/
             return topicNameCell!
         }
 
-        let cell = tableView.dequeueReusableCellWithIdentifier("TextFieldCell", forIndexPath: indexPath) as TextFieldCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("TextFieldCell", forIndexPath: indexPath) as! TextFieldCell
         //cell.model = posts.value[indexPath.row]
         return cell
     }
@@ -68,7 +70,7 @@ class CreateTopicViewModel: NSObject, UITableViewDataSource {
 
     // MARK: - Action
 
-    func createTopicAction() -> Observable<Client.CreateTopicResponse> {
+    func createTopicAction() -> Observable<CreateTopic.Response> {
         return parentViewModel!.createTopicAction(topicTitle.value)
     }
 

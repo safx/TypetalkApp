@@ -13,6 +13,7 @@ import RxSwift
 
 class CreateTopicViewController: UITableViewController {
     let viewModel = CreateTopicViewModel()
+    let disposeBag = DisposeBag()
 
     @IBOutlet weak var doneButton: UIBarButtonItem!
     
@@ -23,10 +24,11 @@ class CreateTopicViewController: UITableViewController {
         tableView.rowHeight = UITableViewAutomaticDimension
                 
         tableView.dataSource = viewModel
-        viewModel.topicTitle.values
-            .start {
+        viewModel.topicTitle
+            .subscribeNext {
                 self.doneButton.enabled = !($0.isEmpty)
             }
+            .addDisposableTo(disposeBag)
 
     }
     
@@ -39,16 +41,17 @@ class CreateTopicViewController: UITableViewController {
     
     @IBAction func createTopic(sender: AnyObject) {
         viewModel.createTopicAction()
-            .start(
-                next: { res in
-                    println("\(res)")
+            .subscribe(
+                onNext: { res in
+                    print("\(res)")
                 },
-                error: { err in
-                    println("\(err)")
+                onError: { err in
+                    print("\(err)")
                 },
-                completed:{
+                onCompleted:{
                     self.dismissViewControllerAnimated(true, completion: nil)
                 })
+            .addDisposableTo(disposeBag)
     }
     
     //MARK: Segue

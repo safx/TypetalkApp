@@ -4,3 +4,5 @@ github "safx/Emoji-swift" ~> 0.0.2
 github "safx/MarkdownKit" ~> 0.2.0
 github "safx/TypetalkKit" ~> 0.3.0
 github "safx/yavfl" ~> 0.2.0
+github "slackhq/SlackTextViewController"
+github "thii/FontAwesome.swift" >= 0.4.1

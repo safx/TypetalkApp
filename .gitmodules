@@ -28,3 +28,9 @@
 [submodule "Carthage/Checkouts/MarkdownKit"]
 	path = Carthage/Checkouts/MarkdownKit
 	url = https://github.com/safx/MarkdownKit.git
+[submodule "Carthage/Checkouts/FontAwesome.swift"]
+	path = Carthage/Checkouts/FontAwesome.swift
+	url = https://github.com/thii/FontAwesome.swift.git
+[submodule "Carthage/Checkouts/SlackTextViewController"]
+	path = Carthage/Checkouts/SlackTextViewController
+	url = https://github.com/slackhq/SlackTextViewController.git

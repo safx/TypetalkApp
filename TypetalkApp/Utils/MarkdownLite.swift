@@ -19,19 +19,23 @@ typealias ContextClosure = (CGContext -> ()) -> ()
     typealias Font = UIFont
     func WithCurrentGraphicsContext(height: CGFloat)(closure: CGContext -> ()) {
         let gfx = UIGraphicsGetCurrentContext()
-        closure(gfx)
+        closure(gfx!)
     }
-
+    extension NSAttributedString {
+        func boundingRectWithSizeEx(size: CGSize, options: NSStringDrawingOptions, context: NSStringDrawingContext?) -> CGRect {
+            return boundingRectWithSize(size, options: options, context: context)
+        }
+    }
 #else
     import AppKit
     let verticalDirection = CGFloat(-1.0)
     typealias EdgeInsets = NSEdgeInsets
     typealias Color = NSColor
     typealias Font = NSFont
-    func UIEdgeInsetsMake(top: CGFloat, left: CGFloat, bottom: CGFloat, right: CGFloat) -> EdgeInsets {
+    func UIEdgeInsetsMake(top: CGFloat, _ left: CGFloat, _ bottom: CGFloat, _ right: CGFloat) -> EdgeInsets {
         return NSEdgeInsetsMake(top, left, bottom, right)
     }
-    func UIEdgeInsetsInsetRect(rect: CGRect, insets: EdgeInsets) -> CGRect {
+    func UIEdgeInsetsInsetRect(rect: CGRect, _ insets: EdgeInsets) -> CGRect {
         return CGRectMake(CGRectGetMinX(rect) + insets.left,
             CGRectGetMinY(rect) + insets.top,
             CGRectGetWidth(rect) - insets.left - insets.right,
@@ -66,13 +70,13 @@ typealias ContextClosure = (CGContext -> ()) -> ()
 
 let DefaultFont = Font.systemFontOfSize(15)
 let FixedFont = Font(name: "Menlo", size: 14)!
-let ParagraphMargin = UIEdgeInsetsMake(4, left: 4, bottom: 4, right: 4)
-let QuoteMargin = UIEdgeInsetsMake(4, left: 12, bottom: 4, right: 4)
-let QuotePadding = UIEdgeInsetsMake(0, left: 4, bottom: 0, right: 0)
+let ParagraphMargin = UIEdgeInsetsMake(4, 4, 4, 4)
+let QuoteMargin = UIEdgeInsetsMake(4, 12, 4, 4)
+let QuotePadding = UIEdgeInsetsMake(0, 4, 0, 0)
 let QuoteBorderColor = Color(white: 0.7, alpha: 1).CGColor
 let QuoteLeftBorderWidth = CGFloat(2)
-let CodeMargin = UIEdgeInsetsMake(4, left: 8, bottom: 4, right: 8)
-let CodePadding = UIEdgeInsetsMake(4, left: 8, bottom: 4, right: 4)
+let CodeMargin = UIEdgeInsetsMake(4, 8, 4, 8)
+let CodePadding = UIEdgeInsetsMake(4, 8, 4, 4)
 let CodeBackgroundColor = Color(white: 0.9, alpha: 1).CGColor
 
 
@@ -195,7 +199,7 @@ extension MarkdownBlock {
         case .Document(let blocks):
             drawChildrenInRect(blocks, rect: rect, withCurrentGraphicsContext: withCurrentGraphicsContext, context: context)
         case .Quote(let blocks):
-            let rect1 = UIEdgeInsetsInsetRect(rect, insets: QuoteMargin)
+            let rect1 = UIEdgeInsetsInsetRect(rect, QuoteMargin)
 
             withCurrentGraphicsContext { gfx -> () in
                 CGContextSetFillColorWithColor(gfx, QuoteBorderColor)
@@ -204,13 +208,13 @@ extension MarkdownBlock {
                 ()
             }
 
-            let rect2 = UIEdgeInsetsInsetRect(rect1, insets: QuotePadding)
+            let rect2 = UIEdgeInsetsInsetRect(rect1, QuotePadding)
             drawChildrenInRect(blocks, rect: rect2, withCurrentGraphicsContext: withCurrentGraphicsContext, context: context)
         case .Paragraph: //(let inlines):
-            let r = UIEdgeInsetsInsetRect(rect, insets: ParagraphMargin)
+            let r = UIEdgeInsetsInsetRect(rect, ParagraphMargin)
             attributedString.drawWithRect(r, options: drawingOptions, context: context)
         case .Code: //(let (code, lang)):
-            let rect1 = UIEdgeInsetsInsetRect(rect, insets: CodeMargin)
+            let rect1 = UIEdgeInsetsInsetRect(rect, CodeMargin)
 
             withCurrentGraphicsContext { gfx -> () in
                 CGContextSetFillColorWithColor(gfx, CodeBackgroundColor)
@@ -219,7 +223,7 @@ extension MarkdownBlock {
                 ()
             }
             
-            let rect2 = UIEdgeInsetsInsetRect(rect1, insets: CodePadding)
+            let rect2 = UIEdgeInsetsInsetRect(rect1, CodePadding)
             attributedString.drawWithRect(rect2, options: drawingOptions, context: context)
         }
     }

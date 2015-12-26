@@ -8,6 +8,7 @@
 
 import UIKit
 import TypetalkKit
+import RxSwift
 import SlackTextViewController
 
 class MessageListViewController: SLKTextViewController {
@@ -18,12 +19,22 @@ class MessageListViewController: SLKTextViewController {
     var completionList = [CompletionModel]()
     var oldNumberOfRows = 0
 
+    private let disposeBag = DisposeBag()
+
     var topic: TopicWithUserInfo? {
         didSet {
             self.configureView()
             self.viewModel.fetch(topic!.topic.id)
         }
     }
+
+    /*override init!(tableViewStyle style: UITableViewStyle) {
+        super.init(tableViewStyle: .Plain)
+    }
+
+    required init!(coder decoder: NSCoder!) {
+        fatalError("init(coder:) has not been implemented")
+    }*/
 
     override class func tableViewStyleForCoder(decoder: NSCoder) -> UITableViewStyle {
         return .Plain
@@ -65,8 +76,8 @@ class MessageListViewController: SLKTextViewController {
         self.configureView()
 
         weak var weakTableView = tableView
-        viewModel.model.posts.signal
-            .observe { next in
+        viewModel.model.posts.event
+            .subscribeNext { next in
                 switch next {
                 case .Inserted(let indeces):
                     if self.oldNumberOfRows == 0 {
@@ -81,25 +92,25 @@ class MessageListViewController: SLKTextViewController {
                                 t.insertRowsAtIndexPaths(added, withRowAnimation: .None)
                                 t.endUpdates()
 
-                                if indeces.count > 0 {
+                                /*if indeces.count > 0 {
                                     let c = self.viewModel.model.posts.count
-                                    //t.scrollRowToVisible(c - 1)
-                                }
+                                    t.scrollRowToVisible(c - 1)
+                                }*/
                             }
                         }
                     }
-                case .Deleted(let (indeces, elements)):
+                case .Deleted: //(let (indeces, elements)):
                     dispatch_async(dispatch_get_main_queue()) { () in
                         self.tableView.reloadData()
                     }
-                case .Updated(let indeces):
+                case .Updated: //(let indeces):
                     dispatch_async(dispatch_get_main_queue()) { () in
                         self.tableView.reloadData()
                     }
                 }
                 self.oldNumberOfRows = self.viewModel.model.posts.count
             }
-
+            .addDisposableTo(disposeBag)
 
         tableView.dataSource = viewModel
         //viewModel.fetch()
@@ -126,15 +137,15 @@ class MessageListViewController: SLKTextViewController {
         super.didCommitTextEditing(sender)
     }
 
-    //MARK: completion
+    // MARK: - completion
 
-    override func canShowAutoCompletion() -> Bool {
+    override func didChangeAutoCompletionPrefix(prefix: String!, andWord word: String!) {
         completionList = viewModel.autoCompletionElements(foundPrefix, foundWord: foundWord)
-        return countElements(completionList) > 0
+        showAutoCompletionView(!completionList.isEmpty)
     }
 
     override func heightForAutoCompletionView() -> CGFloat {
-        let len = countElements(completionList)
+        let len = completionList.count
         return CGFloat(len * 36)
     }
 
@@ -145,11 +156,11 @@ class MessageListViewController: SLKTextViewController {
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return countElements(completionList)
+        return completionList.count
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("AutoCompletionCell", forIndexPath: indexPath) as AutoCompletionCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("AutoCompletionCell", forIndexPath: indexPath) as! AutoCompletionCell
         cell.setModel(completionList[indexPath.row])
         return cell
     }

@@ -6,12 +6,15 @@
 //  Copyright (c) 2014年 Safx Developers. All rights reserved.
 //
 
+import UIKit
 import TypetalkKit
 import RxSwift
 
 class MessageListViewModel: NSObject, UITableViewDataSource {
     let model = MessagesDataSource()
     let completionModel = CompletionDataSource()
+
+    let disposeBag = DisposeBag()
 
     // MARK: - Model ops
 
@@ -26,18 +29,19 @@ class MessageListViewModel: NSObject, UITableViewDataSource {
 
     func post(message: String) {
         let id = model.topic.value.id
-        let s = Client.sharedClient.postMessage(id, message: message, replyTo: nil, fileKeys: [], talkIds: [])
-        s.start(
-            next: { res in
-                println("\(res)")
+        let s = TypetalkAPI.request(PostMessage(topicId: id, message: message, replyTo: nil, fileKeys: [], talkIds: []))
+        s.subscribe (
+            onNext: { res in
+                print("\(res)")
                 self.fetch(id) // FIXME
             },
-            error: { err in
-                println("E \(err)")
+            onError: { err in
+                print("E \(err)")
             },
-            completed:{ () in
+            onCompleted:{ () in
             }
         )
+        .addDisposableTo(disposeBag)
     }
 
     func autoCompletionElements(foundPrefix: String, foundWord: String) -> [CompletionDataSource.CompletionModel] {
@@ -55,7 +59,7 @@ class MessageListViewModel: NSObject, UITableViewDataSource {
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("MessageCell", forIndexPath: indexPath) as MessageCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("MessageCell", forIndexPath: indexPath) as! MessageCell
         cell.model = model.posts[model.posts.count - indexPath.row - 1]
         cell.transform = tableView.transform
         return cell

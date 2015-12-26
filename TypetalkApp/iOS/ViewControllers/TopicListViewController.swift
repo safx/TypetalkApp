@@ -7,10 +7,12 @@
 //
 
 import UIKit
+import RxSwift
 
 class TopicListViewController: UITableViewController {
     var messageListViewController: MessageListViewController? = nil
     private let viewModel = TopicListViewModel()
+    private let disposeBag = DisposeBag()
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -28,18 +30,18 @@ class TopicListViewController: UITableViewController {
         //let addButton = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "addNewTopic:")
         //self.navigationItem.rightBarButtonItem = addButton
 
-        if let split = self.splitViewController {
+        /*if let split = self.splitViewController {
             let controllers = split.viewControllers
             self.messageListViewController = controllers[controllers.count-1].topViewController as? MessageListViewController
-        }
+        }*/
 
         tableView.dataSource = viewModel
         viewModel.fetch()
-            .observe { next in
-                dispatch_async(dispatch_get_main_queue(), { () in
-                    self.tableView.reloadData()
-                })
+            .observeOn(MainScheduler.sharedInstance)
+            .subscribeNext { next in
+                self.tableView.reloadData()
             }
+            .addDisposableTo(disposeBag)
     }
 
     override func didReceiveMemoryWarning() {
@@ -55,15 +57,15 @@ class TopicListViewController: UITableViewController {
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "showDetail" {
-            if let indexPath = self.tableView.indexPathForSelectedRow() {
+            if let indexPath = self.tableView.indexPathForSelectedRow {
                 let topic = viewModel.model.topics[indexPath.row] // FIXME
-                let controller = (segue.destinationViewController as UINavigationController).topViewController as MessageListViewController
+                let controller = (segue.destinationViewController as! UINavigationController).topViewController as! MessageListViewController
                 controller.topic = topic
                 controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
                 controller.navigationItem.leftItemsSupplementBackButton = true
             }
         } else if segue.identifier == "newTopic" {
-            let controller = (segue.destinationViewController as UINavigationController).topViewController as CreateTopicViewController
+            let controller = (segue.destinationViewController as! UINavigationController).topViewController as! CreateTopicViewController
             controller.viewModel.parentViewModel = viewModel
         }
     }

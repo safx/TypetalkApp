@@ -9,6 +9,7 @@
 import UIKit
 import TypetalkKit
 import Alamofire
+import RxSwift
 import yavfl
 import Emoji
 
@@ -19,6 +20,8 @@ class MessageCell: UITableViewCell {
     private let accountImage = UIImageView()
     private var thumbnailImages = [UIImageView]()
     private var constraint: NSLayoutConstraint?
+
+    private let disposeBag = DisposeBag()
 
     var model: Post? {
         didSet { modelDidSet() }
@@ -38,44 +41,49 @@ class MessageCell: UITableViewCell {
         accountName.text = model!.account.name
         lastUpdate.text = model!.updatedAt.humanReadableTimeInterval
         
-        let url = model!.account.imageUrl.absoluteString!
-        Alamofire.request(.GET, url)
-            .rac_response()
-            .start { res in
+        let url = model!.account.imageUrl.absoluteString
+        Alamofire.request(Alamofire.Method.GET, url)
+            .rx_response()
+            .observeOn(MainScheduler.sharedInstance)
+            .subscribeNext { res in
                 self.accountImage.image = UIImage(data: res)
             }
+            .addDisposableTo(disposeBag)
 
         var prev: UIView = message
         for i in model!.attachments {
             if i.attachment.isImageFile {
                 let thumbnail = UIImageView()
                 thumbnail.contentMode = .ScaleAspectFit
-                let len = countElements(thumbnailImages)
+                //let len = thumbnailImages.count
                 self.contentView.addSubview(thumbnail)
                 self.thumbnailImages.append(thumbnail)
                 visualFormat(accountImage, prev, thumbnail) { img, prev, thumbnail in
-                    .H ~ |-20-[thumbnail]-20-|
-                    .V ~ [img]-(>=4)-[thumbnail]
-                    .V ~ [prev]-4-[thumbnail]
+                    .H ~ |-20-[thumbnail]-20-|;
+                    .V ~ [img]-(>=4)-[thumbnail];
+                    .V ~ [prev]-4-[thumbnail];
                     .V ~ [thumbnail,==200~250]
                 }
-                
-                let s = Client.sharedClient.downloadAttachmentWithURL(i.apiUrl, type: resolveAttachmentType(i))
-                s.start(
-                    next: { res in
-                        println("** \(i.attachment.fileName)")
-                        dispatch_async(dispatch_get_main_queue(), { () in
-                            let img = UIImage(data: res)
-                            thumbnail.image = img
-                        })
-                    },
-                    error: { err in
-                        println("E \(err)")
-                    },
-                    completed:{ () in
-                    }
-                )
-                prev = thumbnail
+
+                if let downloadRequest = DownloadAttachment(url: i.apiUrl, attachmentType: resolveAttachmentType(i)) {
+                    let s = TypetalkAPI.request(downloadRequest)
+                    s.subscribe(
+                        onNext: { res in
+                            print("** \(i.attachment.fileName)")
+                            dispatch_async(dispatch_get_main_queue(), { () in
+                                let img = UIImage(data: res)
+                                thumbnail.image = img
+                            })
+                        },
+                        onError: { err in
+                            print("E \(err)")
+                        },
+                        onCompleted:{ () in
+                        }
+                    )
+                    .addDisposableTo(disposeBag)
+                    prev = thumbnail
+                }
             } else {
                 // FIXME
             }
@@ -96,8 +104,8 @@ class MessageCell: UITableViewCell {
     }
     
     private func resolveAttachmentType(a: URLAttachment) -> AttachmentType? {
-        if countElements(a.thumbnails) > 0 {
-            return a.thumbnails[0].type // FIXME
+        if let first = a.thumbnails.first {
+            return first.type // FIXME
         }
         return nil
     }
@@ -115,14 +123,14 @@ class MessageCell: UITableViewCell {
         }
 
         visualFormat(message) { mes in
-            .H ~ |-64-[mes]-8-|
+            .H ~ |-64-[mes]-8-|;
             .V ~ |-28-[mes]
         }
 
         visualFormat(lastUpdate, message, accountImage, accountName) { up, mes, img, name in
-            .H ~ |-8-[img,==40]-16-[name]
-            .H ~ [name]-8-[up] % .AlignAllBaseline
-            .V ~ |-4-[img,==40]
+            .H ~ |-8-[img,==40]-16-[name];
+            .H ~ [name]-8-[up] % .AlignAllBaseline;
+            .V ~ |-4-[img,==40];
             .V ~ |-4-[name,==18]
         }
 

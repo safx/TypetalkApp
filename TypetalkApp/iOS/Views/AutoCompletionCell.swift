@@ -38,7 +38,7 @@ class AutoCompletionCell : UITableViewCell {
         if let url = model.imageURL {
             Alamofire.request(.GET, url)
                 .response { (request, response, data, error) in
-                    if error == nil {
+                    if let data = data where error == nil {
                         self.thumbnail.image = UIImage(data: data as NSData)
                     }
             }
@@ -57,7 +57,7 @@ class AutoCompletionCell : UITableViewCell {
         }
 
         visualFormat(completionText, completionDescription, thumbnail) { completionText, desc, img in
-            .H ~ |-[img,==32]-[completionText]-[desc]-| % .AlignAllCenterY
+            .H ~ |-[img,==32]-[completionText]-[desc]-| % .AlignAllCenterY;
             .V ~ |-2-[img,==32]
         }
 

@@ -14,7 +14,7 @@ import RxSwift
 class TopicListViewModel: NSObject, UITableViewDataSource {
     var model = TopicsDataSource()
 
-    func fetch() -> TopicsDataSource.Signal {
+    func fetch() -> TopicsDataSource.Event {
         return model.fetch()
     }
 
@@ -29,7 +29,7 @@ class TopicListViewModel: NSObject, UITableViewDataSource {
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("TopicCell", forIndexPath: indexPath) as TopicCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("TopicCell", forIndexPath: indexPath) as! TopicCell
         cell.model = model.topics[indexPath.row]
         return cell
     }
@@ -49,7 +49,7 @@ class TopicListViewModel: NSObject, UITableViewDataSource {
 
     // MARK: - ViewModel Actions
 
-    func createTopicAction(topicName: String) -> Observable<Client.CreateTopicResponse> {
+    func createTopicAction(topicName: String) -> Observable<CreateTopic.Response> {
         return model.createTopic(topicName)
     }
 }

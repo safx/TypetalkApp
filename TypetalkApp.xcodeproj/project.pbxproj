@@ -50,6 +50,10 @@
 		8D2D30E61C299819001AD48E /* TypetalkKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8D2D30D11C299819001AD48E /* TypetalkKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8D2D30E71C299819001AD48E /* yavfl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D2D30D21C299819001AD48E /* yavfl.framework */; };
 		8D2D30E81C299819001AD48E /* yavfl.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8D2D30D21C299819001AD48E /* yavfl.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		8D2D30ED1C2E46BE001AD48E /* FontAwesome.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D2D30EB1C2E46BE001AD48E /* FontAwesome.framework */; };
+		8D2D30EE1C2E46BE001AD48E /* SlackTextViewController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D2D30EC1C2E46BE001AD48E /* SlackTextViewController.framework */; };
+		8D2D30F01C2E59ED001AD48E /* FontAwesome.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D2D30EB1C2E46BE001AD48E /* FontAwesome.framework */; };
+		8D2D30F11C2E59ED001AD48E /* SlackTextViewController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D2D30EC1C2E46BE001AD48E /* SlackTextViewController.framework */; };
 		8D4218A41AA42182009D2077 /* Post+Ops.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4218A31AA42182009D2077 /* Post+Ops.swift */; };
 		8D4218A51AA42182009D2077 /* Post+Ops.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4218A31AA42182009D2077 /* Post+Ops.swift */; };
 		8D4DE33C1A3B317200E0A0B7 /* AutoCompletionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4DE33B1A3B317200E0A0B7 /* AutoCompletionCell.swift */; };
@@ -185,6 +189,8 @@
 		8D2D30D01C299819001AD48E /* Starscream.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Starscream.framework; path = Carthage/Build/Mac/Starscream.framework; sourceTree = "<group>"; };
 		8D2D30D11C299819001AD48E /* TypetalkKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TypetalkKit.framework; path = Carthage/Build/Mac/TypetalkKit.framework; sourceTree = "<group>"; };
 		8D2D30D21C299819001AD48E /* yavfl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = yavfl.framework; path = Carthage/Build/Mac/yavfl.framework; sourceTree = "<group>"; };
+		8D2D30EB1C2E46BE001AD48E /* FontAwesome.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FontAwesome.framework; path = Carthage/Build/iOS/FontAwesome.framework; sourceTree = "<group>"; };
+		8D2D30EC1C2E46BE001AD48E /* SlackTextViewController.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SlackTextViewController.framework; path = Carthage/Build/iOS/SlackTextViewController.framework; sourceTree = "<group>"; };
 		8D4218A31AA42182009D2077 /* Post+Ops.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Post+Ops.swift"; sourceTree = "<group>"; };
 		8D424F0C1A69574C0034C498 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
 		8D424F0E1A69574C0034C498 /* TypetalkKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TypetalkKit.framework; path = Carthage/Build/iOS/TypetalkKit.framework; sourceTree = "<group>"; };
@@ -261,6 +267,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8D2D30ED1C2E46BE001AD48E /* FontAwesome.framework in Frameworks */,
+				8D2D30EE1C2E46BE001AD48E /* SlackTextViewController.framework in Frameworks */,
 				8D2D30651C298FF9001AD48E /* MarkdownKit.framework in Frameworks */,
 				8D8AED2C1C22FC920015FD07 /* APIKit.framework in Frameworks */,
 				8D8AED2D1C22FC920015FD07 /* Emoji.framework in Frameworks */,
@@ -279,6 +287,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8D2D30F01C2E59ED001AD48E /* FontAwesome.framework in Frameworks */,
+				8D2D30F11C2E59ED001AD48E /* SlackTextViewController.framework in Frameworks */,
 				8D2D307C1C299431001AD48E /* RxBlocking.framework in Frameworks */,
 				8D2D30781C299431001AD48E /* OHHTTPStubs.framework in Frameworks */,
 				8D2D307E1C299431001AD48E /* RxSwift.framework in Frameworks */,
@@ -428,6 +438,8 @@
 		8D8AED741C22FE7C0015FD07 /* iOS */ = {
 			isa = PBXGroup;
 			children = (
+				8D2D30EB1C2E46BE001AD48E /* FontAwesome.framework */,
+				8D2D30EC1C2E46BE001AD48E /* SlackTextViewController.framework */,
 				8D8AED3E1C22FCC60015FD07 /* OHHTTPStubs.framework */,
 				8D2D30641C298FF9001AD48E /* MarkdownKit.framework */,
 				8D424F0E1A69574C0034C498 /* TypetalkKit.framework */,
@@ -638,6 +650,7 @@
 				8D9686001A0E40AE009E8A98 /* Sources */,
 				8D9686011A0E40AE009E8A98 /* Frameworks */,
 				8D9686021A0E40AE009E8A98 /* Resources */,
+				8D2D30EF1C2E4C19001AD48E /* Carthage */,
 			);
 			buildRules = (
 			);
@@ -655,6 +668,7 @@
 				8D9686171A0E40AE009E8A98 /* Sources */,
 				8D9686181A0E40AE009E8A98 /* Frameworks */,
 				8D9686191A0E40AE009E8A98 /* Resources */,
+				8D2D30F21C2E5BAF001AD48E /* Carthage */,
 			);
 			buildRules = (
 			);
@@ -691,6 +705,7 @@
 				8DC068E81A7E749A0039326F /* Sources */,
 				8DC068E91A7E749A0039326F /* Frameworks */,
 				8DC068EA1A7E749A0039326F /* Resources */,
+				8D2D30F31C2E5E58001AD48E /* Carthage */,
 			);
 			buildRules = (
 			);
@@ -722,6 +737,7 @@
 					};
 					8DC068DA1A7E749A0039326F = {
 						CreatedOnToolsVersion = 6.1.1;
+						DevelopmentTeam = 745YB3A52T;
 					};
 					8DC068EB1A7E749A0039326F = {
 						CreatedOnToolsVersion = 6.1.1;
@@ -785,6 +801,90 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		8D2D30EF1C2E4C19001AD48E /* Carthage */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/Alamofire.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/TypetalkKit.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/yavfl.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Starscream.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/RxSwift.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/RxCocoa.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/RxBlocking.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Result.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Emoji.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/APIKit.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/MarkdownKit.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/SlackTextViewController.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/FontAwesome.framework",
+			);
+			name = Carthage;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
+		};
+		8D2D30F21C2E5BAF001AD48E /* Carthage */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/Alamofire.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/TypetalkKit.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/yavfl.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Starscream.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/RxSwift.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/RxCocoa.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/RxBlocking.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Result.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Emoji.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/APIKit.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/MarkdownKit.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/SlackTextViewController.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/FontAwesome.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/OHHTTPStubs.framework",
+			);
+			name = Carthage;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
+		};
+		8D2D30F31C2E5E58001AD48E /* Carthage */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/Mac/Alamofire.framework",
+				"$(SRCROOT)/Carthage/Build/Mac/TypetalkKit.framework",
+				"$(SRCROOT)/Carthage/Build/Mac/yavfl.framework",
+				"$(SRCROOT)/Carthage/Build/Mac/Starscream.framework",
+				"$(SRCROOT)/Carthage/Build/Mac/RxSwift.framework",
+				"$(SRCROOT)/Carthage/Build/Mac/RxCocoa.framework",
+				"$(SRCROOT)/Carthage/Build/Mac/RxBlocking.framework",
+				"$(SRCROOT)/Carthage/Build/Mac/Result.framework",
+				"$(SRCROOT)/Carthage/Build/Mac/Emoji.framework",
+				"$(SRCROOT)/Carthage/Build/Mac/APIKit.framework",
+				"$(SRCROOT)/Carthage/Build/Mac/MarkdownKit.framework",
+                                "$(SRCROOT)/Carthage/Build/Mac/OHHTTPStubs.framework",
+			);
+			name = Carthage;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "carthage copy-frameworks";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		8D9686001A0E40AE009E8A98 /* Sources */ = {
@@ -1050,7 +1150,6 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
@@ -1071,7 +1170,6 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
@@ -1087,7 +1185,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "Developer ID Application";
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1110,7 +1208,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "Developer ID Application";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				FRAMEWORK_SEARCH_PATHS = (
