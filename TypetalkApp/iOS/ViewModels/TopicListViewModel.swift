@@ -14,8 +14,8 @@ import RxSwift
 class TopicListViewModel: NSObject, UITableViewDataSource {
     var model = TopicsDataSource()
 
-    func fetch() -> TopicsDataSource.Event {
-        return model.fetch()
+    func fetch(observe: Bool) -> TopicsDataSource.Event {
+        return model.fetch(observe)
     }
 
     // MARK: - Table view data source

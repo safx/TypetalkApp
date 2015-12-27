@@ -15,7 +15,7 @@ class MessagesDataSource {
     let team = Variable(Team())
     let topic = Variable(Topic())
     let bookmark = Variable(Bookmark())
-    let posts = ObservableArray<Post>()
+    var posts = ObservableArray<Post>()
     let hasNext = Variable(false)
     let bookmarkIndex = Variable<Int>(0)
     var observing = false

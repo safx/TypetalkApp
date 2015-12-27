@@ -13,7 +13,7 @@ import RxSwift
 class TopicsDataSource {
     typealias Event = ObservableArray<TopicWithUserInfo>.EventObservableType
 
-    let topics = ObservableArray<TopicWithUserInfo>()
+    var topics = ObservableArray<TopicWithUserInfo>()
 
     let disposeBag = DisposeBag()
 
@@ -21,7 +21,7 @@ class TopicsDataSource {
         let s = TypetalkAPI.rx_sendRequest(GetTopics())
         s.subscribe(
             onNext: { res in
-                self.topics.extend(res.topics)
+                self.topics.appendContentsOf(res.topics)
             },
             onError: { err in
                 print("\(err)")

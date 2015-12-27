@@ -47,10 +47,6 @@ class MessageListViewController: SLKTextViewController {
         }
     }
 
-    private class func asIndexPath(indeces: [Int]) -> [NSIndexPath] {
-        return indeces.map { NSIndexPath(forRow: $0, inSection: 0) }
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -77,35 +73,22 @@ class MessageListViewController: SLKTextViewController {
 
         weak var weakTableView = tableView
         viewModel.model.posts.rx_event
+            .observeOn(MainScheduler.sharedInstance)
             .subscribeNext { next in
-                switch next {
-                case .Inserted(let indeces):
-                    if self.oldNumberOfRows == 0 {
-                        dispatch_async(dispatch_get_main_queue()) { () in
-                            self.tableView.reloadData()
-                        }
-                    } else {
-                        dispatch_async(dispatch_get_main_queue()) {
-                            if let t = weakTableView {
-                                let added = MessageListViewController.asIndexPath(indeces)
-                                t.beginUpdates()
-                                t.insertRowsAtIndexPaths(added, withRowAnimation: .None)
-                                t.endUpdates()
-
-                                /*if indeces.count > 0 {
-                                    let c = self.viewModel.model.posts.count
-                                    t.scrollRowToVisible(c - 1)
-                                }*/
-                            }
-                        }
-                    }
-                case .Deleted: //(let (indeces, elements)):
-                    dispatch_async(dispatch_get_main_queue()) { () in
-                        self.tableView.reloadData()
-                    }
-                case .Updated: //(let indeces):
-                    dispatch_async(dispatch_get_main_queue()) { () in
-                        self.tableView.reloadData()
+                if self.oldNumberOfRows == 0 {
+                    self.tableView.reloadData()
+                } else {
+                    if let t = weakTableView {
+                        let c = self.viewModel.model.posts.count - 1
+                        let f = { NSIndexPath(forRow: c - $0, inSection: 0) }
+                        let i = next.insertedIndeces.map(f)
+                        let d = next.deletedIndeces.map(f)
+                        let u = next.updatedIndeces.map(f)
+                        t.beginUpdates()
+                        t.insertRowsAtIndexPaths(i, withRowAnimation: .None)
+                        t.deleteRowsAtIndexPaths(d, withRowAnimation: .Automatic)
+                        t.reloadRowsAtIndexPaths(u, withRowAnimation: .Automatic)
+                        t.endUpdates()
                     }
                 }
                 self.oldNumberOfRows = self.viewModel.model.posts.count

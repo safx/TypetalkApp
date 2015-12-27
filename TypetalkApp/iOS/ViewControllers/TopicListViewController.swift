@@ -8,6 +8,8 @@
 
 import UIKit
 import RxSwift
+import RxCocoa
+
 
 class TopicListViewController: UITableViewController {
     var messageListViewController: MessageListViewController? = nil
@@ -35,8 +37,7 @@ class TopicListViewController: UITableViewController {
             self.messageListViewController = controllers[controllers.count-1].topViewController as? MessageListViewController
         }*/
 
-        tableView.dataSource = viewModel
-        viewModel.fetch()
+        viewModel.fetch(true)
             .observeOn(MainScheduler.sharedInstance)
             .subscribeNext { next in
                 self.tableView.reloadData()

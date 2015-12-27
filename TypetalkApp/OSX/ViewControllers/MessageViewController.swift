@@ -44,38 +44,23 @@ class MessageViewController: NSViewController, NSTableViewDelegate {
         weak var weakSelf = self
         weak var weakTableView = tableView
         viewModel.posts.rx_event
-            .subscribeNext { next in
+            .subscribeNext { event in
                 if let s = weakSelf {
                     let rows = self.viewModel.posts.count
-                    switch next {
-                    case .Inserted(let indeces):
-                        if s.oldNumberOfRows == 0 {
-                            NSTableView.reloadData(weakTableView)
-                        } else {
-                            if indeces.count > 0 {
-                                let idx = indeces[0]
-                                NSTableView.update(weakTableView) { t in
-                                    t.insertRowsAtIndexes(NSTableView.asIndexSet(indeces), withAnimation: .EffectNone)
-                                    // move to the row of the previous head when inserted cells are old messages.
-                                    let moveIndex = idx == 0 ? indeces.count : idx
-                                    weakTableView?.scrollRowToVisible(moveIndex)
-                                }
-                            }
-                        }
-                    case .Deleted(let (indeces, _/*elements*/)):
-                        if rows == 0 {
-                            NSTableView.reloadData(weakTableView)
-                        } else {
-                            NSTableView.update(weakTableView) { t in
-                                t.removeRowsAtIndexes(NSTableView.asIndexSet(indeces), withAnimation: .EffectFade)
-                            }
-                        }
-                    case .Updated(let indeces):
+                    if s.oldNumberOfRows == 0 {
+                        NSTableView.reloadData(weakTableView)
+                    } else {
                         NSTableView.update(weakTableView) { t in
-                            t.updateRowsAtIndexes(NSTableView.asIndexSet(indeces), withAnimation: .EffectFade)
+                            t.insertRowsAtIndexes(NSTableView.asIndexSet(event.insertedIndeces), withAnimation: .EffectNone)
+                            t.removeRowsAtIndexes(NSTableView.asIndexSet(event.deletedIndeces), withAnimation: .EffectFade)
+                            t.updateRowsAtIndexes(NSTableView.asIndexSet(event.updatedIndeces), withAnimation: .EffectFade)
+
+                            if let idx = event.insertedIndeces.first {
+                                let moveIndex = idx == 0 ? event.insertedIndeces.count : idx
+                                weakTableView?.scrollRowToVisible(moveIndex)
+                            }
                         }
                     }
-                    
                     s.oldNumberOfRows = rows
                 }
             }

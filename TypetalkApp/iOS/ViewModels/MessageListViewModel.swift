@@ -33,7 +33,6 @@ class MessageListViewModel: NSObject, UITableViewDataSource {
         s.subscribe (
             onNext: { res in
                 print("\(res)")
-                self.fetch(id) // FIXME
             },
             onError: { err in
                 print("E \(err)")
