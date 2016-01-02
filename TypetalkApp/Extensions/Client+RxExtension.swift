@@ -22,7 +22,7 @@ extension TypetalkAPI {
         let a = requestImpl(request)
         let s = isSignedIn ? a : authorize().concat(a)
         return s.catchError { error -> Observable<T.Response> in
-            return requestRefreshToken(nil as T.Response?).concat(a)
+            return requestRefreshToken().concat(a)
 
             /*let err = error as NSError
             if err.domain == ERROR_DOMAIN || err.domain == NSURLErrorDomain {
@@ -55,7 +55,7 @@ extension TypetalkAPI {
 
 extension TypetalkAPI {
 
-    private static func authorize<T>(_: T? = nil) -> Observable<T> {
+    private static func authorize<T>() -> Observable<T> {
         return create { observer in
             authorize { (err) -> Void in
                 if let err = err {
@@ -69,7 +69,7 @@ extension TypetalkAPI {
         }
     }
 
-    private static func refreshToken<T>(_: T? = nil) -> Observable<T> {
+    private static func refreshToken<T>() -> Observable<T> {
         return create { observer in
             requestRefreshToken { (err) -> Void in
                 if let err = err {
@@ -83,10 +83,10 @@ extension TypetalkAPI {
         }
     }
 
-    private static func requestRefreshToken<T>(_: T?) -> Observable<T> {
-        let token_signal = isSignedIn ? refreshToken(nil as T?) : authorize()
+    private static func requestRefreshToken<T>() -> Observable<T> {
+        let token_signal: Observable<T> = isSignedIn ? refreshToken() : authorize()
         return token_signal.catchError { error -> Observable<T> in
-            return authorize(nil as T?)
+            return authorize()
             /*let err = error as NSError
             if err.domain == ERROR_DOMAIN || err.domain == NSURLErrorDomain {
                 return authorize(nil as T?)
