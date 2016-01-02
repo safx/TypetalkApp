@@ -52,9 +52,9 @@ class EditTopicViewController: NSViewController, NSTableViewDataSource, NSTableV
             self.lastPostedLabel.stringValue = posted.humanReadableTimeInterval
         }
 
-        combineLatest(viewModel.teamListIndex, viewModel.teamList) { ($0, $1) }
+        Observable.combineLatest(viewModel.teamListIndex.asObservable(), viewModel.teamList.asObservable()) { ($0, $1) }
             .filter { !$0.1.isEmpty }
-            .subscribeOn(MainScheduler.sharedInstance)
+            .subscribeOn(MainScheduler.instance)
             .subscribeNext { (index, teams) -> () in
                 self.teamListBox.removeAllItems()
                 self.teamListBox.addItemsWithObjectValues(teams.map { $0.description } )
@@ -63,7 +63,7 @@ class EditTopicViewController: NSViewController, NSTableViewDataSource, NSTableV
             }
             .addDisposableTo(disposeBag)
 
-        combineLatest(viewModel.teamList, teamListBox.rx_selectionSignal()) { ($0, $1) }
+        Observable.combineLatest(viewModel.teamList.asObservable(), teamListBox.rx_selectionSignal()) { ($0, $1) }
             .filter { teams, idx in teams.count > 0 && (0..<teams.count).contains(idx) }
             .map { teams, idx in TeamID(teams[idx].id) }
             .bindTo(viewModel.teamId)
@@ -71,12 +71,13 @@ class EditTopicViewController: NSViewController, NSTableViewDataSource, NSTableV
 
         topicNameLabel
             .rx_text
-            .throttle(0.05, MainScheduler.sharedInstance)
+            .throttle(0.05, scheduler: MainScheduler.instance)
             .bindTo(viewModel.topicName)
             .addDisposableTo(disposeBag)
 
         viewModel.accounts
-            .subscribeOn(MainScheduler.sharedInstance)
+            .asObservable()
+            .subscribeOn(MainScheduler.instance)
             .subscribeNext { [weak self] _ in
                 self?.membersTableView.reloadData()
                 ()
@@ -84,7 +85,8 @@ class EditTopicViewController: NSViewController, NSTableViewDataSource, NSTableV
             .addDisposableTo(disposeBag)
 
         viewModel.invites
-            .subscribeOn(MainScheduler.sharedInstance)
+            .asObservable()
+            .subscribeOn(MainScheduler.instance)
             .subscribeNext { [weak self] _ in
                 self?.invitesTableView.reloadData()
                 ()

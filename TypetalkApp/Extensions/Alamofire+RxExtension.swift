@@ -14,7 +14,7 @@ import RxSwift
 extension Alamofire.Request {
 
     public func rx_response() -> Observable<NSData> {
-        return create { observer in
+        return Observable.create { observer in
             self.response { (request: NSURLRequest?, response: NSHTTPURLResponse?, object: AnyObject?, error: NSError?) -> Void in
                 if let err = error {
                     observer.on(.Error(err))
@@ -27,7 +27,7 @@ extension Alamofire.Request {
             }
             return AnonymousDisposable { self.cancel() }
         }
-        .observeOn(SerialDispatchQueueScheduler(globalConcurrentQueuePriority: .Default))
+        .observeOn(SerialDispatchQueueScheduler(globalConcurrentQueueQOS: .Default))
     }
 
 }

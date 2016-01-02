@@ -10,12 +10,16 @@ import Foundation
 import AppKit
 import TypetalkKit
 import RxSwift
+import ObservableArray
 
 
 class MessageListViewModel : NSObject, NSTableViewDataSource {
     private let model = MessagesDataSource()
     var posts: ObservableArray<Post> {
         return model.posts
+    }
+    var postsEvent: ObservableArray<Post>.EventObservableType {
+        return model.posts.rx_event()
     }
     var bookmarkIndex: Variable<Int> {
         return model.bookmarkIndex

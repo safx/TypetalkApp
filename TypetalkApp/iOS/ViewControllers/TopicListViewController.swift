@@ -39,7 +39,7 @@ class TopicListViewController: UITableViewController {
 
         tableView.dataSource = viewModel
         viewModel.fetch(true)
-            .observeOn(MainScheduler.sharedInstance)
+            .observeOn(MainScheduler.instance)
             .subscribeNext { next in
                 self.tableView.reloadData()
             }

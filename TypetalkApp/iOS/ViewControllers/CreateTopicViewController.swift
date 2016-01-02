@@ -25,6 +25,7 @@ class CreateTopicViewController: UITableViewController {
                 
         tableView.dataSource = viewModel
         viewModel.topicTitle
+            .asObservable()
             .subscribeNext {
                 self.doneButton.enabled = !($0.isEmpty)
             }

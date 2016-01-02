@@ -30,7 +30,7 @@ class CreateNewMessageViewController: NSViewController, NSTextFieldDelegate {
         messageBox.delegate = self
         messageBox
             .rx_text
-            .throttle(0.05, MainScheduler.sharedInstance)
+            .throttle(0.05, scheduler: MainScheduler.instance)
             .distinctUntilChanged()
             .subscribeNext { res in
                 if let text = res as NSString? {

@@ -73,7 +73,7 @@ class MessageListViewController: SLKTextViewController {
 
         weak var weakTableView = tableView
         viewModel.model.posts.rx_event()
-            .observeOn(MainScheduler.sharedInstance)
+            .observeOn(MainScheduler.instance)
             .subscribeNext { next in
                 if self.oldNumberOfRows == 0 {
                     self.tableView.reloadData()

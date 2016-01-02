@@ -14,7 +14,7 @@ extension NSComboBox {
 
     func rx_selectionSignal() -> Observable<Int> {
         let c = NSNotificationCenter.defaultCenter()
-        return create { [weak self] observer in
+        return Observable.create { [weak self] observer in
             let obs = c.addObserverForName(NSComboBoxSelectionDidChangeNotification, object: self, queue: nil) { notification in
                 if let s = self {
                     observer.onNext(s.indexOfSelectedItem)

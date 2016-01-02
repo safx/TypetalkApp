@@ -44,7 +44,7 @@ class MessageCell: UITableViewCell {
         let url = model!.account.imageUrl.absoluteString
         Alamofire.request(Alamofire.Method.GET, url)
             .rx_response()
-            .observeOn(MainScheduler.sharedInstance)
+            .observeOn(MainScheduler.instance)
             .subscribeNext { res in
                 self.accountImage.image = UIImage(data: res)
             }

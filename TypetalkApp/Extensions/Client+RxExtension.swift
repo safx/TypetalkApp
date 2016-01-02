@@ -35,7 +35,7 @@ extension TypetalkAPI {
     }
 
     private static func requestImpl<T: APIKitRequest>(request: T) -> Observable<T.Response> {
-        return create { observer in
+        return Observable.create { observer in
             self.sendRequest(request) { result in
                 switch result {
                 case .Failure(let error):
@@ -47,7 +47,7 @@ extension TypetalkAPI {
             }
             return AnonymousDisposable { self.cancelRequest(T) }
         }
-        .observeOn(SerialDispatchQueueScheduler(globalConcurrentQueuePriority: .Default))
+        .observeOn(SerialDispatchQueueScheduler(globalConcurrentQueueQOS: .Default))
     }
 }
 
@@ -56,7 +56,7 @@ extension TypetalkAPI {
 extension TypetalkAPI {
 
     private static func authorize<T>() -> Observable<T> {
-        return create { observer in
+        return Observable.create { observer in
             authorize { (err) -> Void in
                 if let err = err {
                     print("authError: \(err)")
@@ -70,7 +70,7 @@ extension TypetalkAPI {
     }
 
     private static func refreshToken<T>() -> Observable<T> {
-        return create { observer in
+        return Observable.create { observer in
             requestRefreshToken { (err) -> Void in
                 if let err = err {
                     print("refreshTokenError: \(err)")
@@ -105,11 +105,11 @@ extension TypetalkAPI {
             static let instance = TypetalkAPI.streamimgObservableImpl()
                 .retryWhen { (errors: Observable<ErrorType>) in
                     return errors
-                        .flatMapWithIndex{ error, retryCount -> Observable<Int64> in
+                        .flatMapWithIndex { error, retryCount -> Observable<Int64> in
                             let err = error as NSError
 
                             let c = TypetalkAPI.retryInterval(err, count: retryCount)
-                            let s = SerialDispatchQueueScheduler(globalConcurrentQueuePriority: .Low)
+                            let s = SerialDispatchQueueScheduler(globalConcurrentQueueQOS: .Background)
 
                             if err.domain == "Websocket" && err.code == 1 { // Invalid HTTP upgrade in Starscream
                                 // attempt to connect with HTTP first, and then retry (i.e., upgrade to WebSocket)
@@ -117,15 +117,15 @@ extension TypetalkAPI {
                                     return Int64(0)
                                 }
 
-                                return timer(c, s)
+                                return Observable<Int64>.timer(c, scheduler: s)
                                     .ignoreElements() // surpress emitting from timer
                                     .concat(reconnect)
                             }
 
-                            return timer(c, s)
+                            return Observable<Int64>.timer(c, scheduler: s)
                     }
             }
-            .observeOn(SerialDispatchQueueScheduler(globalConcurrentQueuePriority: .Default))
+            .observeOn(SerialDispatchQueueScheduler(globalConcurrentQueueQOS: .Default))
         }
         return Static.instance
     }
@@ -158,7 +158,7 @@ extension TypetalkAPI {
         return subject
     }
 
-    private class func retryInterval(error: NSError, count: Int) -> NSTimeInterval {
+    private class func retryInterval(error: NSError, count: Int) -> RxTimeInterval {
         return NSTimeInterval(10 + count * 5)
     }
 }

@@ -34,3 +34,6 @@
 [submodule "Carthage/Checkouts/SlackTextViewController"]
 	path = Carthage/Checkouts/SlackTextViewController
 	url = https://github.com/slackhq/SlackTextViewController.git
+[submodule "Carthage/Checkouts/ObservableArray-RxSwift"]
+	path = Carthage/Checkouts/ObservableArray-RxSwift
+	url = https://github.com/safx/ObservableArray-RxSwift.git

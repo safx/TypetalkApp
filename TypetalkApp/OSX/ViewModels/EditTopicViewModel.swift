@@ -41,10 +41,13 @@ class EditTopicViewModel: NSObject {
 
         model.fetch(topic.id)
 
-        let ids = model.teams.map { t -> TeamID in
-            t.count == 0 ? -1 : t[0].team.id
-        }
-        combineLatest(ids, teamList) { ($0, $1) }
+        let ids = model.teams
+            .asObservable()
+            .map { t -> TeamID in
+                t.count == 0 ? -1 : t[0].team.id
+            }
+
+        Observable.combineLatest(ids, teamList.asObservable()) { ($0, $1) }
             .subscribeNext { (teamId, teams) in
                 self.teamId.value = teamId
                 self.oldTeamId = teamId

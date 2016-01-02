@@ -43,7 +43,7 @@ class MessageViewController: NSViewController, NSTableViewDelegate {
 
         weak var weakSelf = self
         weak var weakTableView = tableView
-        viewModel.posts.rx_event
+        viewModel.postsEvent
             .subscribeNext { event in
                 if let s = weakSelf {
                     let rows = self.viewModel.posts.count
@@ -67,7 +67,8 @@ class MessageViewController: NSViewController, NSTableViewDelegate {
             .addDisposableTo(disposeBag)
 
         viewModel.bookmarkIndex
-            .observeOn(MainScheduler.sharedInstance)
+            .asObservable()
+            .observeOn(MainScheduler.instance)
             .subscribeNext { idx in
                 assert(NSThread.mainThread() == NSThread.currentThread(), "UI Thread expected.")
                 weakTableView?.scrollRowToVisible(idx)

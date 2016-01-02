@@ -41,10 +41,10 @@ class CreateTopicViewModel: NSObject, UITableViewDataSource {
             }
             topicNameCell.textField
                 .rx_text
-                .throttle(0.05, SerialDispatchQueueScheduler(globalConcurrentQueuePriority: .Low))
+                .throttle(0.05, scheduler: SerialDispatchQueueScheduler(globalConcurrentQueueQOS: .Background))
                 .distinctUntilChanged()
                 .asObservable()
-                .observeOn(MainScheduler.sharedInstance)
+                .observeOn(MainScheduler.instance)
                 .bindTo(topicTitle)
                 .addDisposableTo(disposeBag)
 
