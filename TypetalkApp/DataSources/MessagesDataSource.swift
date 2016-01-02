@@ -50,7 +50,7 @@ class MessagesDataSource {
 
                 self.team.value = res.team
                 self.topic.value = res.topic
-                self.posts.splice(res.posts, atIndex: 0)
+                self.posts.insertContentsOf(res.posts, atIndex: 0)
                 self.hasNext.value = res.hasNext
 
                 if firstFetch {

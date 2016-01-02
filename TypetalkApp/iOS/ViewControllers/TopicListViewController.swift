@@ -37,6 +37,7 @@ class TopicListViewController: UITableViewController {
             self.messageListViewController = controllers[controllers.count-1].topViewController as? MessageListViewController
         }*/
 
+        tableView.dataSource = viewModel
         viewModel.fetch(true)
             .observeOn(MainScheduler.sharedInstance)
             .subscribeNext { next in

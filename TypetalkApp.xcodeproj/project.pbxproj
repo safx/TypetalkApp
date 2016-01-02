@@ -54,6 +54,7 @@
 		8D2D30EE1C2E46BE001AD48E /* SlackTextViewController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D2D30EC1C2E46BE001AD48E /* SlackTextViewController.framework */; };
 		8D2D30F01C2E59ED001AD48E /* FontAwesome.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D2D30EB1C2E46BE001AD48E /* FontAwesome.framework */; };
 		8D2D30F11C2E59ED001AD48E /* SlackTextViewController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D2D30EC1C2E46BE001AD48E /* SlackTextViewController.framework */; };
+		8D32505B1C30FAC2003A269A /* ObservableArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE627931A95FBB1000EADC3 /* ObservableArray.swift */; };
 		8D4218A41AA42182009D2077 /* Post+Ops.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4218A31AA42182009D2077 /* Post+Ops.swift */; };
 		8D4218A51AA42182009D2077 /* Post+Ops.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4218A31AA42182009D2077 /* Post+Ops.swift */; };
 		8D4DE33C1A3B317200E0A0B7 /* AutoCompletionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4DE33B1A3B317200E0A0B7 /* AutoCompletionCell.swift */; };
@@ -875,7 +876,7 @@
 				"$(SRCROOT)/Carthage/Build/Mac/Emoji.framework",
 				"$(SRCROOT)/Carthage/Build/Mac/APIKit.framework",
 				"$(SRCROOT)/Carthage/Build/Mac/MarkdownKit.framework",
-                                "$(SRCROOT)/Carthage/Build/Mac/OHHTTPStubs.framework",
+				"$(SRCROOT)/Carthage/Build/Mac/OHHTTPStubs.framework",
 			);
 			name = Carthage;
 			outputPaths = (
@@ -921,6 +922,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8D32505B1C30FAC2003A269A /* ObservableArray.swift in Sources */,
 				8D9686221A0E40AE009E8A98 /* TypetalkAppTests.swift in Sources */,
 				8DE2BAE81A7F9A630078B830 /* Client+RxExtension.swift in Sources */,
 				8D7B67C91A18A4F300BDBFB7 /* NSDate+FormatTests.swift in Sources */,

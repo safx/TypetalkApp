@@ -72,7 +72,7 @@ class MessageListViewController: SLKTextViewController {
         self.configureView()
 
         weak var weakTableView = tableView
-        viewModel.model.posts.rx_event
+        viewModel.model.posts.rx_event()
             .observeOn(MainScheduler.sharedInstance)
             .subscribeNext { next in
                 if self.oldNumberOfRows == 0 {

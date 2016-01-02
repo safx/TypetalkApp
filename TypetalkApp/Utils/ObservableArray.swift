@@ -14,7 +14,7 @@ public struct ArrayChangeEvent {
     public let deletedIndeces: [Int]
     public let updatedIndeces: [Int]
 
-    init(inserted: [Int] = [], deleted: [Int] = [], updated: [Int] = []) {
+    private init(inserted: [Int] = [], deleted: [Int] = [], updated: [Int] = []) {
         assert(inserted.count + deleted.count + updated.count > 0)
         self.insertedIndeces = inserted
         self.deletedIndeces = deleted
@@ -22,14 +22,27 @@ public struct ArrayChangeEvent {
     }
 }
 
-public struct ObservableArray<Element> {
+public struct ObservableArray<Element>: ArrayLiteralConvertible {
     public typealias EventType = ArrayChangeEvent
 
-    private var eventSubject = PublishSubject<EventType>()
-    private var elementsSubject = PublishSubject<[Element]>()
-    private var elements = [Element]()
+    internal var eventSubject: PublishSubject<EventType>!
+    internal var elementsSubject: PublishSubject<[Element]>!
+    internal var elements: [Element]
 
     public init() {
+        self.elements = []
+    }
+
+    public init(count:Int, repeatedValue: Element) {
+        self.elements = Array(count: count, repeatedValue: repeatedValue)
+    }
+
+    public init<S : SequenceType where S.Generator.Element == Element>(_ s: S) {
+        self.elements = Array(s)
+    }
+
+    public init(arrayLiteral elements: Element...) {
+        self.elements = elements
     }
 }
 
@@ -37,17 +50,23 @@ extension ObservableArray {
     public typealias EventObservableType = Observable<EventType>
     public typealias ArrayObservableType = Observable<[Element]>
 
-    public var rx_elements: ArrayObservableType {
+    public mutating func rx_elements() -> ArrayObservableType {
+        if elementsSubject == nil {
+            self.elementsSubject = PublishSubject<[Element]>()
+        }
         return elementsSubject
     }
 
-    public var rx_event: EventObservableType {
+    public mutating func rx_event() -> EventObservableType {
+        if eventSubject == nil {
+            self.eventSubject = PublishSubject<EventType>()
+        }
         return eventSubject
     }
 
     private func arrayDidChanged(event: EventType) {
-        elementsSubject.on(.Next(self.elements))
-        eventSubject.on(.Next(event))
+        elementsSubject?.on(.Next(self.elements))
+        eventSubject?.on(.Next(event))
     }
 }
 
@@ -78,10 +97,16 @@ extension ObservableArray: RangeReplaceableCollectionType {
     public mutating func appendContentsOf<S : SequenceType where S.Generator.Element == Element>(newElements: S) {
         let end = elements.count
         elements.appendContentsOf(newElements)
+        guard end != elements.count else {
+            return
+        }
         arrayDidChanged(ArrayChangeEvent(inserted: Array(end..<elements.count)))
     }
 
     public mutating func appendContentsOf<C : CollectionType where C.Generator.Element == Element>(newElements: C) {
+        guard !newElements.isEmpty else {
+            return
+        }
         let end = elements.count
         elements.appendContentsOf(newElements)
         arrayDidChanged(ArrayChangeEvent(inserted: Array(end..<elements.count)))
@@ -105,35 +130,38 @@ extension ObservableArray: RangeReplaceableCollectionType {
     }
 
     public mutating func removeAll(keepCapacity: Bool = false) {
+        guard !elements.isEmpty else {
+            return
+        }
         let es = elements
         elements.removeAll(keepCapacity: keepCapacity)
-        guard !es.isEmpty else { return }
         arrayDidChanged(ArrayChangeEvent(deleted: Array(0..<es.count)))
     }
 
-    public mutating func splice(newElements: [Element], atIndex i: Int) {
-        if !newElements.isEmpty {
-            elements.insertContentsOf(newElements, at: i)
-            arrayDidChanged(ArrayChangeEvent(inserted: Array(i..<i + newElements.count)))
+    public mutating func insertContentsOf(newElements: [Element], atIndex i: Int) {
+        guard !newElements.isEmpty else {
+            return
         }
-    }
-
-    public func removeRange(subRange: Range<Int>) {
-        var es = [Element]()
-        for i in subRange {
-            es.append(elements[i])
-        }
-        arrayDidChanged(ArrayChangeEvent(deleted: Array(subRange)))
+        elements.insertContentsOf(newElements, at: i)
+        arrayDidChanged(ArrayChangeEvent(inserted: Array(i..<i + newElements.count)))
     }
 
     public mutating func replaceRange<C : CollectionType where C.Generator.Element == Element>(subRange: Range<Int>, with newCollection: C) {
+        let oldCount = elements.count
         elements.replaceRange(subRange, with: newCollection)
+        guard let first = subRange.first else {
+            return
+        }
+        let newCount = elements.count
+        let end = first + (newCount - oldCount) + subRange.count
+        arrayDidChanged(ArrayChangeEvent(inserted: Array(first..<end),
+                                         deleted: Array(subRange)))
     }
 
     public mutating func popLast() -> Element? {
         let e = elements.popLast()
         if e != nil {
-            arrayDidChanged(ArrayChangeEvent(deleted: [elements.count - 1]))
+            arrayDidChanged(ArrayChangeEvent(deleted: [elements.count]))
         }
         return e
     }
@@ -152,7 +180,6 @@ extension ObservableArray: CustomStringConvertible {
 }
 
 extension ObservableArray: CollectionType {
-
     public subscript(index: Int) -> Element {
         get {
             return elements[index]
@@ -169,14 +196,15 @@ extension ObservableArray: CollectionType {
 }
 
 extension ObservableArray: MutableSliceable {
-
     public subscript(bounds: Range<Int>) -> ArraySlice<Element> {
         get {
             return elements[bounds]
         }
         set {
             elements[bounds] = newValue
-            guard let first = bounds.first else { return }
+            guard let first = bounds.first else {
+                return
+            }
             arrayDidChanged(ArrayChangeEvent(inserted: Array(first..<first + newValue.count),
                                              deleted: Array(bounds)))
         }

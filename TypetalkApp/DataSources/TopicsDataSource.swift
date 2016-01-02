@@ -33,7 +33,7 @@ class TopicsDataSource {
             }
         )
         .addDisposableTo(disposeBag)
-        return topics.rx_event
+        return topics.rx_event()
     }
 
     private func startObserving() {
