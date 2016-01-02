@@ -54,7 +54,6 @@
 		8D2D30EE1C2E46BE001AD48E /* SlackTextViewController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D2D30EC1C2E46BE001AD48E /* SlackTextViewController.framework */; };
 		8D2D30F01C2E59ED001AD48E /* FontAwesome.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D2D30EB1C2E46BE001AD48E /* FontAwesome.framework */; };
 		8D2D30F11C2E59ED001AD48E /* SlackTextViewController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D2D30EC1C2E46BE001AD48E /* SlackTextViewController.framework */; };
-		8D32505B1C30FAC2003A269A /* ObservableArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE627931A95FBB1000EADC3 /* ObservableArray.swift */; };
 		8D4218A41AA42182009D2077 /* Post+Ops.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4218A31AA42182009D2077 /* Post+Ops.swift */; };
 		8D4218A51AA42182009D2077 /* Post+Ops.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4218A31AA42182009D2077 /* Post+Ops.swift */; };
 		8D4DE33C1A3B317200E0A0B7 /* AutoCompletionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4DE33B1A3B317200E0A0B7 /* AutoCompletionCell.swift */; };
@@ -79,6 +78,8 @@
 		8D8AED311C22FC920015FD07 /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D8AED291C22FC920015FD07 /* RxSwift.framework */; };
 		8D8AED321C22FC920015FD07 /* Starscream.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D8AED2A1C22FC920015FD07 /* Starscream.framework */; };
 		8D8AED331C22FC920015FD07 /* yavfl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D8AED2B1C22FC920015FD07 /* yavfl.framework */; };
+		8D8C932F1C376F3F006B75DF /* ObservableArray.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D8C932E1C376F3F006B75DF /* ObservableArray.framework */; };
+		8D8C93311C376F83006B75DF /* ObservableArray.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8D8C93301C376F83006B75DF /* ObservableArray.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8D93F8E21AAB39EE00005808 /* CreateNewMessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D93F8E11AAB39EE00005808 /* CreateNewMessageViewController.swift */; };
 		8D93F8E41AAB448F00005808 /* CreateNewMessageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D93F8E31AAB448F00005808 /* CreateNewMessageViewModel.swift */; };
 		8D96860A1A0E40AE009E8A98 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9686091A0E40AE009E8A98 /* AppDelegate.swift */; };
@@ -115,8 +116,6 @@
 		8DE2BAEB1A7F9CBE0078B830 /* CompletionDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE2BAE91A7F9C950078B830 /* CompletionDataSource.swift */; };
 		8DE2BAEE1A7FB2060078B830 /* TopicListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE2BAED1A7FB2060078B830 /* TopicListViewModel.swift */; };
 		8DE2BAF01A7FB6010078B830 /* MessageListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE2BAEF1A7FB6010078B830 /* MessageListViewModel.swift */; };
-		8DE627941A95FBB1000EADC3 /* ObservableArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE627931A95FBB1000EADC3 /* ObservableArray.swift */; };
-		8DE627951A95FBB1000EADC3 /* ObservableArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE627931A95FBB1000EADC3 /* ObservableArray.swift */; };
 		8DE8254C1A811271007A2875 /* Attachment+ContentType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE8254B1A811271007A2875 /* Attachment+ContentType.swift */; };
 		8DE8254D1A8112B0007A2875 /* Attachment+ContentType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE8254B1A811271007A2875 /* Attachment+ContentType.swift */; };
 		8DE8254E1A8112B0007A2875 /* Attachment+ContentType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE8254B1A811271007A2875 /* Attachment+ContentType.swift */; };
@@ -160,6 +159,7 @@
 				8D2D30D61C299819001AD48E /* APIKit.framework in Embed Frameworks */,
 				8D2D30D41C299819001AD48E /* Alamofire.framework in Embed Frameworks */,
 				8D2D30DE1C299819001AD48E /* RxBlocking.framework in Embed Frameworks */,
+				8D8C93311C376F83006B75DF /* ObservableArray.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -215,6 +215,8 @@
 		8D8AED2A1C22FC920015FD07 /* Starscream.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Starscream.framework; path = Carthage/Build/iOS/Starscream.framework; sourceTree = "<group>"; };
 		8D8AED2B1C22FC920015FD07 /* yavfl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = yavfl.framework; path = Carthage/Build/iOS/yavfl.framework; sourceTree = "<group>"; };
 		8D8AED3E1C22FCC60015FD07 /* OHHTTPStubs.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OHHTTPStubs.framework; path = Carthage/Build/iOS/OHHTTPStubs.framework; sourceTree = "<group>"; };
+		8D8C932E1C376F3F006B75DF /* ObservableArray.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ObservableArray.framework; path = Carthage/Build/iOS/ObservableArray.framework; sourceTree = "<group>"; };
+		8D8C93301C376F83006B75DF /* ObservableArray.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ObservableArray.framework; path = Carthage/Build/Mac/ObservableArray.framework; sourceTree = "<group>"; };
 		8D93F8E11AAB39EE00005808 /* CreateNewMessageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateNewMessageViewController.swift; sourceTree = "<group>"; };
 		8D93F8E31AAB448F00005808 /* CreateNewMessageViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateNewMessageViewModel.swift; sourceTree = "<group>"; };
 		8D9686041A0E40AE009E8A98 /* TypetalkApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TypetalkApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -253,7 +255,6 @@
 		8DE2BAE91A7F9C950078B830 /* CompletionDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompletionDataSource.swift; sourceTree = "<group>"; };
 		8DE2BAED1A7FB2060078B830 /* TopicListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicListViewModel.swift; sourceTree = "<group>"; };
 		8DE2BAEF1A7FB6010078B830 /* MessageListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageListViewModel.swift; sourceTree = "<group>"; };
-		8DE627931A95FBB1000EADC3 /* ObservableArray.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObservableArray.swift; sourceTree = "<group>"; };
 		8DE8254B1A811271007A2875 /* Attachment+ContentType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Attachment+ContentType.swift"; sourceTree = "<group>"; };
 		8DE8254F1A826CF7007A2875 /* NSXLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSXLabel.swift; sourceTree = "<group>"; };
 		8DE874101A0E7C3400D681DF /* TopicCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicCell.swift; sourceTree = "<group>"; };
@@ -268,6 +269,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8D8C932F1C376F3F006B75DF /* ObservableArray.framework in Frameworks */,
 				8D2D30ED1C2E46BE001AD48E /* FontAwesome.framework in Frameworks */,
 				8D2D30EE1C2E46BE001AD48E /* SlackTextViewController.framework in Frameworks */,
 				8D2D30651C298FF9001AD48E /* MarkdownKit.framework in Frameworks */,
@@ -409,7 +411,6 @@
 		8D6E72CB1A8B09C700A0D07C /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				8DE627931A95FBB1000EADC3 /* ObservableArray.swift */,
 				8D9E27381AD2C14D00906ECD /* MarkdownAST.swift */,
 				8D71F7231AE29832007441CF /* MarkdownLite.swift */,
 			);
@@ -420,6 +421,7 @@
 		8D8AED731C22FE6B0015FD07 /* OSX */ = {
 			isa = PBXGroup;
 			children = (
+				8D8C93301C376F83006B75DF /* ObservableArray.framework */,
 				8D2D30C81C299819001AD48E /* Alamofire.framework */,
 				8D2D30C91C299819001AD48E /* APIKit.framework */,
 				8D2D30CA1C299819001AD48E /* Emoji.framework */,
@@ -439,6 +441,7 @@
 		8D8AED741C22FE7C0015FD07 /* iOS */ = {
 			isa = PBXGroup;
 			children = (
+				8D8C932E1C376F3F006B75DF /* ObservableArray.framework */,
 				8D2D30EB1C2E46BE001AD48E /* FontAwesome.framework */,
 				8D2D30EC1C2E46BE001AD48E /* SlackTextViewController.framework */,
 				8D8AED3E1C22FCC60015FD07 /* OHHTTPStubs.framework */,
@@ -823,6 +826,7 @@
 				"$(SRCROOT)/Carthage/Build/iOS/MarkdownKit.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/SlackTextViewController.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/FontAwesome.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/ObservableArray.framework",
 			);
 			name = Carthage;
 			outputPaths = (
@@ -851,6 +855,7 @@
 				"$(SRCROOT)/Carthage/Build/iOS/SlackTextViewController.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/FontAwesome.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/OHHTTPStubs.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/ObservableArray.framework",
 			);
 			name = Carthage;
 			outputPaths = (
@@ -877,6 +882,7 @@
 				"$(SRCROOT)/Carthage/Build/Mac/APIKit.framework",
 				"$(SRCROOT)/Carthage/Build/Mac/MarkdownKit.framework",
 				"$(SRCROOT)/Carthage/Build/Mac/OHHTTPStubs.framework",
+				"$(SRCROOT)/Carthage/Build/Mac/ObservableArray.framework",
 			);
 			name = Carthage;
 			outputPaths = (
@@ -901,7 +907,6 @@
 				8D96860E1A0E40AE009E8A98 /* MessageListViewController.swift in Sources */,
 				8D7B67C71A18A4C500BDBFB7 /* NSDate+Format.swift in Sources */,
 				8D4DE33C1A3B317200E0A0B7 /* AutoCompletionCell.swift in Sources */,
-				8DE627941A95FBB1000EADC3 /* ObservableArray.swift in Sources */,
 				8D96860C1A0E40AE009E8A98 /* TopicListViewController.swift in Sources */,
 				8D2D30741C299062001AD48E /* MarkdownAST.swift in Sources */,
 				8D4218A41AA42182009D2077 /* Post+Ops.swift in Sources */,
@@ -922,7 +927,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8D32505B1C30FAC2003A269A /* ObservableArray.swift in Sources */,
 				8D9686221A0E40AE009E8A98 /* TypetalkAppTests.swift in Sources */,
 				8DE2BAE81A7F9A630078B830 /* Client+RxExtension.swift in Sources */,
 				8D7B67C91A18A4F300BDBFB7 /* NSDate+FormatTests.swift in Sources */,
@@ -945,7 +949,6 @@
 				8DE2BAD71A7E8CAF0078B830 /* MessageCell.swift in Sources */,
 				8DE8254D1A8112B0007A2875 /* Attachment+ContentType.swift in Sources */,
 				8DCA5F121A875333000F6206 /* AttachmentView.swift in Sources */,
-				8DE627951A95FBB1000EADC3 /* ObservableArray.swift in Sources */,
 				8D7DB4701A9A146E0093C2D3 /* TopicInfoDataSource.swift in Sources */,
 				8D6E72CA1A89060400A0D07C /* MainWindowController.swift in Sources */,
 				8DE2BAEE1A7FB2060078B830 /* TopicListViewModel.swift in Sources */,

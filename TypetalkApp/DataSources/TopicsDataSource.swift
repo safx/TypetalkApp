@@ -8,6 +8,7 @@
 
 import TypetalkKit
 import RxSwift
+import ObservableArray
 
 
 class TopicsDataSource {

@@ -9,6 +9,7 @@
 import Cocoa
 import TypetalkKit
 import RxSwift
+import ObservableArray
 
 
 class TopicListViewModel : NSObject, NSTableViewDataSource {

@@ -8,6 +8,7 @@
 
 import TypetalkKit
 import RxSwift
+import ObservableArray
 
 class TopicInfoDataSource {
     typealias Event = ObservableArray<Post>.EventObservableType
