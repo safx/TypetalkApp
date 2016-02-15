@@ -11,7 +11,7 @@ import RxSwift
 import ObservableArray
 
 class MessagesDataSource {
-    typealias Event = ObservableArray<Post>.EventObservableType
+    typealias Event = ObservableArray<Post>.EventType
 
     let team = Variable(Team())
     let topic = Variable(Topic())

@@ -14,12 +14,14 @@ import ObservableArray
 
 
 class MessageListViewModel : NSObject, NSTableViewDataSource {
+    typealias OArray = ObservableArray<Post>
     private let model = MessagesDataSource()
-    var posts: ObservableArray<Post> {
+
+    var posts: OArray {
         return model.posts
     }
-    var postsEvent: ObservableArray<Post>.EventObservableType {
-        return model.posts.rx_event()
+    var postsEvent: Observable<OArray.EventType> {
+        return model.posts.rx_events()
     }
     var bookmarkIndex: Variable<Int> {
         return model.bookmarkIndex

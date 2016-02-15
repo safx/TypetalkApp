@@ -12,9 +12,10 @@ import ObservableArray
 
 
 class TopicsDataSource {
-    typealias Event = ObservableArray<TopicWithUserInfo>.EventObservableType
+    typealias OArray = ObservableArray<TopicWithUserInfo>
+    typealias Event  = Observable<OArray.EventType>
 
-    var topics = ObservableArray<TopicWithUserInfo>()
+    var topics = OArray()
 
     let disposeBag = DisposeBag()
 
@@ -34,7 +35,7 @@ class TopicsDataSource {
             }
         )
         .addDisposableTo(disposeBag)
-        return topics.rx_event()
+        return topics.rx_events()
     }
 
     private func startObserving() {
