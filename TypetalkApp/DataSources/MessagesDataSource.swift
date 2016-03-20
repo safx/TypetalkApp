@@ -49,7 +49,7 @@ class MessagesDataSource {
             onNext: { res in
                 let firstFetch = self.posts.count == 0
 
-                self.team.value = res.team
+                _ = res.team.flatMap { self.team.value = $0 }
                 self.topic.value = res.topic
                 self.posts.insertContentsOf(res.posts, atIndex: 0)
                 self.hasNext.value = res.hasNext
