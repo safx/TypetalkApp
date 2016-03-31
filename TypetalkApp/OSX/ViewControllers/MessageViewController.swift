@@ -51,12 +51,12 @@ class MessageViewController: NSViewController, NSTableViewDelegate {
                         NSTableView.reloadData(weakTableView)
                     } else {
                         NSTableView.update(weakTableView) { t in
-                            t.insertRowsAtIndexes(NSTableView.asIndexSet(event.insertedIndeces), withAnimation: .EffectNone)
-                            t.removeRowsAtIndexes(NSTableView.asIndexSet(event.deletedIndeces), withAnimation: .EffectFade)
-                            t.updateRowsAtIndexes(NSTableView.asIndexSet(event.updatedIndeces), withAnimation: .EffectFade)
+                            t.insertRowsAtIndexes(NSTableView.asIndexSet(event.insertedIndices), withAnimation: .EffectNone)
+                            t.removeRowsAtIndexes(NSTableView.asIndexSet(event.deletedIndices), withAnimation: .EffectFade)
+                            t.updateRowsAtIndexes(NSTableView.asIndexSet(event.updatedIndices), withAnimation: .EffectFade)
 
-                            if let idx = event.insertedIndeces.first {
-                                let moveIndex = idx == 0 ? event.insertedIndeces.count : idx
+                            if let idx = event.insertedIndices.first {
+                                let moveIndex = idx == 0 ? event.insertedIndices.count : idx
                                 weakTableView?.scrollRowToVisible(moveIndex)
                             }
                         }
@@ -76,10 +76,10 @@ class MessageViewController: NSViewController, NSTableViewDelegate {
             .addDisposableTo(disposeBag)
 
         tableView.postsFrameChangedNotifications = true
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "tableViewFrameDidChange:", name: NSViewFrameDidChangeNotification, object: tableView)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(MessageViewController.tableViewFrameDidChange(_:)), name: NSViewFrameDidChangeNotification, object: tableView)
 
         let scrollView = tableView.superview!.superview! as! NSScrollView
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "scrollViewDidLiveScroll:", name: NSScrollViewDidLiveScrollNotification, object: scrollView)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(MessageViewController.scrollViewDidLiveScroll(_:)), name: NSScrollViewDidLiveScrollNotification, object: scrollView)
 
     }
 

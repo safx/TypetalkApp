@@ -52,16 +52,18 @@ class CompletionDataSource {
         .addDisposableTo(disposeBag)
     }
 
-    private func _filterfunc<T>(foundWord: String, key:(T -> String))(e: T) -> Bool {
-        if foundWord.isEmpty {
-            return true
+    private func _filterfunc<T>(foundWord: String, key:(T -> String)) -> T -> Bool {
+        return { (e: T) -> Bool in
+            if foundWord.isEmpty {
+                return true
+            }
+
+            let n = key(e)
+            if let r = n.rangeOfString(foundWord) {
+                return r.startIndex == n.startIndex
+            }
+            return false
         }
-        
-        let n = key(e)
-        if let r = n.rangeOfString(foundWord) {
-            return r.startIndex == n.startIndex
-        }
-        return false
     }
 
     func autoCompletionElements(foundPrefix: String, foundWord: String) -> [CompletionModel] {

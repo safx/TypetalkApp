@@ -19,7 +19,7 @@ import MarkdownKit
 
     override var description : String {
         var c = ""
-        for var i = 0; i < contents.count; ++i {
+        for i in 0..<contents.count {
             c += contents[i].description
         }
 

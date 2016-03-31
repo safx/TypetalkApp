@@ -81,9 +81,9 @@ class MessageListViewController: SLKTextViewController {
                     if let t = weakTableView {
                         let c = self.viewModel.model.posts.count - 1
                         let f = { NSIndexPath(forRow: c - $0, inSection: 0) }
-                        let i = next.insertedIndeces.map(f)
-                        let d = next.deletedIndeces.map(f)
-                        let u = next.updatedIndeces.map(f)
+                        let i = next.insertedIndices.map(f)
+                        let d = next.deletedIndices.map(f)
+                        let u = next.updatedIndices.map(f)
                         t.beginUpdates()
                         t.insertRowsAtIndexPaths(i, withRowAnimation: .None)
                         t.deleteRowsAtIndexPaths(d, withRowAnimation: .Automatic)

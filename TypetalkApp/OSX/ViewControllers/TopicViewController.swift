@@ -39,9 +39,9 @@ class TopicViewController: NSViewController, NSTableViewDelegate, NSMenuDelegate
                     NSTableView.reloadData(weakTableView)
                 } else {
                     NSTableView.update(weakTableView) { t in
-                        t.insertRowsAtIndexes(NSTableView.asIndexSet(event.insertedIndeces), withAnimation: .EffectFade)
-                        t.removeRowsAtIndexes(NSTableView.asIndexSet(event.deletedIndeces), withAnimation: .EffectFade)
-                        t.updateRowsAtIndexes(NSTableView.asIndexSet(event.updatedIndeces), withAnimation: .EffectFade)
+                        t.insertRowsAtIndexes(NSTableView.asIndexSet(event.insertedIndices), withAnimation: .EffectFade)
+                        t.removeRowsAtIndexes(NSTableView.asIndexSet(event.deletedIndices), withAnimation: .EffectFade)
+                        t.updateRowsAtIndexes(NSTableView.asIndexSet(event.updatedIndices), withAnimation: .EffectFade)
                     }
                 }
                 self.oldNumberOfRows = rows

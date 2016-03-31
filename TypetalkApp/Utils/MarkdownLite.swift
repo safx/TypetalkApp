@@ -17,7 +17,7 @@ typealias ContextClosure = (CGContext -> ()) -> ()
     typealias EdgeInsets = UIEdgeInsets
     typealias Color = UIColor
     typealias Font = UIFont
-    func WithCurrentGraphicsContext(height: CGFloat)(closure: CGContext -> ()) {
+    func WithCurrentGraphicsContext(height: CGFloat, closure: CGContext -> ()) {
         let gfx = UIGraphicsGetCurrentContext()
         closure(gfx!)
     }
@@ -51,19 +51,21 @@ typealias ContextClosure = (CGContext -> ()) -> ()
         }
     }
 
-    func WithCurrentGraphicsContext(height: CGFloat)(closure: CGContext -> ()) {
-        let ctx = NSGraphicsContext.currentContext()!
-        ctx.saveGraphicsState()
+    func WithCurrentGraphicsContext(height: CGFloat) -> (CGContext -> ()) -> () {
+        return { (closure: CGContext -> ()) in
+            let ctx = NSGraphicsContext.currentContext()!
+            ctx.saveGraphicsState()
 
-        let gfx = ctx.CGContext
-        let xform = NSAffineTransform()
-        xform.translateXBy(0, yBy: height - 12)
-        xform.scaleXBy(1, yBy: -1)
-        xform.concat()
+            let gfx = ctx.CGContext
+            let xform = NSAffineTransform()
+            xform.translateXBy(0, yBy: height - 12)
+            xform.scaleXBy(1, yBy: -1)
+            xform.concat()
 
-        closure(gfx)
-
-        ctx.restoreGraphicsState()
+            closure(gfx)
+            
+            ctx.restoreGraphicsState()
+        }
     }
 
 #endif
