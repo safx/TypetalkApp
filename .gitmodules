@@ -37,3 +37,6 @@
 [submodule "Carthage/Checkouts/ObservableArray-RxSwift"]
 	path = Carthage/Checkouts/ObservableArray-RxSwift
 	url = https://github.com/safx/ObservableArray-RxSwift.git
+[submodule "Carthage/Checkouts/ReSwift"]
+	path = Carthage/Checkouts/ReSwift
+	url = https://github.com/ReSwift/ReSwift.git
