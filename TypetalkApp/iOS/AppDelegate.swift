@@ -8,6 +8,10 @@
 
 import UIKit
 import TypetalkKit
+import ReSwift
+import ReSwiftRouter
+
+var appStore = Store<AppState>(reducer: AppReducer(), state: nil)
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDelegate {
@@ -66,10 +70,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
     func splitViewController(splitViewController: UISplitViewController, collapseSecondaryViewController secondaryViewController:UIViewController, ontoPrimaryViewController primaryViewController:UIViewController) -> Bool {
         if let secondaryAsNavController = secondaryViewController as? UINavigationController {
             if let topAsDetailController = secondaryAsNavController.topViewController as? MessageListViewController {
-                if topAsDetailController.topic == nil {
+                //if topAsDetailController.topic == nil {
                     // Return true to indicate that we have handled the collapse by doing nothing; the secondary controller will be discarded.
                     return true
-                }
+                //}
             }
         }
         return false

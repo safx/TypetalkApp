@@ -1,6 +1,7 @@
 github "Alamofire/Alamofire" ~> 3.2.1
 github "ReactiveX/RxSwift" ~> 2.3.0
-github "ReSwift/ReSwift"
+github "ReSwift/ReSwift" ~> 1.0.0
+github "ReSwift/ReSwift-Router" "0.2.7"
 github "safx/Emoji-swift" ~> 0.0.2
 github "safx/MarkdownKit" ~> 0.2.0
 github "safx/ObservableArray-RxSwift" ~> 0.0.1

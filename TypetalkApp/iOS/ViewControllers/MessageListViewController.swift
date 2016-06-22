@@ -9,24 +9,32 @@
 import UIKit
 import TypetalkKit
 import RxSwift
+import ReSwift
 import SlackTextViewController
 
-class MessageListViewController: SLKTextViewController {
 
-    private let viewModel = MessageListViewModel()
+
+
+class MessageListViewController: SLKTextViewController, StoreSubscriber {
+
+    //private let viewModel = MessageListViewModel()
+    //private let dataSource = ArrayDataSource<Post, MessageCell>(identifier: "MessageCell")
+    private let dataSource = PostArrayDataSource()
 
     typealias CompletionModel = CompletionDataSource.CompletionModel
+
+    let completionModel = CompletionDataSource()
     var completionList = [CompletionModel]()
     var oldNumberOfRows = 0
 
     private let disposeBag = DisposeBag()
 
-    var topic: TopicWithUserInfo? {
+    /*var topic: TopicWithUserInfo? {
         didSet {
             self.configureView()
             self.viewModel.fetch(topic!.topic.id)
         }
-    }
+    }*/
 
     /*override init!(tableViewStyle style: UITableViewStyle) {
         super.init(tableViewStyle: .Plain)
@@ -40,13 +48,6 @@ class MessageListViewController: SLKTextViewController {
         return .Plain
     }
 
-    func configureView() {
-        // Update the user interface for the detail item.
-        if let t = self.topic {
-            self.title = t.topic.name
-        }
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -56,10 +57,10 @@ class MessageListViewController: SLKTextViewController {
         shakeToClearEnabled = true
         keyboardPanningEnabled = true
         
-        tableView.separatorStyle = .None
-        tableView.estimatedRowHeight = 64
-        tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.registerClass(MessageCell.self, forCellReuseIdentifier: "MessageCell")
+        tableView!.separatorStyle = .None
+        tableView!.estimatedRowHeight = 64
+        tableView!.rowHeight = UITableViewAutomaticDimension
+        tableView!.registerClass(MessageCell.self, forCellReuseIdentifier: "MessageCell")
 
         textView.placeholder = NSLocalizedString("Message", comment: "Message")
 
@@ -69,14 +70,14 @@ class MessageListViewController: SLKTextViewController {
         registerPrefixesForAutoCompletion(["@", "#", ":"])
         autoCompletionView.registerClass(AutoCompletionCell.self, forCellReuseIdentifier: "AutoCompletionCell")
 
-        self.configureView()
+        //self.configureView()
 
-        weak var weakTableView = tableView
+        /*weak var weakTableView = tableView
         viewModel.model.posts.rx_events()
             .observeOn(MainScheduler.instance)
             .subscribeNext { next in
                 if self.oldNumberOfRows == 0 {
-                    self.tableView.reloadData()
+                    self.tableView!.reloadData()
                 } else {
                     if let t = weakTableView {
                         let c = self.viewModel.model.posts.count - 1
@@ -95,13 +96,47 @@ class MessageListViewController: SLKTextViewController {
             }
             .addDisposableTo(disposeBag)
 
-        tableView.dataSource = viewModel
-        //viewModel.fetch()
+        tableView!.dataSource = viewModel*/
+        tableView!.dataSource = dataSource
+    }
+
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+
+        guard let topic = appStore.state.selectedTopic?.topic else {
+            return
+        }
+        self.title = topic.name
+
+        dispatch_async(dispatch_get_global_queue(QOS_CLASS_UTILITY, 0)) { () -> Void in
+            self.completionModel.fetch(topic.id)
+            appStore.rx_dispatch(fetchTypetalkGetPosts)
+                    .addDisposableTo(self.disposeBag)
+        }
+        appStore.subscribe(self) { state in
+            state.messages
+        }
+    }
+
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        appStore.unsubscribe(self)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+
+    // MARK: - ReSwift
+
+    func newState(state: [Post]?) {
+        guard let state = state else { return }
+
+        dataSource.model = state
+        dispatch_async(dispatch_get_main_queue()) { [weak self] () -> Void in
+            self?.tableView?.reloadData()
+        }
     }
 
     //MARK: - Text Editing
@@ -112,7 +147,7 @@ class MessageListViewController: SLKTextViewController {
     }*/
 
     override func didPressRightButton(sender: AnyObject!) {
-        viewModel.post(textView.text)
+        ///FIXME: viewModel.post(textView.text)
         super.didPressRightButton(sender)
     }
 
@@ -123,7 +158,7 @@ class MessageListViewController: SLKTextViewController {
     // MARK: - completion
 
     override func didChangeAutoCompletionPrefix(prefix: String!, andWord word: String!) {
-        completionList = viewModel.autoCompletionElements(foundPrefix, foundWord: foundWord)
+        completionList = completionModel.autoCompletionElements(foundPrefix!, foundWord: foundWord!)
         showAutoCompletionView(!completionList.isEmpty)
     }
 
@@ -160,6 +195,22 @@ class MessageListViewController: SLKTextViewController {
     // MARK: - load
     
     func handleMore(sender: AnyObject!) {
-        self.viewModel.fetchMore(topic!.topic.id)
+        ///FIXME: self.viewModel.fetchMore(topic!.topic.id)
     }
 }
+
+
+
+private class PostArrayDataSource: ArrayDataSource<Post, MessageCell> {
+    init() {
+        super.init(identifier: "MessageCell")
+    }
+    override func tableView(tableView: TableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> TableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier(identifier, forIndexPath: indexPath) as! MessageCell
+        cell.model = model[model.count - indexPath.row - 1]
+        cell.transform = tableView.transform
+        return cell
+    }
+}
+
+

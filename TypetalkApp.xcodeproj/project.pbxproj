@@ -10,6 +10,8 @@
 		8D2AB2C01A98E99D00E484B0 /* TopicCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D2AB2BE1A98E7AA00E484B0 /* TopicCell.swift */; };
 		8D2AB2C41A99BE7000E484B0 /* NSTableView+Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D2AB2C21A99BE5A00E484B0 /* NSTableView+Menu.swift */; };
 		8D2AB2C71A99E8F000E484B0 /* EditTopicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D2AB2C51A99E82C00E484B0 /* EditTopicViewController.swift */; };
+		8D2B9D751D1AE7B1001A58B5 /* ArrayDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D2B9D741D1AE7B1001A58B5 /* ArrayDataSource.swift */; };
+		8D2B9D761D1AE7B1001A58B5 /* ArrayDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D2B9D741D1AE7B1001A58B5 /* ArrayDataSource.swift */; };
 		8D2D30461C283994001AD48E /* MarkdownLite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D71F7231AE29832007441CF /* MarkdownLite.swift */; };
 		8D2D30471C283994001AD48E /* MarkdownLite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D71F7231AE29832007441CF /* MarkdownLite.swift */; };
 		8D2D30651C298FF9001AD48E /* MarkdownKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D2D30641C298FF9001AD48E /* MarkdownKit.framework */; };
@@ -68,6 +70,14 @@
 		8D7DB46F1A9A146E0093C2D3 /* TopicInfoDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D7DB46E1A9A146E0093C2D3 /* TopicInfoDataSource.swift */; };
 		8D7DB4701A9A146E0093C2D3 /* TopicInfoDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D7DB46E1A9A146E0093C2D3 /* TopicInfoDataSource.swift */; };
 		8D7DB4731A9B691A0093C2D3 /* NSComboBox+RxExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D7DB4711A9B69140093C2D3 /* NSComboBox+RxExtension.swift */; };
+		8D8049531D05D51C00C73728 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D8049521D05D51C00C73728 /* AppState.swift */; };
+		8D8049541D05D51C00C73728 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D8049521D05D51C00C73728 /* AppState.swift */; };
+		8D8049581D05D65100C73728 /* ReSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D8049571D05D65100C73728 /* ReSwift.framework */; };
+		8D80495A1D071C5A00C73728 /* ReSwiftRouter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D8049591D071C5A00C73728 /* ReSwiftRouter.framework */; };
+		8D80495E1D0723E000C73728 /* TypetalkActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D80495D1D0723E000C73728 /* TypetalkActions.swift */; };
+		8D80495F1D0723E000C73728 /* TypetalkActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D80495D1D0723E000C73728 /* TypetalkActions.swift */; };
+		8D8049631D0725E700C73728 /* AppReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D8049621D0725E700C73728 /* AppReducer.swift */; };
+		8D8049641D0725E700C73728 /* AppReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D8049621D0725E700C73728 /* AppReducer.swift */; };
 		8D8AED221C22FC920015FD07 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D424F0C1A69574C0034C498 /* Alamofire.framework */; };
 		8D8AED231C22FC920015FD07 /* TypetalkKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D424F0E1A69574C0034C498 /* TypetalkKit.framework */; };
 		8D8AED2C1C22FC920015FD07 /* APIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D8AED241C22FC920015FD07 /* APIKit.framework */; };
@@ -80,10 +90,14 @@
 		8D8AED331C22FC920015FD07 /* yavfl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D8AED2B1C22FC920015FD07 /* yavfl.framework */; };
 		8D8C932F1C376F3F006B75DF /* ObservableArray.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D8C932E1C376F3F006B75DF /* ObservableArray.framework */; };
 		8D8C93311C376F83006B75DF /* ObservableArray.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8D8C93301C376F83006B75DF /* ObservableArray.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		8D93E0521D1647FD00F03467 /* ReSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D93E0511D1647FD00F03467 /* ReSwift.framework */; };
+		8D93E0541D1648B500F03467 /* ReSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8D93E0531D1648B500F03467 /* ReSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		8D93E0551D1648C500F03467 /* ObservableArray.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D8C93301C376F83006B75DF /* ObservableArray.framework */; };
+		8D93E0571D1648E800F03467 /* ReSwiftRouter.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8D93E0561D1648E800F03467 /* ReSwiftRouter.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		8D93E0581D1648EB00F03467 /* ReSwiftRouter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D93E0561D1648E800F03467 /* ReSwiftRouter.framework */; };
 		8D93F8E21AAB39EE00005808 /* CreateNewMessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D93F8E11AAB39EE00005808 /* CreateNewMessageViewController.swift */; };
 		8D93F8E41AAB448F00005808 /* CreateNewMessageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D93F8E31AAB448F00005808 /* CreateNewMessageViewModel.swift */; };
 		8D96860A1A0E40AE009E8A98 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9686091A0E40AE009E8A98 /* AppDelegate.swift */; };
-		8D96860C1A0E40AE009E8A98 /* TopicListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D96860B1A0E40AE009E8A98 /* TopicListViewController.swift */; };
 		8D96860E1A0E40AE009E8A98 /* MessageListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D96860D1A0E40AE009E8A98 /* MessageListViewController.swift */; };
 		8D9686111A0E40AE009E8A98 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8D96860F1A0E40AE009E8A98 /* Main.storyboard */; };
 		8D9686131A0E40AE009E8A98 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8D9686121A0E40AE009E8A98 /* Images.xcassets */; };
@@ -98,12 +112,12 @@
 		8DCA5F121A875333000F6206 /* AttachmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DCA5F111A875333000F6206 /* AttachmentView.swift */; };
 		8DDA9B081A1703EF006A74D2 /* CreateTopicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DDA9B051A1703EF006A74D2 /* CreateTopicViewController.swift */; };
 		8DDA9B0A1A1703EF006A74D2 /* TextFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DDA9B071A1703EF006A74D2 /* TextFieldCell.swift */; };
+		8DDDDE1B1D1C3FB000D9A694 /* TopicListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D96860B1A0E40AE009E8A98 /* TopicListViewController.swift */; };
+		8DDDDE1C1D1C3FC100D9A694 /* TopicListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE2BADB1A7F993C0078B830 /* TopicListViewModel.swift */; };
 		8DE2BAD51A7E8CA80078B830 /* TopicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE2BAD21A7E8C370078B830 /* TopicViewController.swift */; };
 		8DE2BAD61A7E8CAC0078B830 /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE2BAD11A7E8C370078B830 /* MessageViewController.swift */; };
 		8DE2BAD71A7E8CAF0078B830 /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE2BACF1A7E8C2D0078B830 /* MessageCell.swift */; };
-		8DE2BADC1A7F993C0078B830 /* MessageListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE2BAD91A7F993C0078B830 /* MessageListViewModel.swift */; };
 		8DE2BADD1A7F993C0078B830 /* CreateTopicViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE2BADA1A7F993C0078B830 /* CreateTopicViewModel.swift */; };
-		8DE2BADE1A7F993C0078B830 /* TopicListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE2BADB1A7F993C0078B830 /* TopicListViewModel.swift */; };
 		8DE2BAE11A7F99AB0078B830 /* MessagesDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE2BADF1A7F99AB0078B830 /* MessagesDataSource.swift */; };
 		8DE2BAE21A7F99AB0078B830 /* TopicsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE2BAE01A7F99AB0078B830 /* TopicsDataSource.swift */; };
 		8DE2BAE31A7F99B00078B830 /* TopicsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE2BAE01A7F99AB0078B830 /* TopicsDataSource.swift */; };
@@ -160,6 +174,8 @@
 				8D2D30D41C299819001AD48E /* Alamofire.framework in Embed Frameworks */,
 				8D2D30DE1C299819001AD48E /* RxBlocking.framework in Embed Frameworks */,
 				8D8C93311C376F83006B75DF /* ObservableArray.framework in Embed Frameworks */,
+				8D93E0541D1648B500F03467 /* ReSwift.framework in Embed Frameworks */,
+				8D93E0571D1648E800F03467 /* ReSwiftRouter.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -177,6 +193,7 @@
 		8D2AB2BE1A98E7AA00E484B0 /* TopicCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicCell.swift; sourceTree = "<group>"; };
 		8D2AB2C21A99BE5A00E484B0 /* NSTableView+Menu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSTableView+Menu.swift"; sourceTree = "<group>"; };
 		8D2AB2C51A99E82C00E484B0 /* EditTopicViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditTopicViewController.swift; sourceTree = "<group>"; };
+		8D2B9D741D1AE7B1001A58B5 /* ArrayDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrayDataSource.swift; sourceTree = "<group>"; };
 		8D2D30641C298FF9001AD48E /* MarkdownKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MarkdownKit.framework; path = Carthage/Build/iOS/MarkdownKit.framework; sourceTree = "<group>"; };
 		8D2D30721C29904D001AD48E /* OHHTTPStubs.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OHHTTPStubs.framework; path = Carthage/Build/Mac/OHHTTPStubs.framework; sourceTree = "<group>"; };
 		8D2D30C81C299819001AD48E /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/Mac/Alamofire.framework; sourceTree = "<group>"; };
@@ -206,6 +223,11 @@
 		8D7DB46C1A99F7DE0093C2D3 /* EditTopicViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditTopicViewModel.swift; sourceTree = "<group>"; };
 		8D7DB46E1A9A146E0093C2D3 /* TopicInfoDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicInfoDataSource.swift; sourceTree = "<group>"; };
 		8D7DB4711A9B69140093C2D3 /* NSComboBox+RxExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSComboBox+RxExtension.swift"; sourceTree = "<group>"; };
+		8D8049521D05D51C00C73728 /* AppState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
+		8D8049571D05D65100C73728 /* ReSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReSwift.framework; path = Carthage/Build/iOS/ReSwift.framework; sourceTree = "<group>"; };
+		8D8049591D071C5A00C73728 /* ReSwiftRouter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReSwiftRouter.framework; path = Carthage/Build/iOS/ReSwiftRouter.framework; sourceTree = "<group>"; };
+		8D80495D1D0723E000C73728 /* TypetalkActions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TypetalkActions.swift; sourceTree = "<group>"; };
+		8D8049621D0725E700C73728 /* AppReducer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppReducer.swift; sourceTree = "<group>"; };
 		8D8AED241C22FC920015FD07 /* APIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = APIKit.framework; path = Carthage/Build/iOS/APIKit.framework; sourceTree = "<group>"; };
 		8D8AED251C22FC920015FD07 /* Emoji.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Emoji.framework; path = Carthage/Build/iOS/Emoji.framework; sourceTree = "<group>"; };
 		8D8AED261C22FC920015FD07 /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Result.framework; path = Carthage/Build/iOS/Result.framework; sourceTree = "<group>"; };
@@ -217,6 +239,9 @@
 		8D8AED3E1C22FCC60015FD07 /* OHHTTPStubs.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OHHTTPStubs.framework; path = Carthage/Build/iOS/OHHTTPStubs.framework; sourceTree = "<group>"; };
 		8D8C932E1C376F3F006B75DF /* ObservableArray.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ObservableArray.framework; path = Carthage/Build/iOS/ObservableArray.framework; sourceTree = "<group>"; };
 		8D8C93301C376F83006B75DF /* ObservableArray.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ObservableArray.framework; path = Carthage/Build/Mac/ObservableArray.framework; sourceTree = "<group>"; };
+		8D93E0511D1647FD00F03467 /* ReSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReSwift.framework; path = Carthage/Build/Mac/ReSwift.framework; sourceTree = "<group>"; };
+		8D93E0531D1648B500F03467 /* ReSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReSwift.framework; path = Carthage/Build/Mac/ReSwift.framework; sourceTree = "<group>"; };
+		8D93E0561D1648E800F03467 /* ReSwiftRouter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReSwiftRouter.framework; path = Carthage/Build/Mac/ReSwiftRouter.framework; sourceTree = "<group>"; };
 		8D93F8E11AAB39EE00005808 /* CreateNewMessageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateNewMessageViewController.swift; sourceTree = "<group>"; };
 		8D93F8E31AAB448F00005808 /* CreateNewMessageViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateNewMessageViewModel.swift; sourceTree = "<group>"; };
 		8D9686041A0E40AE009E8A98 /* TypetalkApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TypetalkApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -283,6 +308,8 @@
 				8D8AED331C22FC920015FD07 /* yavfl.framework in Frameworks */,
 				8D8AED221C22FC920015FD07 /* Alamofire.framework in Frameworks */,
 				8D8AED231C22FC920015FD07 /* TypetalkKit.framework in Frameworks */,
+				8D8049581D05D65100C73728 /* ReSwift.framework in Frameworks */,
+				8D80495A1D071C5A00C73728 /* ReSwiftRouter.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -322,6 +349,9 @@
 				8D2D30D51C299819001AD48E /* APIKit.framework in Frameworks */,
 				8D2D30D31C299819001AD48E /* Alamofire.framework in Frameworks */,
 				8D2D30DD1C299819001AD48E /* RxBlocking.framework in Frameworks */,
+				8D93E0551D1648C500F03467 /* ObservableArray.framework in Frameworks */,
+				8D93E0581D1648EB00F03467 /* ReSwiftRouter.framework in Frameworks */,
+				8D93E0521D1647FD00F03467 /* ReSwift.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -361,6 +391,7 @@
 				8DE2BADF1A7F99AB0078B830 /* MessagesDataSource.swift */,
 				8DE2BAE91A7F9C950078B830 /* CompletionDataSource.swift */,
 				8D7DB46E1A9A146E0093C2D3 /* TopicInfoDataSource.swift */,
+				8D2B9D741D1AE7B1001A58B5 /* ArrayDataSource.swift */,
 			);
 			name = DataSources;
 			path = TypetalkApp/DataSources;
@@ -418,9 +449,39 @@
 			path = TypetalkApp/Utils;
 			sourceTree = "<group>";
 		};
+		8D8049511D05D4FC00C73728 /* State */ = {
+			isa = PBXGroup;
+			children = (
+				8D8049521D05D51C00C73728 /* AppState.swift */,
+			);
+			name = State;
+			path = TypetalkApp/State;
+			sourceTree = "<group>";
+		};
+		8D80495B1D0722BD00C73728 /* Reducers */ = {
+			isa = PBXGroup;
+			children = (
+				8D8049621D0725E700C73728 /* AppReducer.swift */,
+			);
+			name = Reducers;
+			path = TypetalkApp/Reducers;
+			sourceTree = "<group>";
+		};
+		8D80495C1D0722CF00C73728 /* Actions */ = {
+			isa = PBXGroup;
+			children = (
+				8D80495D1D0723E000C73728 /* TypetalkActions.swift */,
+			);
+			name = Actions;
+			path = TypetalkApp/Actions;
+			sourceTree = "<group>";
+		};
 		8D8AED731C22FE6B0015FD07 /* OSX */ = {
 			isa = PBXGroup;
 			children = (
+				8D93E0561D1648E800F03467 /* ReSwiftRouter.framework */,
+				8D93E0531D1648B500F03467 /* ReSwift.framework */,
+				8D93E0511D1647FD00F03467 /* ReSwift.framework */,
 				8D8C93301C376F83006B75DF /* ObservableArray.framework */,
 				8D2D30C81C299819001AD48E /* Alamofire.framework */,
 				8D2D30C91C299819001AD48E /* APIKit.framework */,
@@ -441,6 +502,8 @@
 		8D8AED741C22FE7C0015FD07 /* iOS */ = {
 			isa = PBXGroup;
 			children = (
+				8D8049591D071C5A00C73728 /* ReSwiftRouter.framework */,
+				8D8049571D05D65100C73728 /* ReSwift.framework */,
 				8D8C932E1C376F3F006B75DF /* ObservableArray.framework */,
 				8D2D30EB1C2E46BE001AD48E /* FontAwesome.framework */,
 				8D2D30EC1C2E46BE001AD48E /* SlackTextViewController.framework */,
@@ -574,6 +637,9 @@
 		8DC068FA1A7E74E80039326F /* TypetalkApp-Common */ = {
 			isa = PBXGroup;
 			children = (
+				8D80495C1D0722CF00C73728 /* Actions */,
+				8D80495B1D0722BD00C73728 /* Reducers */,
+				8D8049511D05D4FC00C73728 /* State */,
 				8D6E72CB1A8B09C700A0D07C /* Utils */,
 				8D4E483D1A6ABDD1008C843B /* Extensions */,
 				8D4E483A1A6ABD3B008C843B /* DataSources */,
@@ -827,6 +893,8 @@
 				"$(SRCROOT)/Carthage/Build/iOS/SlackTextViewController.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/FontAwesome.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/ObservableArray.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/ReSwift.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/ReSwiftRouter.framework",
 			);
 			name = Carthage;
 			outputPaths = (
@@ -898,6 +966,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8D2B9D751D1AE7B1001A58B5 /* ArrayDataSource.swift in Sources */,
 				8D96864C1A0E45A1009E8A98 /* Client+RxExtension.swift in Sources */,
 				8DE874111A0E7C3400D681DF /* TopicCell.swift in Sources */,
 				8DDA9B0A1A1703EF006A74D2 /* TextFieldCell.swift in Sources */,
@@ -905,16 +974,18 @@
 				8D7DB46F1A9A146E0093C2D3 /* TopicInfoDataSource.swift in Sources */,
 				8DE2BADD1A7F993C0078B830 /* CreateTopicViewModel.swift in Sources */,
 				8D96860E1A0E40AE009E8A98 /* MessageListViewController.swift in Sources */,
+				8DDDDE1C1D1C3FC100D9A694 /* TopicListViewModel.swift in Sources */,
 				8D7B67C71A18A4C500BDBFB7 /* NSDate+Format.swift in Sources */,
 				8D4DE33C1A3B317200E0A0B7 /* AutoCompletionCell.swift in Sources */,
-				8D96860C1A0E40AE009E8A98 /* TopicListViewController.swift in Sources */,
 				8D2D30741C299062001AD48E /* MarkdownAST.swift in Sources */,
 				8D4218A41AA42182009D2077 /* Post+Ops.swift in Sources */,
 				8D2D30471C283994001AD48E /* MarkdownLite.swift in Sources */,
-				8DE2BADC1A7F993C0078B830 /* MessageListViewModel.swift in Sources */,
+				8DDDDE1B1D1C3FB000D9A694 /* TopicListViewController.swift in Sources */,
 				8DE8254C1A811271007A2875 /* Attachment+ContentType.swift in Sources */,
-				8DE2BADE1A7F993C0078B830 /* TopicListViewModel.swift in Sources */,
+				8D80495E1D0723E000C73728 /* TypetalkActions.swift in Sources */,
 				8DE2BAEA1A7F9C950078B830 /* CompletionDataSource.swift in Sources */,
+				8D8049531D05D51C00C73728 /* AppState.swift in Sources */,
+				8D8049631D0725E700C73728 /* AppReducer.swift in Sources */,
 				8DE2BAE11A7F99AB0078B830 /* MessagesDataSource.swift in Sources */,
 				8D96860A1A0E40AE009E8A98 /* AppDelegate.swift in Sources */,
 				8DAC5C291A0F4B280066EC44 /* MessageCell.swift in Sources */,
@@ -951,8 +1022,11 @@
 				8DCA5F121A875333000F6206 /* AttachmentView.swift in Sources */,
 				8D7DB4701A9A146E0093C2D3 /* TopicInfoDataSource.swift in Sources */,
 				8D6E72CA1A89060400A0D07C /* MainWindowController.swift in Sources */,
+				8D8049641D0725E700C73728 /* AppReducer.swift in Sources */,
 				8DE2BAEE1A7FB2060078B830 /* TopicListViewModel.swift in Sources */,
+				8D8049541D05D51C00C73728 /* AppState.swift in Sources */,
 				8D2AB2C71A99E8F000E484B0 /* EditTopicViewController.swift in Sources */,
+				8D80495F1D0723E000C73728 /* TypetalkActions.swift in Sources */,
 				8D2D30751C299063001AD48E /* MarkdownAST.swift in Sources */,
 				8D6B6C981A8EEB7D00313732 /* CreateNewTopicViewController.swift in Sources */,
 				8D4218A51AA42182009D2077 /* Post+Ops.swift in Sources */,
@@ -966,6 +1040,7 @@
 				8D6E72C61A87BEB300A0D07C /* Alamofire+RxExtension.swift in Sources */,
 				8DE825501A826CF7007A2875 /* NSXLabel.swift in Sources */,
 				8D93F8E21AAB39EE00005808 /* CreateNewMessageViewController.swift in Sources */,
+				8D2B9D761D1AE7B1001A58B5 /* ArrayDataSource.swift in Sources */,
 				8DED3CBC1AE6930600B42133 /* MarkdownView.swift in Sources */,
 				8D2AB2C41A99BE7000E484B0 /* NSTableView+Menu.swift in Sources */,
 				8DC068E01A7E749A0039326F /* AppDelegate.swift in Sources */,

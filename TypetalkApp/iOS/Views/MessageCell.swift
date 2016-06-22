@@ -13,7 +13,7 @@ import RxSwift
 import yavfl
 import Emoji
 
-class MessageCell: UITableViewCell {
+class MessageCell: UITableViewCell, CellDataSouce {
     private let message = UILabel()
     private let lastUpdate = UILabel()
     private let accountName = UILabel()
@@ -66,10 +66,11 @@ class MessageCell: UITableViewCell {
                 }
 
                 if let downloadRequest = DownloadAttachment(url: i.apiUrl, attachmentType: resolveAttachmentType(i)) {
+                    print(try? downloadRequest.buildURLRequest().URLString)
                     let s = TypetalkAPI.rx_sendRequest(downloadRequest)
                     s.subscribe(
                         onNext: { res in
-                            print("** \(i.attachment.fileName)")
+                            print("** \(i.attachment.fileName), \(res.length)")
                             dispatch_async(dispatch_get_main_queue(), { () in
                                 let img = UIImage(data: res)
                                 thumbnail.image = img

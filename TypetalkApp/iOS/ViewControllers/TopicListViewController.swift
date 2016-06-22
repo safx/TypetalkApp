@@ -9,12 +9,16 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import ReSwift
+import TypetalkKit
 
 
-class TopicListViewController: UITableViewController {
+class TopicListViewController: UITableViewController, StoreSubscriber {
     var messageListViewController: MessageListViewController? = nil
-    private let viewModel = TopicListViewModel()
+    //private let viewModel = TopicListViewModel()
     private let disposeBag = DisposeBag()
+
+    private let dataSource = ArrayDataSource<TopicWithUserInfo, TopicCell>(identifier: "TopicCell")
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -37,13 +41,24 @@ class TopicListViewController: UITableViewController {
             self.messageListViewController = controllers[controllers.count-1].topViewController as? MessageListViewController
         }*/
 
-        tableView.dataSource = viewModel
-        viewModel.fetch(true)
-            .observeOn(MainScheduler.instance)
-            .subscribeNext { next in
-                self.tableView.reloadData()
-            }
-            .addDisposableTo(disposeBag)
+        tableView.dataSource = dataSource
+    }
+
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+
+        dispatch_async(dispatch_get_global_queue(QOS_CLASS_UTILITY, 0)) { () -> Void in
+            appStore.rx_dispatch(fetchTypetalkGetTopics)
+                    .addDisposableTo(self.disposeBag)
+        }
+        appStore.subscribe(self) { state in
+            state.topics
+        }
+    }
+
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        appStore.unsubscribe(self)
     }
 
     override func didReceiveMemoryWarning() {
@@ -55,20 +70,34 @@ class TopicListViewController: UITableViewController {
 
     }
 
+    // MARK: - ReSwift
+
+    func newState(state: [TopicWithUserInfo]?) {
+        guard let state = state else { return }
+
+        dataSource.model = state
+        dispatch_async(dispatch_get_main_queue()) { [weak self] () -> Void in
+            self?.tableView.reloadData()
+        }
+    }
+
     // MARK: - Segues
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "showDetail" {
             if let indexPath = self.tableView.indexPathForSelectedRow {
-                let topic = viewModel.model.topics[indexPath.row] // FIXME
+                let topic = dataSource.model[indexPath.row] // FIXME
+                appStore.dispatch(ViewTopic(topic: topic))
                 let controller = (segue.destinationViewController as! UINavigationController).topViewController as! MessageListViewController
-                controller.topic = topic
+                //controller.topic = topic
                 controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
                 controller.navigationItem.leftItemsSupplementBackButton = true
             }
         } else if segue.identifier == "newTopic" {
-            let controller = (segue.destinationViewController as! UINavigationController).topViewController as! CreateTopicViewController
-            controller.viewModel.parentViewModel = viewModel
+            //let controller = (segue.destinationViewController as! UINavigationController).topViewController as! CreateTopicViewController
+            //controller.viewModel.parentViewModel = viewModel
         }
     }
 }
+
+

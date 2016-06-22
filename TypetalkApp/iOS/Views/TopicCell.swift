@@ -9,7 +9,7 @@
 import UIKit
 import TypetalkKit
 
-class TopicCell: UITableViewCell {
+class TopicCell: UITableViewCell, CellDataSouce {
     @IBOutlet private weak var name: UILabel!
     @IBOutlet private weak var lastUpdate: UILabel!
     
