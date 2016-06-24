@@ -56,10 +56,10 @@ class MessageListViewController: SLKTextViewController {
         shakeToClearEnabled = true
         keyboardPanningEnabled = true
         
-        tableView.separatorStyle = .None
-        tableView.estimatedRowHeight = 64
-        tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.registerClass(MessageCell.self, forCellReuseIdentifier: "MessageCell")
+        tableView?.separatorStyle = .None
+        tableView?.estimatedRowHeight = 64
+        tableView?.rowHeight = UITableViewAutomaticDimension
+        tableView?.registerClass(MessageCell.self, forCellReuseIdentifier: "MessageCell")
 
         textView.placeholder = NSLocalizedString("Message", comment: "Message")
 
@@ -76,7 +76,7 @@ class MessageListViewController: SLKTextViewController {
             .observeOn(MainScheduler.instance)
             .subscribeNext { next in
                 if self.oldNumberOfRows == 0 {
-                    self.tableView.reloadData()
+                    self.tableView?.reloadData()
                 } else {
                     if let t = weakTableView {
                         let c = self.viewModel.model.posts.count - 1
@@ -95,7 +95,7 @@ class MessageListViewController: SLKTextViewController {
             }
             .addDisposableTo(disposeBag)
 
-        tableView.dataSource = viewModel
+        tableView?.dataSource = viewModel
         //viewModel.fetch()
     }
 
@@ -116,14 +116,14 @@ class MessageListViewController: SLKTextViewController {
         super.didPressRightButton(sender)
     }
 
-    override func didCommitTextEditing(sender: AnyObject!) {
+    override func didCommitTextEditing(sender: AnyObject) {
         super.didCommitTextEditing(sender)
     }
 
     // MARK: - completion
 
-    override func didChangeAutoCompletionPrefix(prefix: String!, andWord word: String!) {
-        completionList = viewModel.autoCompletionElements(foundPrefix, foundWord: foundWord)
+    override func didChangeAutoCompletionPrefix(prefix: String, andWord word: String) {
+        completionList = viewModel.autoCompletionElements(foundPrefix!, foundWord: foundWord!)
         showAutoCompletionView(!completionList.isEmpty)
     }
 
